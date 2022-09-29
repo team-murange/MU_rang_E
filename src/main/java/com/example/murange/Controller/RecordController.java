@@ -1,5 +1,7 @@
 package com.example.murange.Controller;
 
+import com.example.murange.Service.RecordService;
+import com.example.murange.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class RecordController {
+
+    private final RecordService userService;
 
     // 감정 분석 페이지 - 감정 분석 후 주감정/부감정 저장
     @GetMapping("/figure/{user-id}/{main-emotion}/{sub-emotion}")

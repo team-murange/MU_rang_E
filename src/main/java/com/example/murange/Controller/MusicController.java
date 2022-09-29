@@ -1,6 +1,8 @@
 package com.example.murange.Controller;
 
 import com.example.murange.Domain.Music;
+import com.example.murange.Service.MusicService;
+import com.example.murange.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MusicController {
 
+    private final MusicService musicService;
+
+
     // 메인 페이지 - 검색
     @GetMapping("/search")
     @ResponseBody
@@ -27,7 +32,7 @@ public class MusicController {
     @GetMapping("/top")
     @ResponseBody
     public ResponseEntity<List<Music>> getTopMusic() {
-        List<Music> musicList= null;
+        List<Music> musicList= musicService.getMusicByStreamingCnt();
         return new ResponseEntity(musicList, HttpStatus.OK);
     }
 
@@ -45,16 +50,6 @@ public class MusicController {
     public ResponseEntity<List<Music>> getMusicByEmotion(
             @PathVariable(value = "main-emotion") String mainEmotion,
             @PathVariable(value = "sub-emotion") String subEmotion
-    ) {
-        List<Music> musicList= null;
-        return new ResponseEntity(musicList, HttpStatus.OK);
-    }
-
-    // 프로필 페이지 - 내가 좋아요한 음악 조회
-    @GetMapping("/like/{user-id}")
-    @ResponseBody
-    public ResponseEntity<List<Music>> getMusicByLike(
-            @PathVariable(value = "user-id") Long userId
     ) {
         List<Music> musicList= null;
         return new ResponseEntity(musicList, HttpStatus.OK);

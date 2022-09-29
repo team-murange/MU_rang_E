@@ -1,6 +1,8 @@
 package com.example.murange.Controller;
 
 import com.example.murange.Domain.Emotion;
+import com.example.murange.Service.EmotionService;
+import com.example.murange.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class EmotionController {
 
+    private final EmotionService emotionService;
+
+
+    // 수정 - POST
     // 감정 분석 페이지 - 이 음악의 2가지 감정 수치 update
     @GetMapping("/result/{user-id}/{music-id}")
     @ResponseBody
@@ -18,6 +24,7 @@ public class EmotionController {
             @PathVariable(value = "user-id") Long userId,
             @PathVariable(value = "music-id") Long musicId
     ) {
+
 
         return new ResponseEntity(HttpStatus.OK);
     }
