@@ -14,11 +14,8 @@ public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="like_id")
-    private long id;
+    private Long id;
 
-    private String user_id;
-
-    private String music_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -29,9 +26,9 @@ public class Like {
     private Music music;
 
     @Builder
-    public Like(String user_id, String music_id) {
-        this.user_id = user_id;
-        this.music_id = music_id;
+    public Like(User user, Music music) {
+        this.user = user;
+        this.music = music;
     }
 
 }

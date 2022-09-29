@@ -16,7 +16,7 @@ public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="record_id")
-    private long id;
+    private Long id;
 
     private String emotion;
 

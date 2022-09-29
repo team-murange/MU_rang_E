@@ -14,7 +14,7 @@ public class Emotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="emotion_id")
-    private long id;
+    private Long id;
 
     private float sad;
 
