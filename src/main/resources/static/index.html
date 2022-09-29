@@ -1,35 +1,82 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
+
+</head>
+
 <body>
+<header>
+    <img id="logo">
+    <div id="search"> </div>
+    <div id="login"></div>
+</header>
 
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<div id="g_id_onload"
-     data-client_id="914445244202-qo5uhnq9d03g3sfj5hkedmprahsk4tbe.apps.googleusercontent.com"
-     data-callback="handleCredentialResponse">
+<div class="content">
+    <!-- 왼쪽 : 감정 분석 후 감정 수치 -->
+    <section id="emotion">
+        <div class="ment">@@님의 지금 감정은</div>
+        <div class="ment">Chill</div>
+        <div class="ment">
+            <div class="ment__emotion">
+                <div class="ment__word">Sad</div>
+                <div class="ment__figure"> 0.0011 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Angry</div>
+                <div class="ment__figure"> 0.0011 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Disgust</div>
+                <div class="ment__figure"> 0.0011 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Happy</div>
+                <div class="ment__figure"> 0.0011 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Surprised</div>
+                <div class="ment__figure"> 0.0011 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Neutral</div>
+                <div class="ment__figure"> 0.0011 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Scared</div>
+                <div class="ment__figure"> 0.0011 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 중간 : 사용자 감정 분석 회면 -->
+    <section id="detection">
+        <div id="detection__frame"></div>
+        <button id="detection__button">기분 분석을 다시 할까요?</button>
+    </section>
+
+    <!-- 오른쪽 : 분석후 플레이리스트 -->
+    <section id="playlist">
+        <div class="ment" id="ment__top"> 기분에 맞는 </div>
+        <div class="ment" id="ment__mid"> 추천 플레이리스트 </div>
+        <ul class="playlist__music">
+            <li class="playlist__music__"> </li>
+            <li class="playlist__music__"> </li>
+            <li class="playlist__music__"> </li>
+            <li class="playlist__music__"> </li>
+        </ul>
+    </section>
+
 </div>
-<div class="g_id_signin" data-type="standard"></div>
 
-<script>
-    function decodeJwtResponse(token) {
-        let base64Url = token.split('.')[1]
-        let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-        return JSON.parse(jsonPayload)
-    }
-
-    let responsePayload;
-
-    window.handleCredentialResponse = (response) => {
-      responsePayload = decodeJwtResponse(response.credential);
-
-      console.log("ID: " + responsePayload.sub);
-      console.log('Full Name: ' + responsePayload.name);
-      console.log('Given Name: ' + responsePayload.given_name);
-      console.log('Family Name: ' + responsePayload.family_name);
-      console.log("Image URL: " + responsePayload.picture);
-      console.log("Email: " + responsePayload.email);
-    }
-</script>
 </body>
+
 </html>

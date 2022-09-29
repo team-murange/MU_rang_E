@@ -1,0 +1,140 @@
+/* Global settiong */
+:root {
+    /* Color */
+    --color-white: #ffffff;
+    --color-light-white: #eeeeee;
+    --color-dark-white: #bdbdbd;
+    --color-pink: #fe918d;
+    --color-dark-pink: #ff6863;
+    --color-dark-grey: #4d4d4d;
+    --color-grey: #616161;
+    --color-light-grey: #f6f6f6;
+    --color-blue: #73aace;
+    --color-orange: #feb546;
+    --color-black: #000000;
+
+    /* Font size */
+    --font-large: 48px;
+    --font-medium: 28px;
+    --font-regular: 18px;
+    --font-small: 16px;
+    --font-micro: 14px;
+
+    /* Font weight */
+    --weight-bold: 700;
+    --weight-semi-bold: 600;
+    --weight-regular: 400;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* height: 100vw; */
+
+    padding: 0;
+    margin: 0;
+    font-family: 'Gothic A1', sans-serif;
+    font-size: var(--font-regular);
+}
+
+h1 {
+    font-size: var(--font-large);
+    font-weight: var(--weight-bold);
+    /* color: var(--color-black); */
+    margin: 16px 0px;
+}
+
+h2 {
+    font-size: var(--font-medium);
+    font-weight: var(--weight-semi-bold);
+    /* color: var(--color-black); */
+    margin: 8px 0;
+}
+
+h3 {
+    font-size: var(--font-regular);
+    font-weight: var(--weight-regular);
+    color: var(--color-black);
+    margin: 8px 0;
+}
+
+header {
+    background-color: var(--color-dark-grey);
+    height: 4vw;
+}
+
+.content {
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+}
+
+#emotion {
+    margin-left: 5%;
+    margin-top: 6%;
+    background-color: var(--color-light-grey);
+    width: 21vw;
+    height: 51vh;
+    float: left;
+    padding: 1%;
+}
+
+.ment {
+
+    text-align: center;
+    padding: 2%;
+    margin: 3%;
+}
+
+.ment__emotion {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding: 1%;
+    margin: 1%;
+}
+
+.ment__word {
+    text-align: center;
+    margin-left: 15%;
+}
+
+.ment__figure {
+    text-align: center;
+    margin-left: auto;
+    margin-right: 12%;
+
+}
+
+
+/* 중간 : 음악 분석 */
+#detection {
+    position: fixed;
+    bottom: 50%;
+    right: 50%;
+    background-color: var(--color-white);
+
+}
+
+/* 오른쪽 : 음악 플레이리스트 */
+#playlist {
+    background-color: var(--color-light-grey);
+    width: 30vw;
+    height: 90vh;
+    float: right;
+}
+
+#ment__top {
+    margin-top: 8%;
+}
+
+
+button {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}
