@@ -15,10 +15,10 @@ import java.time.LocalDate;
 public class RecordResponseDto {
 
     private LocalDate date;
-    private String color;  // 컬러 코드
+    private String colorCode;  // 컬러 코드
 
     public RecordResponseDto(Record record) {
-        this.color = record.getEmotion();
+        this.colorCode = record.getColorCode();
         this.date = record.getDate();
     }
 }
