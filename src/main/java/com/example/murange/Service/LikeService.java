@@ -32,15 +32,4 @@ public class LikeService {
         likeRepository.save(like);
     }
 
-    // 좋아요한 music-id 조회
-    public List<Long> getLike (String user_id) {
-        User user = userRepository.getById(user_id);
-        List<Like> likesList = likeRepository.findAllByUser(user);
-
-        List<Long> musicIdList = likesList.stream().map(x -> x.getMusic().getId()).collect(Collectors.toList());
-
-        return musicIdList;
-    }
-
-
 }
