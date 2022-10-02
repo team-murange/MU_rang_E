@@ -18,7 +18,7 @@ public class Record {
     @Column(name="record_id")
     private Long id;
 
-    private String emotion;
+    private String colorCode;
 
     private LocalDate date;
 
@@ -27,8 +27,9 @@ public class Record {
     private User user;
 
     @Builder
-    public Record(String emotion, LocalDate date) {
-        this.emotion = emotion;
+    public Record(String colorCode, LocalDate date, User user) {
+        this.user = user;
+        this.colorCode = colorCode;
         this.date = date;
     }
 }
