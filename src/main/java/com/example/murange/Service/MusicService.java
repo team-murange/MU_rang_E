@@ -1,17 +1,13 @@
 package com.example.murange.Service;
 
-import com.example.murange.Domain.Like;
 import com.example.murange.Domain.Music;
-import com.example.murange.Domain.User;
-import com.example.murange.Dto.LikeDto;
+import com.example.murange.Domain.EmotionType;
 import com.example.murange.Repository.MusicRepository;
-import com.example.murange.Repository.RecordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -20,28 +16,27 @@ public class MusicService {
 
     private final MusicRepository musicRepository;
 
-    // music-id 리스트로 music 조회
-    public List<Music> getMusicByMusicId (List<Long> musicIdList) {
-        List<Music> musicList = musicIdList.stream().map( x -> musicRepository.getReferenceById(x) ).collect(Collectors.toList());
-        return musicList;
-    }
-
     // 인기 music 조회
     public List<Music> getMusicByStreamingCnt () {
         List<Music> musicList = musicRepository.findAllByOrderByCntDesc();
         return musicList;
     }
 
-    // ----- querydsl ------
     // 감정별 music 조회
-    public List<Music> getMusicByEmotion (Long emotionId) {
-        List<Music> musicList = null;
+    public List<Music> getMusicByEmotion (EmotionType emotion) {
+        List<Music> musicList = musicRepository.getMusicByEmotion(emotion);
         return musicList;
     }
 
     // 감정 분석 페이지 - 표정 분석 후 음악 조회
     public List<Music> getMusicByDetection (String mainEmotion, String subEmotion) {
-        List<Music> musicList = null;
+        List<Music> musicList = musicRepository.getMusicByTwoEmotion(mainEmotion, subEmotion);
+        return musicList;
+    }
+
+    // 프로필 페이지 - 유저가 좋아요한 음악 조회
+    public List<Music> getMusicByUserLike (String userId) {
+        List<Music> musicList = musicRepository.getMusicByUserLike(userId);
         return musicList;
     }
 

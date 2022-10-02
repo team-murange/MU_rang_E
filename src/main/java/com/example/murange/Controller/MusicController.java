@@ -1,8 +1,9 @@
 package com.example.murange.Controller;
 
 import com.example.murange.Domain.Music;
+import com.example.murange.Domain.EmotionType;
+import com.example.murange.Service.LikeService;
 import com.example.murange.Service.MusicService;
-import com.example.murange.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.List;
 public class MusicController {
 
     private final MusicService musicService;
-
+    private final LikeService likeService;
 
     // 메인 페이지 - 검색
     @GetMapping("/search")
@@ -40,7 +41,9 @@ public class MusicController {
     @GetMapping("/random")
     @ResponseBody
     public ResponseEntity<List<Music>> getRandomMusic() {
-        List<Music> musicList= null;
+        // EmotionType 랜덤하게 바꾸기
+        EmotionType emotionType = EmotionType.randomEmotionType();
+        List<Music> musicList= musicService.getMusicByEmotion(emotionType);
         return new ResponseEntity(musicList, HttpStatus.OK);
     }
 
@@ -51,7 +54,17 @@ public class MusicController {
             @PathVariable(value = "main-emotion") String mainEmotion,
             @PathVariable(value = "sub-emotion") String subEmotion
     ) {
-        List<Music> musicList= null;
+        List<Music> musicList= musicService.getMusicByDetection(mainEmotion, subEmotion);
+        return new ResponseEntity(musicList, HttpStatus.OK);
+    }
+
+    // 유저가 좋아요한 노래 조회
+    @GetMapping("/like/{user-id}")
+    @ResponseBody
+    public ResponseEntity<List<Music>> getLikeMusic(
+            @PathVariable(value = "user-id") String userId
+    ) {
+        List<Music> musicList = musicService.getMusicByUserLike(userId);
         return new ResponseEntity(musicList, HttpStatus.OK);
     }
 
