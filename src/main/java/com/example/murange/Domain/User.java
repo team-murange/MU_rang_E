@@ -32,7 +32,8 @@ public class User {
 
 
     @Builder
-    public User(String name, String img_url, String email) {
+    public User(String id, String name, String img_url, String email) {
+        this.id = id;
         this.name = name;
         this.img_url = img_url;
         this.email = email;
