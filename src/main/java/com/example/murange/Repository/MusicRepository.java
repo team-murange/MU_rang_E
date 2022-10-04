@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface MusicRepository extends JpaRepository<Music, Long>, MusicRepositoryCustom{
 
-    List<Music> findAllByOrderByCntDesc();
+    // List<Music> findAllOrderByStreamingCntDesc();
 
 }

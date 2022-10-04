@@ -18,7 +18,7 @@ public class MusicService {
 
     // 인기 music 조회
     public List<Music> getMusicByStreamingCnt () {
-        List<Music> musicList = musicRepository.findAllByOrderByCntDesc();
+        List<Music> musicList = null; // musicRepository.findAllOrderByStreamingCntDesc();
         return musicList;
     }
 
