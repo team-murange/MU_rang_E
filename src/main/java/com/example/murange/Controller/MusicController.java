@@ -2,6 +2,7 @@ package com.example.murange.Controller;
 
 import com.example.murange.Domain.Music;
 import com.example.murange.Domain.EmotionType;
+import com.example.murange.Dto.MusicResponseDto;
 import com.example.murange.Service.LikeService;
 import com.example.murange.Service.MusicService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,7 +36,11 @@ public class MusicController {
     @ResponseBody
     public ResponseEntity<List<Music>> getTopMusic() {
         List<Music> musicList= musicService.getMusicByStreamingCnt();
-        return new ResponseEntity(musicList, HttpStatus.OK);
+        List<MusicResponseDto> result = new ArrayList<>();
+        for (Music music : musicList) {
+            result.add(new MusicResponseDto(music));
+        }
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
     // 감정별 music 조회
@@ -44,7 +50,11 @@ public class MusicController {
         // EmotionType 랜덤하게 바꾸기
         EmotionType emotionType = EmotionType.randomEmotionType();
         List<Music> musicList= musicService.getMusicByEmotion(emotionType);
-        return new ResponseEntity(musicList, HttpStatus.OK);
+        List<MusicResponseDto> result = new ArrayList<>();
+        for (Music music : musicList) {
+            result.add(new MusicResponseDto(music));
+        }
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
     // 감정 분석 페이지 - 표정 분석 후 음악 조회
@@ -55,7 +65,11 @@ public class MusicController {
             @PathVariable(value = "sub-emotion") String subEmotion
     ) {
         List<Music> musicList= musicService.getMusicByDetection(mainEmotion, subEmotion);
-        return new ResponseEntity(musicList, HttpStatus.OK);
+        List<MusicResponseDto> result = new ArrayList<>();
+        for (Music music : musicList) {
+            result.add(new MusicResponseDto(music));
+        }
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
     // 유저가 좋아요한 노래 조회
@@ -65,7 +79,11 @@ public class MusicController {
             @PathVariable(value = "user-id") String userId
     ) {
         List<Music> musicList = musicService.getMusicByUserLike(userId);
-        return new ResponseEntity(musicList, HttpStatus.OK);
+        List<MusicResponseDto> result = new ArrayList<>();
+        for (Music music : musicList) {
+            result.add(new MusicResponseDto(music));
+        }
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
 }
