@@ -14,8 +14,9 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto:  update  #  create validate
+      ddl-auto:  update   #  create validate update
     properties:
       hibernate:
         show_sql: true
         format_sql: true
+        globally_quoted_identifiers: true # 예약어 사용 허용
