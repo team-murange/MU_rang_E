@@ -34,34 +34,139 @@
     <section class="playlist__emotion">
         <div class="topic">Emotion</div>
         <div class="line"></div>
+        <div id="slider">
+            <input type="radio" name="slider" id="slide1" checked>
+            <input type="radio" name="slider" id="slide2">
+            <input type="radio" name="slider" id="slide3">
 
-        <div class="slide slide_1">
-            <div class="slide-content">
-                <img class="album" src="https://i1.sndcdn.com/artworks-LXIOzxnk35sHHw60-kk33gQ-t500x500.jpg" alt="cover">
-                <img class="album" src="https://i1.sndcdn.com/artworks-7nmc0L048KDmtv7Q-aSOK7A-t500x500.jpg                " alt="cover">
-                <img class="album" src="https://i1.sndcdn.com/artworks-Ty4GRXSnxHw0-0-t500x500.jpg" alt="cover">
-                <img class="album" src="https://i1.sndcdn.com/artworks-HBgxgsm1oKpTFMou-TvBXDQ-t500x500.jpg" alt="cover">
-                <img class="album" src="https://i1.sndcdn.com/artworks-000657166189-dxjm1z-t500x500.jpg" alt="cover">
+            <div id="slides">
+                <div id="overflow">
+                    <div class="inner">
+
+                        <div class="slide slide_1">
+                            <div class="slide-content">
+                                <ul> 
+                                    <!--아이디는 음악 호출할 때 구분하려고 사용한 식별자라서 바로 재생되도록 구현한다면 삭제해도 무방-->
+                                    <li class="playlist" onclick="" id="pl1_music1"><img class="album" src="https://i1.sndcdn.com/artworks-LXIOzxnk35sHHw60-kk33gQ-t500x500.jpg" alt="cover"></li> 
+                                    <li class="playlist" onclick="" id="pl1_music2"><img class="album" src="https://i1.sndcdn.com/artworks-7nmc0L048KDmtv7Q-aSOK7A-t500x500.jpg                " alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl1_music3"><img class="album" src="https://i1.sndcdn.com/artworks-Ty4GRXSnxHw0-0-t500x500.jpg" alt="cover"> </li>
+                                    <li class="playlist" onclick="" id="pl1_music4"><img class="album" src="https://i1.sndcdn.com/artworks-HBgxgsm1oKpTFMou-TvBXDQ-t500x500.jpg" alt="cover"> </li>
+                                    <li class="playlist" onclick="" id="pl1_music5"><img class="album" src="https://i1.sndcdn.com/artworks-000657166189-dxjm1z-t500x500.jpg" alt="cover"> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+
+                        <div class="slide slide_2">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl1_music6"><img class="album" src="https://i1.sndcdn.com/artworks-000585092600-nj2brs-t500x500.jpg" alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl1_music7"><img class="album" src="https://i1.sndcdn.com/artworks-5Sfnm5WTMyWAjb4d-TN8Jsg-t500x500.jpg" alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl1_music8"><img class="album" src="https://i1.sndcdn.com/artworks-lExRZJTjxYq0ddss-7gSmVQ-t500x500.jpg" alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl1_music9"><img class="album" src="https://i1.sndcdn.com/artworks-000627940567-yp7xud-t500x500.jpg" alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl1_music10"><img class="album" src="https://i1.sndcdn.com/artworks-000172933981-gtovq6-t500x500.jpg" alt="cover"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="slide slide_3">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl1_music11"><img class="album" src="https://i1.sndcdn.com/artworks-000585092600-nj2brs-t500x500.jpg" alt="cover"></li> 
+                                    <li class="playlist" onclick="" id="pl1_music12"><img class="album" src="https://i1.sndcdn.com/artworks-7nmc0L048KDmtv7Q-aSOK7A-t500x500.jpg                " alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl1_music13"><img class="album" src="https://i1.sndcdn.com/artworks-lExRZJTjxYq0ddss-7gSmVQ-t500x500.jpg" alt="cover"> </li>
+                                    <li class="playlist" onclick="" id="pl1_music14"><img class="album" src="https://i1.sndcdn.com/artworks-HBgxgsm1oKpTFMou-TvBXDQ-t500x500.jpg" alt="cover"> </li>
+                                    <li class="playlist" onclick="" id="pl1_music15"><img class="album" src="https://i1.sndcdn.com/artworks-000172933981-gtovq6-t500x500.jpg" alt="cover"> </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
+            <div id="controls">
+                <label for="slide1"></label>
+                <label for="slide2"></label>
+                <label for="slide3"></label>
+            </div>
+            <div id="bullets">
+                <label for="label1"></label>
+                <label for="label2"></label>
+                <label for="label3"></label>
+            </div>
+
         </div>
+
     </section>
 
     <!-- 3. 두번째 음악 목록 : TopDaily -->
     <section class="playlist__top">
         <div class="topic">TopDaily</div>
         <div class="line"></div>
+        <div id="second_slider">
+            <input type="radio" name="second_slider" id="second_slide1" checked>
+            <input type="radio" name="second_slider" id="second_slide2">
+            <input type="radio" name="second_slider" id="second_slide3">
 
-        <div class="slide slide_2">
-            <div class="slide-content">
-                <div class="slide-content">
-                    <img class="album" src="https://i1.sndcdn.com/artworks-000585092600-nj2brs-t500x500.jpg" alt="cover">
-                    <img class="album" src="https://i1.sndcdn.com/artworks-5Sfnm5WTMyWAjb4d-TN8Jsg-t500x500.jpg" alt="cover">
-                    <img class="album" src="https://i1.sndcdn.com/artworks-lExRZJTjxYq0ddss-7gSmVQ-t500x500.jpg" alt="cover">
-                    <img class="album" src="https://i1.sndcdn.com/artworks-000627940567-yp7xud-t500x500.jpg" alt="cover">
-                    <img class="album" src="https://i1.sndcdn.com/artworks-000172933981-gtovq6-t500x500.jpg" alt="cover">
+            <div id="second_slides">
+                <div id="overflow">
+                    <div class="inner">
 
+                        <div class="second_slide second_slide_1">
+                            <div class="second_slide-content">
+                                <ul> 
+                                    <!--아이디는 음악 호출할 때 구분하려고 사용한 식별자라서 바로 재생되도록 구현한다면 삭제해도 무방-->
+                                    <li class="playlist" onclick="" id="pl2_music1"><img class="album" src="https://i1.sndcdn.com/artworks-LXIOzxnk35sHHw60-kk33gQ-t500x500.jpg" alt="cover"></li> 
+                                    <li class="playlist" onclick="" id="pl2_music2"><img class="album" src="https://i1.sndcdn.com/artworks-7nmc0L048KDmtv7Q-aSOK7A-t500x500.jpg                " alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl2_music3"><img class="album" src="https://i1.sndcdn.com/artworks-Ty4GRXSnxHw0-0-t500x500.jpg" alt="cover"> </li>
+                                    <li class="playlist" onclick="" id="pl2_music4"><img class="album" src="https://i1.sndcdn.com/artworks-HBgxgsm1oKpTFMou-TvBXDQ-t500x500.jpg" alt="cover"> </li>
+                                    <li class="playlist" onclick="" id="pl2_music5"><img class="album" src="https://i1.sndcdn.com/artworks-000657166189-dxjm1z-t500x500.jpg" alt="cover"> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+
+                        <div class="second_slide second_slide_2">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl2_music6"><img class="album" src="https://i1.sndcdn.com/artworks-000585092600-nj2brs-t500x500.jpg" alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl2_music7"><img class="album" src="https://i1.sndcdn.com/artworks-5Sfnm5WTMyWAjb4d-TN8Jsg-t500x500.jpg" alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl2_music8"><img class="album" src="https://i1.sndcdn.com/artworks-lExRZJTjxYq0ddss-7gSmVQ-t500x500.jpg" alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl2_music9"><img class="album" src="https://i1.sndcdn.com/artworks-000627940567-yp7xud-t500x500.jpg" alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl2_music10"><img class="album" src="https://i1.sndcdn.com/artworks-000172933981-gtovq6-t500x500.jpg" alt="cover"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="second_slide second_slide_3">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl2_music11"><img class="album" src="https://i1.sndcdn.com/artworks-000585092600-nj2brs-t500x500.jpg" alt="cover"></li> 
+                                    <li class="playlist" onclick="" id="pl2_music12"><img class="album" src="https://i1.sndcdn.com/artworks-7nmc0L048KDmtv7Q-aSOK7A-t500x500.jpg                " alt="cover"></li>
+                                    <li class="playlist" onclick="" id="pl2_music13"><img class="album" src="https://i1.sndcdn.com/artworks-lExRZJTjxYq0ddss-7gSmVQ-t500x500.jpg" alt="cover"> </li>
+                                    <li class="playlist" onclick="" id="pl2_music14"><img class="album" src="https://i1.sndcdn.com/artworks-HBgxgsm1oKpTFMou-TvBXDQ-t500x500.jpg" alt="cover"> </li>
+                                    <li class="playlist" onclick="" id="pl2_music15"><img class="album" src="https://i1.sndcdn.com/artworks-000172933981-gtovq6-t500x500.jpg" alt="cover"> </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
+            <div id="controls">
+                <label for="second_slide1"></label>
+                <label for="second_slide2"></label>
+                <label for="second_slide3"></label>
+            </div>
+            <div id="bullets">
+                <label for="label1"></label>
+                <label for="label2"></label>
+                <label for="label3"></label>
+            </div>
+
+        </div>
         </div>
     </section>
 
