@@ -5,12 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="face-api.min.js"></script>
+    <script defer src="script.js"></script>
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
-
+    <style>
+        .webcam {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position:absolute;
+            transform: scaleX(-1);
+        }
+    
+        canvas {
+          position: absolute;
+          transform: scaleX(-1);
+        }
+      </style>
 </head>
 <!--sanho testing branch-->
 
@@ -20,40 +39,42 @@
     <div id="search"> </div>
     <div id="login"></div>
 </header>
-
+<div class="webcam">
+    <video id="video" width="720" height="560" autoplay muted></video>
+</div>
 <div class="content">
     <!-- 왼쪽 : 감정 분석 후 감정 수치 -->
     <section id="emotion">
-        <div class="ment">..님의 지금 감정은 행복</div>
-        <div class="ment">Chill</div>
+        <div class="ment">..님의 지금 감정은</div>
+        <div class="ment" id="emotion_result">Please wait...</div>
         <div class="ment">
             <div class="ment__emotion">
                 <div class="ment__word">Sad</div>
-                <div class="ment__figure"> 0.0011 </div>
+                <div class="ment__figure" id="sad"> 0.0000 </div>
             </div>
             <div class="ment__emotion">
                 <div class="ment__word">Angry</div>
-                <div class="ment__figure"> 0.0011 </div>
+                <div class="ment__figure" id="angry"> 0.0000 </div>
             </div>
             <div class="ment__emotion">
-                <div class="ment__word">Disgust</div>
-                <div class="ment__figure"> 0.0011 </div>
+                <div class="ment__word">Disgusted</div>
+                <div class="ment__figure" id="disgusted"> 0.0000  </div>
             </div>
             <div class="ment__emotion">
                 <div class="ment__word">Happy</div>
-                <div class="ment__figure"> 0.0011 </div>
+                <div class="ment__figure" id="happy"> 0.0000  </div>
             </div>
             <div class="ment__emotion">
                 <div class="ment__word">Surprised</div>
-                <div class="ment__figure"> 0.0011 </div>
+                <div class="ment__figure" id="surprised"> 0.0000  </div>
             </div>
             <div class="ment__emotion">
                 <div class="ment__word">Neutral</div>
-                <div class="ment__figure"> 0.0011 </div>
+                <div class="ment__figure" id="neutral"> 0.0000  </div>
             </div>
             <div class="ment__emotion">
-                <div class="ment__word">Scared</div>
-                <div class="ment__figure"> 0.0011 </div>
+                <div class="ment__word">Fearful</div>
+                <div class="ment__figure" id="fearful"> 0.0000 </div>
             </div>
         </div>
     </section>
@@ -61,7 +82,7 @@
     <!-- 중간 : 사용자 감정 분석 회면 -->
     <section id="detection">
         <div id="detection__frame"></div>
-        <button id="detection__button">기분 분석을 다시 할까요?</button>
+        <button id="detection__button" onclick="predict()">기분 분석을 다시 할까요?</button>
     </section>
 
     <!-- 오른쪽 : 분석후 플레이리스트 -->
