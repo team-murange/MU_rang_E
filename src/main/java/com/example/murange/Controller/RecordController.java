@@ -1,6 +1,7 @@
 package com.example.murange.Controller;
 
 import com.example.murange.Dto.RecordResponseDto;
+import com.example.murange.Service.ColorService;
 import com.example.murange.Service.RecordService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +19,9 @@ import java.util.List;
 public class RecordController {
 
     private final RecordService recordService;
+    private final ColorService colorService;
 
-    @ApiOperation(value = "표정 분석 후 주/부감정 저장", notes = "표정 분석 page - 표정 분석 후 주/부감정 저장")
+    @ApiOperation(value = "표정 분석 후 주/부감정 저장", notes = "표정 분석 page - 표정 분석 후 주/부감정 (컬러코드로) 저장")
     @GetMapping("/figure/{user-id}/{main-emotion}/{sub-emotion}")
     @ResponseBody
     public ResponseEntity saveEmotion(
@@ -27,7 +29,10 @@ public class RecordController {
             @PathVariable(value = "main-emotion") String mainEmotion,
             @PathVariable(value = "sub-emotion") String subEmotion
     ) {
-
+        int firstColorCode = colorService.getColorCodeByEmotion(mainEmotion);
+        int secondColorCode = colorService.getColorCodeByEmotion(subEmotion);
+        String colorCode = colorService.calcColorCode(firstColorCode,secondColorCode);
+        recordService.saveColorCode(userId, colorCode);
         return new ResponseEntity(HttpStatus.OK);
     }
 
