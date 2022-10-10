@@ -2,7 +2,7 @@ package com.example.murange.Controller;
 
 import com.example.murange.Dto.RecordResponseDto;
 import com.example.murange.Service.RecordService;
-import com.example.murange.Service.UserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class RecordController {
 
     private final RecordService recordService;
 
-    // 감정 분석 페이지 - 감정 분석 후 주감정/부감정 저장
+    @ApiOperation(value = "감정 분석 후 주/부감정 저장", notes = "표정 분석 page - 표정 분석 후 주/부감정 저장")
     @GetMapping("/figure/{user-id}/{main-emotion}/{sub-emotion}")
     @ResponseBody
     public ResponseEntity saveEmotion(
@@ -31,7 +31,7 @@ public class RecordController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    // 프로필 페이지 - 감정 달력 조회
+    @ApiOperation(value = "감정 달력 조회", notes = "프로필 page - 유저의 감정 기록 달력 조회")
     @GetMapping("/calendar/{user-id}")
     @ResponseBody
     public ResponseEntity<List<RecordResponseDto>> getCalendar(
