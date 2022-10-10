@@ -1,6 +1,5 @@
 package com.example.murange.Service;
 
-import com.example.murange.Domain.Music;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +11,13 @@ import java.util.stream.Collectors;
 @Transactional
 @RequiredArgsConstructor
 public class ColorService {
+
+    // 두 가지 감정(String)의 각각의 컬러코드 얻어내고, 최종으로 하나의 컬러코드(String) 도출
+    public String getFinalColorCodeByTwoEmotion (String mainEmotion, String subEmotion) {
+        int firstColorCode = getColorCodeByEmotion(mainEmotion);
+        int secondColorCode = getColorCodeByEmotion(subEmotion);
+        return calcColorCode(firstColorCode,secondColorCode);
+    }
 
     public int getColorCodeByEmotion (String emotion) {
 
@@ -46,15 +52,12 @@ public class ColorService {
         return colorCode;
     }
 
-    //  주감정, 주감정에 의해 최종 컬러코드 도출
+    //  주감정, 주감정에 의해 최종 컬러코드 계산하기
     public String calcColorCode(int firstColorCode, int secondColorCode) {
 
         int resultColor = (firstColorCode + secondColorCode)/2;
         String result = Integer.toHexString(resultColor);
 
-
         return result;
     }
-
-
 }

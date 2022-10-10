@@ -29,9 +29,7 @@ public class RecordController {
             @PathVariable(value = "main-emotion") String mainEmotion,
             @PathVariable(value = "sub-emotion") String subEmotion
     ) {
-        int firstColorCode = colorService.getColorCodeByEmotion(mainEmotion);
-        int secondColorCode = colorService.getColorCodeByEmotion(subEmotion);
-        String colorCode = colorService.calcColorCode(firstColorCode,secondColorCode);
+        String colorCode = colorService.getFinalColorCodeByTwoEmotion(mainEmotion, subEmotion);
         recordService.saveColorCode(userId, colorCode);
         return new ResponseEntity(HttpStatus.OK);
     }
