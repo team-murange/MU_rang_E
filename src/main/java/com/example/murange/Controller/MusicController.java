@@ -49,7 +49,7 @@ public class MusicController {
     @ResponseBody
     public ResponseEntity<List<Music>> getRandomMusic() {
         // EmotionType 랜덤하게 바꾸기
-        EmotionType emotionType = EmotionType.randomEmotionType();
+        String emotionType = EmotionType.randomEmotionType();
         List<Music> musicList= musicService.getMusicByEmotion(emotionType);
         List<MusicResponseDto> result = new ArrayList<>();
         for (Music music : musicList) {
