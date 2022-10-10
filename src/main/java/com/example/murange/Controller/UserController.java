@@ -2,6 +2,7 @@ package com.example.murange.Controller;
 
 import com.example.murange.Domain.User;
 import com.example.murange.Service.UserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,14 @@ public class UserController {
 
     private final UserService userService;
 
-    // 회원 등록
+    @ApiOperation(value = "회원 가입")
     @PostMapping("/user")
     public ResponseEntity saveUser(@RequestBody @Validated User user) {
         userService.joinUser(user);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    // 회원 조회
+    @ApiOperation(value = "회원 조회")
     @GetMapping("/user/{user-id}")
     public ResponseEntity<User> getUser(
             @PathVariable(value = "user-id") String userId

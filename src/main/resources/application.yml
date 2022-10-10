@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/newmurange?serverTimezone=Asia/Seoul
-    username: root
-    password: 401868
+    url: jdbc:mysql://localhost:3306/{DB이름}?serverTimezone=Asia/Seoul
+    username: { root }
+    password: { 비번 }
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher # Swagger
@@ -14,7 +14,7 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto:  update   #  create validate update
+      ddl-auto:  create   #  create validate update
     properties:
       hibernate:
         show_sql: true
