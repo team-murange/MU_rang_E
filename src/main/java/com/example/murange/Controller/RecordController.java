@@ -19,7 +19,7 @@ public class RecordController {
 
     private final RecordService recordService;
 
-    @ApiOperation(value = "감정 분석 후 주/부감정 저장", notes = "표정 분석 page - 표정 분석 후 주/부감정 저장")
+    @ApiOperation(value = "표정 분석 후 주/부감정 저장", notes = "표정 분석 page - 표정 분석 후 주/부감정 저장")
     @GetMapping("/figure/{user-id}/{main-emotion}/{sub-emotion}")
     @ResponseBody
     public ResponseEntity saveEmotion(
