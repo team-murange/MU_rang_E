@@ -9,7 +9,7 @@ spring:
     password: { 비번 }
   mvc:
     pathmatch:
-      matching-strategy: ant_path_matcher # Swagger
+      matching-strategy: ANT_PATH_MATCHER # Swagger
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
