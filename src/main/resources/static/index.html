@@ -15,48 +15,47 @@
 </head>
 
 <body>
-    <header>
-        <img id="logo">
-        <div id="search"> </div>
-        <div id="login"></div>
-    </header>
-
-    <video id="video" autoplay muted></video>
-
-    <div class="content">
-        <!-- 왼쪽 : 감정 분석 후 감정 수치 -->
-        <section id="emotion">
-            <div class="ment">..님의 지금 감정은</div>
-            <div class="ment" id="emotion_result">Please wait...</div>
-            <div class="ment">
-                <div class="ment__emotion">
-                    <div class="ment__word">Sad</div>
-                    <div class="ment__figure" id="sad"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Angry</div>
-                    <div class="ment__figure" id="angry"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Disgusted</div>
-                    <div class="ment__figure" id="disgusted"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Happy</div>
-                    <div class="ment__figure" id="happy"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Surprised</div>
-                    <div class="ment__figure" id="surprised"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Neutral</div>
-                    <div class="ment__figure" id="neutral"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Fearful</div>
-                    <div class="ment__figure" id="fearful"> 0.0000 </div>
-                </div>
+<header>
+    <img id="logo">
+    <div id="search"> </div>
+    <div id="login"></div>
+</header>
+<div class="webcam">
+    <video id="video" width="720" height="560" autoplay muted></video>
+</div>
+<div class="content">
+    <!-- 왼쪽 : 감정 분석 후 감정 수치 -->
+    <section id="emotion">
+        <div class="ment" id="id_insert">..님의 지금 감정은</div>
+        <div class="ment" id="emotion_result">Please wait...</div>
+        <div class="ment">
+            <div class="ment__emotion">
+                <div class="ment__word">Sad</div>
+                <div class="ment__figure" id="sad"> 0.0000 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Angry</div>
+                <div class="ment__figure" id="angry"> 0.0000 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Disgusted</div>
+                <div class="ment__figure" id="disgusted"> 0.0000  </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Happy</div>
+                <div class="ment__figure" id="happy"> 0.0000  </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Surprised</div>
+                <div class="ment__figure" id="surprised"> 0.0000  </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Neutral</div>
+                <div class="ment__figure" id="neutral"> 0.0000  </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Fearful</div>
+                <div class="ment__figure" id="fearful"> 0.0000 </div>
             </div>
         </section>
 
