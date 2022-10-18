@@ -14,7 +14,7 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto:  update   #  create validate update
+      ddl-auto:  create   #  create validate update
     properties:
       hibernate:
         show_sql: true

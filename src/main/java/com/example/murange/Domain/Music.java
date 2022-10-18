@@ -20,8 +20,10 @@ public class Music {
 
     private String title;
 
+    @Column(length=5000)
     private String music_url;
 
+    @Column(length=5000)
     private String img_url;
 
     private int streaming_cnt;

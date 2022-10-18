@@ -31,7 +31,7 @@ public class RecordRepositoryImpl implements RecordRepositoryCustom{
 
         return queryFactory
                 .select(Projections.bean(RecordResponseDto.class,
-                        record.emotion,
+                        record.colorCode,
                         record.date))
                 .from(record)
                 .join(record.user, user)

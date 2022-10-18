@@ -5,6 +5,7 @@ import com.example.murange.Domain.EmotionType;
 import com.example.murange.Dto.MusicResponseDto;
 import com.example.murange.Service.LikeService;
 import com.example.murange.Service.MusicService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class MusicController {
     private final MusicService musicService;
     private final LikeService likeService;
 
-    // 메인 페이지 - 검색
+    @ApiOperation(value = "음악 검색", notes = "메인 page - 음악 검색")
     @GetMapping("/search")
     @ResponseBody
     public ResponseEntity searchMusicSinger() {
@@ -31,7 +32,7 @@ public class MusicController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    // 인기 music 조회
+    @ApiOperation(value = "인기 음악 조회", notes = "메인 page - 인기 음악 조회")
     @GetMapping("/top")
     @ResponseBody
     public ResponseEntity<List<Music>> getTopMusic() {
@@ -43,12 +44,12 @@ public class MusicController {
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    // 감정별 music 조회
+    @ApiOperation(value = "감정별 음악 조회", notes = "메인 page - 감정별 음악 조회")
     @GetMapping("/random")
     @ResponseBody
     public ResponseEntity<List<Music>> getRandomMusic() {
         // EmotionType 랜덤하게 바꾸기
-        EmotionType emotionType = EmotionType.randomEmotionType();
+        String emotionType = EmotionType.randomEmotionType();
         List<Music> musicList= musicService.getMusicByEmotion(emotionType);
         List<MusicResponseDto> result = new ArrayList<>();
         for (Music music : musicList) {
@@ -57,7 +58,7 @@ public class MusicController {
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    // 감정 분석 페이지 - 표정 분석 후 음악 조회
+    @ApiOperation(value = "표정 분석 후 음악 조회", notes = "표정 분석 page - 해당 주/부감정에 맞는 음악 조회")
     @GetMapping("/music/{main-emotion}/{sub-emotion}")
     @ResponseBody
     public ResponseEntity<List<Music>> getMusicByEmotion(
@@ -72,7 +73,7 @@ public class MusicController {
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    // 유저가 좋아요한 노래 조회
+    @ApiOperation(value = "좋아요한 음악 조회", notes = "프로필 page - 유저가 좋아요한 음악 조회")
     @GetMapping("/like/{user-id}")
     @ResponseBody
     public ResponseEntity<List<Music>> getLikeMusic(
@@ -85,5 +86,4 @@ public class MusicController {
         }
         return new ResponseEntity(result, HttpStatus.OK);
     }
-
 }

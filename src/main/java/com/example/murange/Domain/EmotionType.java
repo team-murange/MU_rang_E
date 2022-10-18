@@ -7,8 +7,8 @@ public enum EmotionType {
 
     private static final Random PRNG = new Random();
 
-    public static EmotionType randomEmotionType()  {
+    public static String randomEmotionType()  {
         EmotionType[] emotionType = values();
-        return emotionType[PRNG.nextInt(emotionType.length)];
+        return emotionType[PRNG.nextInt(emotionType.length)].toString();
     }
 }
