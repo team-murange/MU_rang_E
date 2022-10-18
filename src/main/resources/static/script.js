@@ -9,7 +9,6 @@ Promise.all([
 ]).then(startVideo);
 
 function startVideo() {
-
   video.addEventListener("play", loading);
   navigator.mediaDevices
     .getUserMedia({ video: true })
@@ -19,9 +18,6 @@ function startVideo() {
     .catch(function (err) {
       console.log(err);
     });
-  predict();
-
-    
 }
 
 //api setting
@@ -50,6 +46,8 @@ function loading(){
     document.getElementById('disgusted').innerHTML=  ' '+resizedDetections[0].expressions.disgusted.toFixed(4)
     document.getElementById('fearful').innerHTML=  ' '+resizedDetections[0].expressions.fearful.toFixed(4)
   }, 100);
+
+  predict();
 }
 
 
@@ -70,7 +68,6 @@ function predict(){
   let count_second=0;
 
   //1초마다 감정수치 저장
-  setTimeout(function(){
   var predicting = setInterval(async () => {
     document.getElementById('emotion_result').innerHTML = left_second + "seconds left"
 
@@ -173,10 +170,84 @@ function predict(){
 
 
       document.getElementById('emotion_result').innerHTML= first_emotion+" "+second_emotion;
+      video.removeEventListener("play", loading);
+      alert('start')
+
+      var userdata;
+      // //유저 id로 계정 정보 받아오기 (로그인 해서 post로 데이터 보낸 후에 실행하기)
+      $.ajax({
+          url : "http://localhost:3306/user/0", //유저 아이디 수정 필요
+          data : 'get',
+          contentType:"application/json;charset=UTF-8",
+          dataType : "json",
+          always: function(data){
+            alert('i done');
+          },
+          success : function(data) {
+              alert("loading success");
+              userdata = data;
+          },
+          error : function(data) {
+              alert('유저 정보 로딩 에러');
+          }
+      });
+      document.getElementById('id_insert').innerHTML=userdata.name + '님의 지금 감정은'
+
+          // let inputData = {
+          //           "emotion": {
+          //             "angry": angry_avr,
+          //             "disgust": disgusted_avr,
+          //             "happiness": happy_avr,
+          //             "id": 0, //로그인 이후 id값 가져다 넣기
+          //             "neutral": neutral_avr,
+          //             "sad": sad_avr,
+          //             "scared": fearful_avr,
+          //             "surprised": surprised_avr
+          //           }
+          //         }
+
+      //    $.ajax({
+      //      type:'post',   //post 방식으로 전송
+      //      contentType:"application/json;charset=UTF-8",
+      //      url:'http://localhost:8080/music/' + first_emotion + '/' + second_emotion,
+      //      data : JSON.stringify(inputData),
+      //      dataType:'json',
+      //      always: function(data){
+      //        alert('e done');
+      //      },
+      //       success : function(data){
+      //          alert('분석 결과 전송 성공');
+      //       },
+      //       error : function(data){
+      //         alert('error');
+      //       }
+      //     });
+
+
+      // $.ajax({
+      //   url : "http://localhost:8800/music/"+first_emotion+"/"+second_emotion,
+      //   data : 'get',
+      //   contentType:"application/json;charset=UTF-8",
+      //   dataType : "json",
+      //   success : function(data) {
+      //   alert('success');
+      //   // for (step = 1; step < 11; step++) {
+      //   //     document.getElementById('pl1__music__'+step).src = data[step-1].music_url;
+      //   //     document.getElementById('pl1__music__'+step).style.backgroundSize = "contain";
+      //   //     document.getElementById('pl1__music__'+step).innerHTML=data[step-1].title;
+      //   //     document.getElementById('pl1__music__'+step).style.backgroundImage = data[step-1].img_url
+      //   },
+      //   error : function() {
+      //   alert('음악 재생 에러');
+      //   },
+      //   fail : function(){
+      //   alert('fail')
+      //   },
+      //         });
+          alert('finish')
       
     }
   },1000)
-  },2000)
   }  
 
 
