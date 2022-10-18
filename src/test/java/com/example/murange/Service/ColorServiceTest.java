@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @Transactional
 @RunWith(SpringRunner.class)
-// @Commit // 확인용!, 없으면 자동 rollback 되어서 디비에서 확인 못함!
+@Commit // 확인용!, 없으면 자동 rollback 되어서 디비에서 확인 못함!
 public class ColorServiceTest {
 
     @Autowired
