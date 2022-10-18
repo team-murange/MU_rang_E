@@ -6,14 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8080/user/0",
+                data: 'get',
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                    console.log(data);
+                },
+                error: function () {
+                    alert('유저 정보 로딩 에러');
+                }
+            });
+        });
+    </script>
 
     <header>
         <img id="logo">
@@ -25,7 +43,7 @@
         <!-- 1. 상단 : 감정 분석 페이지 이동 -->
         <section class="banner">
             <!-- <div class = "picture"></div> -->
-            <img class="picture" src="banner.png" alt="banner">
+            <img class="picture" src="images/banner.png" alt="banner">
         </section>
 
         <!-- 2. 첫번째 음악 목록 : 감정별 랜덤 -->
