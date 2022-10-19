@@ -18,25 +18,28 @@
 
 <body>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $.ajax({
-                url: "http://localhost:8080/user/0",
-                data: 'get',
-                contentType: "application/json;charset=UTF-8",
-                dataType: "json",
-                success: function (data) {
-                    alert(data);
-                    console.log(data);
-                },
-                error: function () {
-                    alert('유저 정보 로딩 에러');
-                }
-            });
-        });
+        // $(document).ready(function () {
+        //     $.ajax({
+        //         url: "http://localhost:8080/user/0",
+        //         data: 'get',
+        //         contentType: "application/json;charset=UTF-8",
+        //         dataType: "json",
+        //         success: function (data) {
+        //             alert(data);
+        //             console.log(data);
+        //         },
+        //         error: function () {
+        //             alert('유저 정보 로딩 에러');
+        //         }
+        //     });
+        // });
     </script>
 
     <header>
-        <img id="logo">
+        <a href="main.html" style="text-decoration:none">
+            <div id="logo">Murange</div>
+            <!-- <img class="picture" src="images/banner.png" alt="banner"> -->
+        </a>
         <div id="search"> </div>
         <div id="login"></div>
     </header>
