@@ -6,14 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="css/profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8080/user/0",
+                data: 'get',
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                    console.log(data);
+                },
+                error: function () {
+                    alert('유저 정보 로딩 에러');
+                }
+            });
+        });
+    </script>
 
     <header>
         <img id="logo">
@@ -31,7 +50,7 @@
 
             <!-- 2. 유저 프로필 -->
             <div class="profile">
-                <img class="picture" src="profile.png" alt="profile">
+                <img class="picture" src="images/profile.png" alt="profile">
             </div>
         </section>
 

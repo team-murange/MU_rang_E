@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -27,7 +28,7 @@ public class UserController {
     public ResponseEntity<User> getUser(
             @PathVariable(value = "user-id") String userId
     ) {
-        User user = null;
+        User user = userService.findUser(userId);
         return new ResponseEntity(user, HttpStatus.OK);
     }
 
@@ -36,7 +37,6 @@ public class UserController {
     public ResponseEntity deleteUser(
             @PathVariable(value = "user-id") String userId
     ) {
-
         return new ResponseEntity(HttpStatus.OK);
     }
 }

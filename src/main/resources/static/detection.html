@@ -5,58 +5,77 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="face-api.min.js"></script>
-    <script defer src="script.js"></script>
+    <script defer src="js/face-api.min.js"></script>
+    <script defer src="js/script.js"></script>
     <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/detection.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
-<header>
-    <img id="logo">
-    <div id="search"> </div>
-    <div id="login"></div>
-</header>
-<div class="webcam">
-    <video id="video" width="720" height="560" autoplay muted></video>
-</div>
-<div class="content">
-    <!-- 왼쪽 : 감정 분석 후 감정 수치 -->
-    <section id="emotion">
-        <div class="ment" id="id_insert">..님의 지금 감정은</div>
-        <div class="ment" id="emotion_result">Please wait...</div>
-        <div class="ment">
-            <div class="ment__emotion">
-                <div class="ment__word">Sad</div>
-                <div class="ment__figure" id="sad"> 0.0000 </div>
-            </div>
-            <div class="ment__emotion">
-                <div class="ment__word">Angry</div>
-                <div class="ment__figure" id="angry"> 0.0000 </div>
-            </div>
-            <div class="ment__emotion">
-                <div class="ment__word">Disgusted</div>
-                <div class="ment__figure" id="disgusted"> 0.0000  </div>
-            </div>
-            <div class="ment__emotion">
-                <div class="ment__word">Happy</div>
-                <div class="ment__figure" id="happy"> 0.0000  </div>
-            </div>
-            <div class="ment__emotion">
-                <div class="ment__word">Surprised</div>
-                <div class="ment__figure" id="surprised"> 0.0000  </div>
-            </div>
-            <div class="ment__emotion">
-                <div class="ment__word">Neutral</div>
-                <div class="ment__figure" id="neutral"> 0.0000  </div>
-            </div>
-            <div class="ment__emotion">
-                <div class="ment__word">Fearful</div>
-                <div class="ment__figure" id="fearful"> 0.0000 </div>
-            </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8080/user/0",
+                data: 'get',
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                    console.log(data);
+                },
+                error: function () {
+                    alert('유저 정보 로딩 에러');
+                }
+            });
+        });
+    </script>
+
+    <header>
+        <img id="logo">
+        <div id="search"> </div>
+        <div id="login"></div>
+    </header>
+    <video id="video" autoplay muted></video>
+
+    <div class="content">
+        <!-- 왼쪽 : 감정 분석 후 감정 수치 -->
+        <section id="emotion">
+            <div class="ment" id="id_insert">..님의 지금 감정은</div>
+            <div class="ment" id="emotion_result">Please wait...</div>
+            <div class="ment">
+                <div class="ment__emotion">
+                    <div class="ment__word">Sad</div>
+                    <div class="ment__figure" id="sad"> 0.0000 </div>
+                </div>
+                <div class="ment__emotion">
+                    <div class="ment__word">Angry</div>
+                    <div class="ment__figure" id="angry"> 0.0000 </div>
+                </div>
+                <div class="ment__emotion">
+                    <div class="ment__word">Disgusted</div>
+                    <div class="ment__figure" id="disgusted"> 0.0000 </div>
+                </div>
+                <div class="ment__emotion">
+                    <div class="ment__word">Happy</div>
+                    <div class="ment__figure" id="happy"> 0.0000 </div>
+                </div>
+                <div class="ment__emotion">
+                    <div class="ment__word">Surprised</div>
+                    <div class="ment__figure" id="surprised"> 0.0000 </div>
+                </div>
+                <div class="ment__emotion">
+                    <div class="ment__word">Neutral</div>
+                    <div class="ment__figure" id="neutral"> 0.0000 </div>
+                </div>
+                <div class="ment__emotion">
+                    <div class="ment__word">Fearful</div>
+                    <div class="ment__figure" id="fearful"> 0.0000 </div>
+                </div>
         </section>
 
         <!-- 중간 : 사용자 감정 분석 회면 -->
