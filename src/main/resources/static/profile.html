@@ -17,41 +17,40 @@
 
 <body>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $.ajax({
-                url: "http://localhost:8080/user/0",
-                data: 'get',
-                contentType: "application/json;charset=UTF-8",
-                dataType: "json",
-                success: function (data) {
-                    alert(data);
-                    console.log(data);
-                },
-                error: function () {
-                    alert('유저 정보 로딩 에러');
-                }
-            });
-        });
+        // $(document).ready(function () {
+        //     $.ajax({
+        //         url: "http://localhost:8080/user/0",
+        //         data: 'get',
+        //         contentType: "application/json;charset=UTF-8",
+        //         dataType: "json",
+        //         success: function (data) {
+        //             alert(data);
+        //             console.log(data);
+        //         },
+        //         error: function () {
+        //             alert('유저 정보 로딩 에러');
+        //         }
+        //     });
+        // });
     </script>
 
     <header>
-        <img id="logo">
+        <a href="main.html" style="text-decoration:none">
+            <div id="logo">Murange</div>
+            <!-- <img class="picture" src="images/banner.png" alt="banner"> -->
+        </a>
         <div id="search"> </div>
         <div id="login"></div>
     </header>
 
     <div class="content">
         <!-- 유저 피드 (달력 + 유저 프로필) -->
-        <section class="feed">
+        <section style="margin-top: 5vh;" class="feed">
             <!-- 1. 유저 달력 -->
-            <div class="calendar">
-                달력
-            </div>
-
+            <img style="width: 20vw; margin: 0;" src="images/sample.jpg">
             <!-- 2. 유저 프로필 -->
-            <div class="profile">
-                <img class="picture" src="images/profile.png" alt="profile">
-            </div>
+            <img class="profile picture" style="width: 15vw; height: 15vw; margin-left:5vw;" src="images/profile.jpg"
+                alt="profile">
         </section>
 
         <!-- 3. 유저의 음악 목록 -->
@@ -127,7 +126,7 @@
                 </div>
 
                 <div id="controls">
-                    <label for="slide1"><img> </label>
+                    <label for="slide1"></label>
                     <label for="slide2"></label>
                     <label for="slide3"></label>
                 </div>
