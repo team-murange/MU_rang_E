@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/simple-calendar.css">
+    <link rel="stylesheet" href="css/demo.css">
 </head>
 
 <body>
@@ -34,10 +38,10 @@
         // });
     </script>
 
-    <header>
-        <a href="main.html" style="text-decoration:none">
-            <div id="logo">Murange</div>
-            <!-- <img class="picture" src="images/banner.png" alt="banner"> -->
+    <header id="header"">
+        <a href=" main.html" style="text-decoration:none">
+        <div id="logo">Murange</div>
+        <!-- <img class="picture" src="images/banner.png" alt="banner"> -->
         </a>
         <div id="search"> </div>
         <div id="login"></div>
@@ -47,7 +51,21 @@
         <!-- 유저 피드 (달력 + 유저 프로필) -->
         <section style="margin-top: 5vh;" class="feed">
             <!-- 1. 유저 달력 -->
-            <img style="width: 20vw; margin: 0;" src="images/sample.jpg">
+            <div id="container" class="calendar-container"></div>
+            <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+            <script src="js/jquery.simple-calendar.js"></script>
+            <script>
+                var $calendar;
+                $(document).ready(function () {
+                    let container = $("#container").simpleCalendar({
+                        fixedStartDay: 0, // begin weeks by sunday
+                        disableEmptyDetails: true
+
+                    });
+                    $calendar = container.data('plugin_simpleCalendar')
+                });
+            </script>
             <!-- 2. 유저 프로필 -->
             <img class="profile picture" style="width: 15vw; height: 15vw; margin-left:5vw;" src="images/profile.jpg"
                 alt="profile">

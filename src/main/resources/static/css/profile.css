@@ -60,7 +60,7 @@ h3 {
   margin: 8px 0;
 }
 
-header {
+#header {
   background-color: var(--color-dark-grey);
   height: 4vw;
 }
@@ -94,6 +94,9 @@ section {
 
 .feed {
   margin-top: 5%;
+  margin-left: 0;
+  height: 45vh;
+  margin-bottom: 5vh;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -101,9 +104,10 @@ section {
 }
 
 /* 1. 유저 달력 */
-.calendar {
-  margin-right: 2vw;
-  justify-content: left;
+#container {
+  width: 40vw;
+  height: 20vh;
+  margin: 0;
 }
 
 /* 2. 유저 프로필 */
