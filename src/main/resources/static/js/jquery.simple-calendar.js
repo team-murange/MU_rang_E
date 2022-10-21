@@ -129,14 +129,18 @@
         var tr = $("<tr></tr>");
         //For each row
         for (var i = 0; i < 7; i++) {
+          var theDay = day.getDate();
+          var theMonth = day.getMonth()+1;
+          if(theDay<10) theDay = '0'+theDay;
+          if(theMonth<10) theMonth = '0'+theMonth;
           var td = $(
-            '<td><div class="day" data-date="' +
+            '<td><div class="day" id='+day.getFullYear() + theMonth+ theDay+ ' data-date="' +
               day.toISOString() +
               '">' +
               day.getDate() +
               "</div></td>"
           );
-
+          
           var $day = td.find(".day");
 
           //if today is this day
@@ -174,8 +178,9 @@
           day.setDate(day.getDate() + 1);
         }
         tbody.append(tr);
+        
       }
-
+      
       body.append(thead);
       body.append(tbody);
 
@@ -375,3 +380,4 @@
     });
   };
 })(jQuery, window, document);
+
