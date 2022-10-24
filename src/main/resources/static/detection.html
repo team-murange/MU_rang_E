@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="js/face-api.min.js"></script>
-    <script defer src="js/script.js"></script>
+    <script defer src="js/detection.js"></script>
     <title>Document</title>
     <link rel="stylesheet" href="css/detection.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,21 +18,21 @@
 
 <body>
     <script type="text/javascript">
-        // $(document).ready(function () {
-        //     $.ajax({
-        //         url: "http://localhost:8080/user/0",
-        //         data: 'get',
-        //         contentType: "application/json;charset=UTF-8",
-        //         dataType: "json",
-        //         success: function (data) {
-        //             alert(data);
-        //             console.log(data);
-        //         },
-        //         error: function () {
-        //             alert('유저 정보 로딩 에러');
-        //         }
-        //     });
-        // });
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8080/user/0",
+                data: 'get',
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                    console.log(data);
+                },
+                error: function () {
+                    alert('유저 정보 로딩 에러');
+                }
+            });
+        });
     </script>
 
     <header>
@@ -86,7 +86,8 @@
         <!-- 중간 : 사용자 감정 분석 회면 -->
         <section id="detection">
             <div id="detection__frame"></div>
-            <div id="detection__button" onclick="predict()">기분 분석을 다시 할까요?</야>
+            <div id="detection__button" onclick="predict()">기분 분석을 다시 할까요?</div>
+            <div id="start__button" onclick="startVideo()">기분 분석하기</div>
         </section>
 
         <!-- 오른쪽 : 분석후 플레이리스트 -->
@@ -94,16 +95,16 @@
             <div class="ment" id="ment__top"> 기분에 맞는 </div>
             <div class="ment" id="ment__mid"> 추천 플레이리스트 </div>
             <ul class="playlist__music">
-                <li class=" playlist__music__1"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class=" playlist__music__1"> <img class="like" onclick=like_toggle(id)><iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/596737464&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
                         <a href="https://soundcloud.com/baek_a" title="백아 : 白兒" target="_blank"
-                            style="color: #cccccc; text-decoration: none;">백아 : 白兒</a> · <a
+                            style="color: #cccccc; text-decoration: none;">백아 : 白兒</a>  <a
                             href="https://soundcloud.com/baek_a/ef2nn74nrnwm" title="첫사랑" target="_blank"
                             style="color: #cccccc; text-decoration: none;">첫사랑</a></div>
                 </li>
-                <li class="playlist__music__2"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__2"> <img class="like" onclick=like_toggle(id)><iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1310002972&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -114,7 +115,7 @@
                             style="color: #cccccc; text-decoration: none;">NewJeans (뉴진스) &#x27;Hype Boy&#x27;</a>
                     </div>
                 </li>
-                <li class="playlist__music__3"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__3"><img class="like" onclick=like_toggle(id)> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/833810287&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -124,7 +125,7 @@
                             target="_blank" style="color: #cccccc; text-decoration: none;">Still With You by JK of
                             BTS</a></div>
                 </li>
-                <li class="playlist__music__4"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__4"><img class="like" onclick=like_toggle(id)> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1284064897&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -135,7 +136,7 @@
                             style="color: #cccccc; text-decoration: none;">낭만교향곡 (Feat. CHANGMO, 박재범) - BIG Naughty</a>
                     </div>
                 </li>
-                <li class="playlist__music__5"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__5"><img class="like" onclick=like_toggle(id)> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/732683581&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -145,7 +146,7 @@
                             target="_blank" style="color: #cccccc; text-decoration: none;">Red Velvet (레드벨벳) -
                             Psycho</a></div>
                 </li>
-                <li class="playlist__music__6"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__6"> <img class="like" onclick=like_toggle(id)><iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/229483883&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -155,7 +156,7 @@
                             title="One Call Away (feat. Tyga) (Remix)" target="_blank"
                             style="color: #cccccc; text-decoration: none;">One Call Away (feat. Tyga) (Remix)</a></div>
                 </li>
-                <li class="playlist__music__7"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__7"> <img class="like" onclick=like_toggle(id)><iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1106851597&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -165,7 +166,7 @@
                             title="Red Velvet (레드벨벳) - Queendom" target="_blank"
                             style="color: #cccccc; text-decoration: none;">Red Velvet (레드벨벳) - Queendom</a></div>
                 </li>
-                <li class="playlist__music__8"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__8"><img class="like" onclick=like_toggle(id)> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1475266567&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -174,7 +175,7 @@
                             href="https://soundcloud.com/user-42671708/sets/untitled-playlist" title="Untitled playlist"
                             target="_blank" style="color: #cccccc; text-decoration: none;">Untitled playlist</a></div>
                 </li>
-                <li class="playlist__music__9"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__9"> <img class="like" onclick=like_toggle(id)><iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1350581908&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
@@ -184,7 +185,7 @@
                             title="10CM, BIG Naughty (서동현) - 딱 10CM만" target="_blank"
                             style="color: #cccccc; text-decoration: none;">10CM, BIG Naughty (서동현) - 딱 10CM만</a></div>
                 </li>
-                <li class="playlist__music__10"> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
+                <li class="playlist__music__10"><img class="like" onclick=like_toggle(id)> <iframe width="90%" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1351218982&color=%23161820&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                     <div
                         style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
