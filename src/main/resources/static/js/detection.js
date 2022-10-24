@@ -5,7 +5,7 @@ Promise.all([
   faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
   faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-]).then(startVideo);
+])//.then(startVideo);
 
 function startVideo() {
   video.addEventListener("play", loading);
@@ -122,63 +122,37 @@ function predict(){
         return sum + currValue;
       }, 0);
       const fearful_avr = fearful_sum / 5;
+
+
+
       //최대값, 두번째 최대값 찾기
-      var max = Math.max(sad_avr,neutral_avr,angry_avr,surprised_avr,happy_avr,disgusted_avr,fearful_avr);
-      var second_max = 0;
+
+      //기본값 설정
       var first_emotion = 'none'
       var second_emotion = 'none'
 
-      if(max ==sad_avr) {
-        first_emotion = 'sad';
-        second_max = Math.max(neutral_avr,angry_avr,surprised_avr,happy_avr,disgusted_avr,fearful_avr);
-      }
-      else if(max ==neutral_avr) {
-        first_emotion = 'neutral';
-        second_max = Math.max(sad_avr,angry_avr,surprised_avr,happy_avr,disgusted_avr,fearful_avr);
-      }
-      else if(max ==angry_avr) {
-        first_emotion = 'angry';
-        second_max = Math.max(sad_avr,neutral_avr,surprised_avr,happy_avr,disgusted_avr,fearful_avr);
-      }
-      else if(max ==surprised_avr) {
-        first_emotion = 'surprised';
-        second_max = Math.max(sad_avr,neutral_avr,angry_avr,happy_avr,disgusted_avr,fearful_avr);
-      }
-      else if(max ==happy_avr) {
-        first_emotion = 'happy';
-        second_max = Math.max(sad_avr,neutral_avr,angry_avr,surprised_avr,disgusted_avr,fearful_avr);
-      }
-      else if(max ==disgusted_avr) {
-        first_emotion = 'disgusted';
-        second_max = Math.max(sad_avr,neutral_avr,angry_avr,surprised_avr,happy_avr,fearful_avr);
-      }
-      else {
-        first_emotion = 'fearful';
-        second_max = Math.max(sad_avr,neutral_avr,angry_avr,surprised_avr,happy_avr,disgusted_avr);
-      }
+      var max_ary = [];
+      max_ary.push(['sad',sad_avr],['neutral',neutral_avr],['angry',angry_avr],['surprised',surprised_avr],['happy',happy_avr],['disgusted',disgusted_avr],['fearful',fearful_avr]);
+      max_ary.sort(function(a, b) {
+        return b[1] - a[1];
+      });
 
-      if(second_max != 0){
-        if(second_max==sad_avr) second_emotion = 'sad';
-        else if(second_max == neutral_avr) second_emotion = 'neutral';
-        else if(second_max == angry_avr) second_emotion = 'angry';
-        else if(second_max == surprised_avr) second_emotion = 'surprised';
-        else if(second_max == happy_avr) second_emotion = 'happy';
-        else if(second_max == disgusted_avr) second_emotion = 'disgusted';
-        else if(second_max == fearful_avr) second_emotion = 'fearful';
-      }
-
+      first_emotion=max_ary[0][0];
+      if(max_ary[1][1]!=0)
+        second_emotion=max_ary[1][0];
 
       document.getElementById('emotion_result').innerHTML= first_emotion+" "+second_emotion;
       video.removeEventListener("play", loading);
-      alert('start')
 
+
+      //오늘 날짜에 색깔 칠하는 코드
+      //필요시 수정하여 사용할 예정
       // let today = new Date();
       // var theDay = today.getDate();
       // var theMonth = today.getMonth()+1;
       // if(theDay<10) theDay = '0'+theDay;
       // if(theMonth<10) theMonth = '0'+theMonth;
       // var today_var = ''+ today.getFullYear()+ theMonth + theDay;
-      
       //document.getElementById(today_var).style.backgroundColor= '#73aace';
 
       $.ajax({
@@ -238,3 +212,43 @@ function predict(){
 
 
 };
+
+
+
+//좋아요 코드
+
+var flag = new Array(10); 
+var likey = document.getElementsByClassName("like");
+ 
+window.onload = function () {
+    for(var i=0; i<10; i++){
+        likey[i].id = "like"+i;
+        likey[i].src='images/unlike.png';
+        flag[i]=0;
+    }
+}
+
+function like_toggle(id)  {
+    var flag_num = id.substr(4);
+    if(flag[flag_num] == 0){
+    document.getElementById(id).src='images/like.png';
+        flag[flag_num]=1;
+        $.ajax({
+          url: "http://localhost:8080/like/{user-id}/{music-id}",
+          data: 'get',
+          contentType: "application/json;charset=UTF-8",
+          dataType: "json",
+          success: function (data) {
+              console.log('좋아요 전송 성공');
+          },
+          error: function () {
+              console.log('좋아요 전송 실패');
+          }
+      });
+    }
+    else{
+        document.getElementById(id).src='images/unlike.png';
+        flag[flag_num]=0;
+        //좋아요 취소
+    }
+}
