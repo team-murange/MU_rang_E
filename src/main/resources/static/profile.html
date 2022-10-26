@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="js/profile.js" async defer></script>
-
+    <script defer src="js/jquery.simple-calendar.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/simple-calendar.css">
     <link rel="stylesheet" href="css/demo.css">
@@ -45,6 +45,27 @@
                         disableEmptyDetails: true
                     });
                     $calendar = container.data('plugin_simpleCalendar')
+
+                    //감정기록 가져와서 날짜 색칠할 코드
+                    let userData;
+                    $.ajax({
+                        url : "http://localhost:8080/calendar/"+user_id, //로그인 완성되면 유저 아이디 넣기
+                        data : 'get',
+                        contentType:"application/json;charset=UTF-8",
+                        dataType : "json",
+                        success : function(data) {
+                            alert("loading success");
+                            userData = data;
+                        },
+                        error : function(data) {
+                            alert('유저 정보 로딩 에러');
+                        }
+                    });
+                    var i;
+                    for(i=0; i<userData.length; i++){
+                        getElementById(userData[i].date).style.backgroundColor = userData[i].colorCode;
+                    }
+
                 });
             </script>
             <!-- 2. 유저 프로필 -->
@@ -59,7 +80,7 @@
 
         <!-- 3. 유저의 음악 목록 -->
         <section class="playlist__emotion">
-            <div class="topic">My Fav</div>
+            <div class="topic" id="fav">My Fav</div>
             <div class="line"></div>
             <ul class="sample">
             </ul>

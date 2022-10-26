@@ -120,10 +120,47 @@ a {
     margin: 0;
 }
 
+/* <<<<<<< sooyoungh */
+/* 웹캠 */
+.webcam {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: scaleX(-1);
+}
 
+canvas {
+    width: 100vw;
+    height: 100vh; 
+    position: absolute;
+    left:0;
+    top:0;
+    bottom:20px;
+    transform: scaleX(-1);
+}
 
-
-
+video {
+    z-index: -100;
+    /* width: 100vw;
+    min-height: 96vh; */
+    margin: 0 auto;
+    position: fixed;
+    /* background: transparent; */
+    border-radius: 5px;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    object-fit: cover;
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+/*  >>>>>>> master */
 
 
 #emotion {
@@ -181,6 +218,22 @@ a {
     height: 90vh;
     float: right;
 }
+
+.like {
+    display: inline-flex;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    z-index: 1;
+    /* 좋아요 버튼 위치 변경하고싶을때 사용 */
+    transform: translate(-20px, -80px); 
+  }
+  
+  
+  .like:hover{
+    content: url('../images/hover-like.png');
+  } 
+  
 
 #ment__top {
     margin-top: 8%;

@@ -200,6 +200,22 @@ button {
   background-color: rgba(0, 0, 0, 0.212);
 }
 
+
+.like {
+  display: none;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  z-index: 1;
+  /* 좋아요 버튼 위치 변경하고싶을때 사용 */
+  /* transform: translate(20px, -20px); */
+}
+
+
+.like:hover{
+  content: url('../images/hover-like.png');
+} 
+
 /* 스크롤바 */
 ::-webkit-scrollbar {
   width: 12px;
