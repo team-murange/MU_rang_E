@@ -1,6 +1,7 @@
 package com.example.murange.Controller;
 
 import com.example.murange.Domain.User;
+import com.example.murange.Dto.UserResponseDto;
 import com.example.murange.Service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,8 @@ public class UserController {
             @PathVariable(value = "user-id") String userId
     ) {
         User user = userService.findUser(userId);
-        return new ResponseEntity(user, HttpStatus.OK);
+        UserResponseDto userResponseDto = new UserResponseDto(user);
+        return new ResponseEntity(userResponseDto, HttpStatus.OK);
     }
 
     // 회원 삭제
