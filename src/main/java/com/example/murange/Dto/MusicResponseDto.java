@@ -14,9 +14,12 @@ public class MusicResponseDto {
 
     private String img_url;
 
+    private String soundcloud_url;
+
     public MusicResponseDto(Music music) {
         this.title = music.getTitle();
         this.music_url = music.getMusic_url();
         this.img_url = music.getImg_url();
+        this.soundcloud_url = music.getSoundcloud_url();
     }
 }
