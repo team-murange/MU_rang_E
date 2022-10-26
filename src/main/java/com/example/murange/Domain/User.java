@@ -1,5 +1,7 @@
 package com.example.murange.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,10 +20,12 @@ public class User {
     @Column(name="user_id")
     private String id;
 
+    @Column(nullable = false)
     private String name;
 
     private String img_url;
 
+    @Column(nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "user")

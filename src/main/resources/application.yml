@@ -3,10 +3,14 @@ server:
   port: 8080
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/newmurange?serverTimezone=Asia/Seoul
+#    url: jdbc:mysql://localhost:3306/newmurange
+#    username: root
+#    password: 401868
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://murange.cwaqtiv8hfne.ap-northeast-1.rds.amazonaws.com:3306/murangedb
     username: root
-    password: nalgae415
+    password: { DB 비번 }
+    driver-class-name: com.mysql.cj.jdbc.Driver
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER # Swagger
@@ -14,7 +18,7 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto:  update   #  create validate update
+      ddl-auto:  validate  #  create validate update none
     properties:
       hibernate:
         show_sql: true

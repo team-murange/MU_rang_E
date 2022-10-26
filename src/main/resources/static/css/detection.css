@@ -39,6 +39,42 @@ body {
     font-size: var(--font-regular);
 }
 
+/* Video */
+canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    margin: 0;
+    /* transform: scaleX(-1); */
+    width: 100vw;
+    height: 100vh;
+}
+
+video {
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+.webcam {
+    z-index: -100;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* transform: scaleX(-1); */
+    width: 100vw;
+    height: 92vh;
+}
+
+ul {
+    list-style: none;
+    padding-left: 2vw;
+}
+
 h1 {
     font-size: var(--font-large);
     font-weight: var(--weight-bold);
@@ -69,6 +105,7 @@ header {
     position: relative;
     top: 2vh;
     left: 2vw;
+    width: 10vw;
 }
 
 a {
@@ -83,6 +120,7 @@ a {
     margin: 0;
 }
 
+/* <<<<<<< sooyoungh */
 /* 웹캠 */
 .webcam {
     margin: 0;
@@ -122,6 +160,7 @@ video {
     filter: FlipH;
     -ms-filter: "FlipH";
 }
+/*  >>>>>>> master */
 
 
 #emotion {
