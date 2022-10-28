@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="js/main.js" async defer></script>
+    <script src="js/search.js" async defer></script>
 
 </head>
 
@@ -20,7 +20,7 @@
     <header>
         <a href="main.html" style="text-decoration:none">
             <div id="logo">Murange</div>
-        </a>
+        </a>        
         <div id="search"> 
             <form action="search.html" method="get">
                 <input type="search" name="search" placeholder="검색어 입력">
@@ -28,29 +28,16 @@
             </form>
         </div>
         <div id="login"></div>
+
     </header>
 
     <div class="content">
-        <!-- 1. 상단 : 감정 분석 페이지 이동 -->
-        <section class="banner">
-            <a href="detection.html" target="_blank">
-                <img class="picture" src="images/banner.png" alt="banner">
-            </a>
-        </section>
+        <h2 id="ment"></h2>
 
-        <!-- 2. 첫번째 음악 목록 : 감정별 랜덤 -->
         <section class="playlist__emotion">
-            <div class="topic">Emotion</div>
             <div class="line"></div>
-            <ul class="sample">
-            </ul>
-        </section>
+            <ul class="result">
 
-        <!-- 3. 두번째 음악 목록 : TopDaily -->
-        <section class="playlist__top">
-            <div class="topic">TopDaily</div>
-            <div class="line"></div>
-            <ul class="sample">
             </ul>
         </section>
 

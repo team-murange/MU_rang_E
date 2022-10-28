@@ -23,7 +23,7 @@ $(document).ready(function () {
         }
     });
 });
-=======
+
 const video = document.getElementById("video");
 
 Promise.all([

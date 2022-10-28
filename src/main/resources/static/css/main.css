@@ -97,7 +97,7 @@ ul {
   padding: 0;
 }
 
-sample {
+.sample {
   display: flex;
   flex-direction: row;
 }
@@ -177,6 +177,10 @@ button {
   margin-right: 0.3vw;
 }
 
+like:hover{
+    content: url('../images/hover-like.png');
+}
+
 
 ul {
   display: flex;
@@ -207,4 +211,10 @@ ul {
   width: 90vw;
   height: 0.1px;
   background-color: var(--color-light-grey);
+}
+
+#search {
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
