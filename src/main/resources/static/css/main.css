@@ -138,44 +138,6 @@ button {
   align-items: center;
   overflow: hidden;
 
-}
-
-
-.like {
-  display: none;
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  z-index: 1;
-  /* 좋아요 버튼 위치 변경하고싶을때 사용 */
-  /* transform: translate(20px, -20px); */
-}
-
-
-.like:hover{
-  content: url('../images/hover-like.png');
-} 
-
-
-/*1번 롤링배너*/
-#slider {
-  margin: 0 auto;
-  /* margin-left: 100px; */
-  /* width: 1200px; */
-  max-width: 100%;
-  text-align: center;
-  z-index: -3;
-}
-
-#slider input[type=radio] {
-  display: none;
-}
-
-#slider label {
-  cursor: pointer;
-  text-decoration: none;
-}
-
   display: flex;
   flex-direction: column;
 }
@@ -188,6 +150,14 @@ button {
   /* margin: 0.3vw; */
 }
 
+.sub {
+  width: 12vw;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .title {
   width: 12vw;
   text-align: start;
@@ -196,7 +166,17 @@ button {
   color:var(--color-dark-grey);
   text-overflow: ellipsis;
   white-space:nowrap;
+  flex-basis: 10vw;
 }
+
+.like {
+  width: 5px;
+  height: 15px;
+  flex-basis: 1vw;
+  margin-top: 2vh;
+  margin-right: 0.3vw;
+}
+
 
 ul {
   display: flex;
@@ -216,7 +196,6 @@ ul {
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
-
 
 /* 가장 아래 */
 .bottom_nav {
