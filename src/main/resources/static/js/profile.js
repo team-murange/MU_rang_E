@@ -114,7 +114,7 @@ function slide3(){
 
 //좋아요한 음악 불러오기
 $.ajax({
-    url : "http://localhost:8800/like/{user-id}",
+    url : "http://localhost:8800/like/" + user_id,
     data : 'get',
     contentType:"application/json;charset=UTF-8",
     dataType : "json",
@@ -125,4 +125,12 @@ $.ajax({
     error : function() {
        console.log('좋아요 음악 불러오기 실패');
     },
-          });
+});
+
+
+const searchForm = document.querySelector('form');
+
+searchForm.addEventListener('submit', event => {
+ const searchInput = event.target['search'];
+ location.href = `search.html?${searchInput.value}`
+});
