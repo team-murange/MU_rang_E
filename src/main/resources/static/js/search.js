@@ -2,8 +2,31 @@ const receivedData = location.href.split('?search=')[1];
 var keyword = decodeURI(receivedData);
 document.getElementById('ment').innerHTML = keyword + '의 검색 결과입니다.'
 
+var flag = new Array();
+var user_id = '0'
+var liked_id = new Array();
+var music_id = new Array();
+
+
 
 $(document).ready(function () {
+    //좋아요한 음악 불러오기
+        $.ajax({
+            url : "http://localhost:8800/like/" + user_id,
+            data : 'get',
+            contentType:"application/json;charset=UTF-8",
+            dataType : "json",
+            success : function(data) {
+                $(dataList).each(function (index, data) {
+                    liked_id.append(data.music_id)
+                });
+    
+            },
+            error : function() {
+            console.log('좋아요 음악 불러오기 실패');
+            },
+        });
+        
     $.ajax({
         url: "http://localhost:8080/search",
         data: 'get',
@@ -11,7 +34,6 @@ $(document).ready(function () {
         dataType: "json",
         success: function (dataList) {
             $(dataList).each(function (index, data) {
-                flag[index]=0;
                 music_id=data.music_id;
                 console.log(data.img_url);
                 console.log(data.title);
@@ -24,24 +46,39 @@ $(document).ready(function () {
                                 .append(
                                     $("<img>")
                                         .addClass("album")
-                                        .attr({
-                                            src : data.img_url
-                                        }),
+                                        .attr({src : data.img_url}),
                                     $("<div>")
                                         .addClass("sub")
                                         .append(
                                             $("<p>")
                                                 .addClass("title")
                                                 .text(data.title),
-                                            $("<img>")
-                                                .addClass("like")
-                                                .attr({
-                                                    src : "images/unlike.png",
-                                                    id : 'like'+index
-                                                })
+                                            $("<a>")
+                                                .attr({href : data.music_url})  
+                                                .append(
+                                                    $("<img>")
+                                                        .addClass("like")
+                                                        .attr({
+                                                            id : 'like'+index
+                                                        }),
+                                                )
                                         )
                                 )
-                        )}
+                                
+                        )
+                        if(liked_id.indexOf(data.music_id)){
+                            $(".like").attr({
+                                src : "images/like.png",
+                            }),
+                            flag[index]=1;
+                        }
+                        else{
+                            $(".like").attr({
+                                src : "images/unlike.png",
+                            }),
+                            flag[index]=0;
+                        }
+                    }
             });
         },
         error: function () {
