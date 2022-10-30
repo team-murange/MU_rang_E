@@ -136,10 +136,10 @@ a {
 
 canvas {
     width: 100vw;
-    height: 100vh; 
+    height: 94vh;
     position: absolute;
     left:0;
-    top:0;
+    top:6vh;
     bottom:20px;
     transform: scaleX(-1);
 }
