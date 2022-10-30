@@ -1,28 +1,9 @@
 
 var user_id = '0'
+//기본값 설정
+var first_emotion = 'none'
+var second_emotion = 'none'
 
-$(document).ready(function () {
-    $.ajax({
-        url: "http://localhost:8080/like/" + user_id,
-        data: 'get',
-        contentType: "application/json;charset=UTF-8",
-        dataType: "json",
-        success: function (dataList) {
-            $(dataList).each(function (index, data) {
-                console.log(data.music_url);
-                $(".result")
-                    .append(
-                        $("<li>")
-                            .addClass("result__music")
-                            .html(data.music_url)
-                    )
-            });
-        },
-        error: function () {
-            console.log("음악 정보 로딩 에러");
-        }
-    });
-});
 
 const video = document.getElementById("video");
 
@@ -153,9 +134,6 @@ function predict(){
 
       //최대값, 두번째 최대값 찾기
 
-      //기본값 설정
-      var first_emotion = 'none'
-      var second_emotion = 'none'
 
       var max_ary = [];
       max_ary.push(['sad',sad_avr],['neutral',neutral_avr],['angry',angry_avr],['surprised',surprised_avr],['happy',happy_avr],['disgusted',disgusted_avr],['fearful',fearful_avr]);
@@ -181,31 +159,17 @@ function predict(){
       // var today_var = ''+ today.getFullYear()+ theMonth + theDay;
       //document.getElementById(today_var).style.backgroundColor= '#73aace';
 
-      $.ajax({
-        type:'get',  
-        contentType:"application/json;charset=UTF-8",
-        url:'http://localhost:8080/user/'+user_id,
-        data : JSON.stringify(inputData),
-        dataType:'json',
-         success : function(data){
-            alert('유저 정보 로딩 성공');
-            document.getElementById('id_insert').innerHTML=data.name + '님의 지금 감정은'
-         },
-         error : function(data){
-           alert('error');
-         }
-       });
-      
+
+
 
 
       //표정분석결과 전달
-         $.ajax({
-           type:'get',  
-           contentType:"application/json;charset=UTF-8",
-           url:'http://localhost:8080/figure/'+ user_id + '/' + first_emotion + '/' + second_emotion,
-           data : JSON.stringify(inputData),
-           dataType:'json',
-            success : function(data){
+        $.ajax({
+            url : "http://localhost:8080/music/"+first_emotion+"/"+second_emotion,
+            data : 'get',
+            contentType:"application/json;charset=UTF-8",
+            dataType : "json",
+            success : function(data) {
                alert('분석 결과 전송 성공');
             },
             error : function(data){
@@ -213,24 +177,48 @@ function predict(){
             }
           });
 
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8080/like/" + user_id,
+                data: 'get',
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (dataList) {
+                    $(dataList).each(function (index, data) {
+                        console.log(data.music_url);
+                        $(".result")
+                            .append(
+                                $("<li>")
+                                    .addClass("result__music")
+                                    .html(data.music_url)
+                            )
+                    });
+                },
+                error: function () {
+                    console.log("음악 정보 로딩 에러");
+                }
+            });
+        });
+
+
 //추천 음악 불러오기
-      $.ajax({
-        url : "http://localhost:8800/music/"+first_emotion+"/"+second_emotion,
-        data : 'get',
-        contentType:"application/json;charset=UTF-8",
-        dataType : "json",
-        success : function(data) {
-        alert('success');
-        for (step = 1; step < 11; step++) {
-            document.getElementById('pl1__music__'+step).src = data[step-1].music_url;
-            document.getElementById('pl1__music__'+step).style.backgroundSize = "contain";
-            document.getElementById('pl1__music__'+step).innerHTML=data[step-1].title;
-            document.getElementById('pl1__music__'+step).style.backgroundImage = data[step-1].img_url;
-        }},
-        error : function() {
-        alert('음악 재생 에러');
-        },
-              });
+//       $.ajax({
+//         url : "http://localhost:8080/music/"+first_emotion+"/"+second_emotion,
+//         data : 'get',
+//         contentType:"application/json;charset=UTF-8",
+//         dataType : "json",
+//         success : function(data) {
+//         alert('success');
+//         for (step = 1; step < 11; step++) {
+//             document.getElementById('pl1__music__'+step).src = data[step-1].music_url;
+//             document.getElementById('pl1__music__'+step).style.backgroundSize = "contain";
+//             document.getElementById('pl1__music__'+step).innerHTML=data[step-1].title;
+//             document.getElementById('pl1__music__'+step).style.backgroundImage = data[step-1].img_url;
+//         }},
+//         error : function() {
+//         alert('음악 재생 에러');
+//         },
+//               });
       
     }
   },1000)
