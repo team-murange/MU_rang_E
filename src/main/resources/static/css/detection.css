@@ -208,6 +208,7 @@ video {
     right: 50%;
     background-color: var(--color-white);
     padding: 10px;
+    z-index: 500;
 }
 
 
