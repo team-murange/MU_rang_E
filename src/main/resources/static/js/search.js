@@ -32,11 +32,15 @@ $(document).ready(function () {
                         $("<li>")
                             .addClass("playlist")
                             .append(
-                                $("<img>")
-                                    .addClass("album")
-                                    .attr({
-                                        src: data.img_url
-                                    }),
+                                $("<a>")
+                                    .attr({href:data.soundcloud_url})
+                                    .append(
+                                        $("<img>")
+                                            .addClass("album")
+                                            .attr({
+                                                src: data.img_url
+                                            }),
+                                    ),
                                 $("<div>")
                                     .addClass("sub")
                                     .append(
