@@ -50,27 +50,6 @@
                         disableEmptyDetails: true
                     });
                     $calendar = container.data('plugin_simpleCalendar')
-
-                    //감정기록 가져와서 날짜 색칠할 코드
-                    let userData;
-                    $.ajax({
-                        url : "http://localhost:8080/calendar/"+user_id, //로그인 완성되면 유저 아이디 넣기
-                        data : 'get',
-                        contentType:"application/json;charset=UTF-8",
-                        dataType : "json",
-                        success : function(data) {
-                            alert("loading success");
-                            userData = data;
-                        },
-                        error : function(data) {
-                            alert('유저 정보 로딩 에러');
-                        }
-                    });
-                    var i;
-                    for(i=0; i<userData.length; i++){
-                        getElementById(userData[i].date).style.backgroundColor = userData[i].colorCode;
-                    }
-
                 });
             </script>
             <!-- 2. 유저 프로필 -->
