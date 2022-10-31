@@ -15,36 +15,16 @@ searchForm.addEventListener('submit', event => {
 });
 
 
-
 $(document).ready(function () {
-//좋아요한 음악 불러오기
     $.ajax({
-        url : "http://localhost:8800/like/" + user_id,
-        data : 'get',
-        contentType:"application/json;charset=UTF-8",
-        dataType : "json",
-        success : function(data) {
-            $(dataList).each(function (index, data) {
-                liked_id.append(data.music_id)
-            });
-
-        },
-        error : function() {
-        console.log('좋아요 음악 불러오기 실패');
-        },
-    });
-
-
-    $.ajax({
-        url: "http://localhost:8080/top",
+        url: "http://localhost:8080/like/" + user_id,
         data: 'get',
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (dataList) {
             $(dataList).each(function (index, data) {
+                flag[index]=0;
                 music_id[index]=data.music_id;
-                console.log(data.img_url);
-                console.log(data.title);
                 $(".sample")
                     .append(
                         $("<li>")
@@ -64,58 +44,70 @@ $(document).ready(function () {
                                         $("<img>")
                                             .addClass("like")
                                             .attr({
-                                                id : 'like'+index
+                                                id : 'like'+index,
+                                                src : "images/unlike.png",
+                                                onclick : "click_heart("+index+")"
                                             })
                                     )
                             )
                     )
-                if(liked_id.indexOf(data.music_id)){
-                    $(".like").attr({
-                        src : "images/like.png",
-                    }),
-                    flag[index]=1;
-                }
-                else{
-                    $(".like").attr({
-                        src : "images/unlike.png",
-                    }),
-                    flag[index]=0;
-                }
+
             });
         },
         error: function () {
-            console.log("유저의 음악 정보 로딩 에러");
+            console.log("음악 정보 로딩 에러");
         }
     });
+
 });
 
+function click_heart(id){
+    if(flag[id] == 0) {
+        document.getElementById('like'+id).src = 'images/like.png'
+        flag[id] = 1;
+        $.ajax({
+            url: "http://localhost:8080/like/"+user_id+"/"+music_id[id],
+            data: 'get',
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (data) {
+                console.log('좋아요 전송 성공');
+            },
+            error: function () {
+                console.log('좋아요 전송 실패');
+            }
+        });
+    }
+    else{
+        document.getElementById('like'+id).src='images/unlike.png';
+        flag[id]=0;
+    }
+}
 
-$(function() {
-	$(".like").click(function() {
-		var flag_num = id.substr(4);
-        if(flag[flag_num] == 0){
-            document.getElementById(id).src='images/like.png';
-            flag[flag_num]=1;
-                $.ajax({
-                    url: "http://localhost:8080/like/"+user_id+"/"+music_id[flag_num],
-                    data: 'get',
-                    contentType: "application/json;charset=UTF-8",
-                    dataType: "json",
-                    success: function (data) {
-                        console.log('좋아요 전송 성공');
-                    },
-                    error: function () {
-                        console.log('좋아요 전송 실패');
-                    }
-                });
-        }
-        else{
-            document.getElementById(id).src='images/unlike.png';
-            flag[flag_num]=0;
-        }
-	});
-});
 
+	// $(".like").click(function() {
+		// let flag_num = id.substr(4);
+        // if(flag[flag_num] == 0){
+        //     document.getElementById(id).src='images/like.png'
+            // flag[flag_num]=1;
+                // $.ajax({
+                //     url: "http://localhost:8080/like/"+user_id+"/"+music_id[flag_num],
+                //     data: 'get',
+                //     contentType: "application/json;charset=UTF-8",
+                //     dataType: "json",
+                //     success: function (data) {
+                //         alert('좋아요 전송 성공');
+                //     },
+                //     error: function () {
+                //         alert('좋아요 전송 실패');
+                //     }
+                // });
+        // }
+        // else{
+        //     document.getElementById(id).src='images/unlike.png';
+        //     flag[flag_num]=0;
+        // }
+	// });
 
 // var flag = new Array(30);
 // var likey = document.getElementsByClassName("like");
@@ -136,7 +128,7 @@ $(function() {
 //         flag[flag_num]=1;
 //         //전달해줄 음악 id를 어떻게 가져올 것인가?
 //             $.ajax({
-//                 url: "http://localhost:8080/like/{user-id}/{music-id}",
+//                 url: "http://localhost:8080/like/"+user-id+"/"+music-id,
 //                 data: 'get',
 //                 contentType: "application/json;charset=UTF-8",
 //                 dataType: "json",

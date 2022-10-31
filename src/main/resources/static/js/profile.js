@@ -49,6 +49,25 @@ $(document).ready(function () {
             console.log("유저의 음악 정보 로딩 에러");
         }
     });
+
+    //감정기록 가져와서 날짜 색칠할 코드
+    $.ajax({
+        url : "http://localhost:8080/calendar/"+user_id,
+        data : 'get',
+        contentType:"application/json;charset=UTF-8",
+        dataType : "json",
+        success : function(data) {
+            var i;
+            for(i=0; i<data.length; i++){
+                document.getElementById(data[i].date).style.backgroundColor = data[i].colorCode;
+            }
+        },
+        error : function(data) {
+            alert('유저 정보 로딩 에러');
+        }
+    });
+
+
 });
 
 var flag = new Array(15); 
@@ -69,7 +88,7 @@ function like_toggle(id)  {
     document.getElementById(id).src='images/like.png';
         flag[flag_num]=1;
         $.ajax({
-            url: "http://localhost:8080/like/{user-id}/{music-id}",
+            url: "http://localhost:8080/like/"+user_id,
             data: 'get',
             contentType: "application/json;charset=UTF-8",
             dataType: "json",

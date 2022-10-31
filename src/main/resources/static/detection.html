@@ -27,7 +27,7 @@
         <div id="login"></div>
     </header>
     <div id="webcam">
-        <video id="video" width="100%" height="100%" autoplay muted></video>
+        <video id="video" width="100%" height="100% - 4vh" autoplay muted></video>
     </div>
 
     <div class="content">
@@ -70,8 +70,8 @@
         <!-- 중간 : 사용자 감정 분석 회면 -->
         <section id="detection">
             <div id="detection__frame"></div>
-            <div id="detection__button" onclick="predict()">기분 분석을 다시 할까요?</div>
-            <div id="start__button" onclick="startVideo()">기분 분석하기</div>
+<!--            <div id="detection__button" onclick="predict()">기분 분석을 다시 할까요?</div>-->
+            <button id="start__button" onclick="startDetection()">기분 분석하기</button>
         </section>
 
         <!-- 오른쪽 : 분석후 플레이리스트 -->

@@ -1,6 +1,6 @@
 
 var user_id = '0'
-//기본값 설정
+var restart = 0;
 var first_emotion = 'none'
 var second_emotion = 'none'
 
@@ -13,6 +13,16 @@ Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
   faceapi.nets.faceExpressionNet.loadFromUri("/models"),
 ])//.then(startVideo);
+
+function startDetection() {
+    if(restart==0){
+        startVideo();
+        document.getElementById('start__button').innerHTML = '다시 분석하기'
+        restart =1;
+    }
+    else predict();
+}
+
 
 function startVideo() {
   video.addEventListener("play", loading);
@@ -30,7 +40,7 @@ function startVideo() {
 function loading(){
   const canvas = faceapi.createCanvasFromMedia(video);
   document.body.append(canvas);
-  const displaySize = { width: canvas.width, height: canvas.height*2 };
+  const displaySize = { width: canvas.width, height: canvas.height };
   faceapi.matchDimensions(canvas, displaySize);
 
   var drawing = setInterval(async () => {
@@ -170,10 +180,10 @@ function predict(){
             contentType:"application/json;charset=UTF-8",
             dataType : "json",
             success : function(data) {
-               alert('분석 결과 전송 성공');
+               console.log('분석결과 전송 성공')
             },
             error : function(data){
-              alert('error');
+              console.log('분석 결과 전송 error');
             }
           });
 

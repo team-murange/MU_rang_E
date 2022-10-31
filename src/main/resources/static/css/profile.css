@@ -30,6 +30,13 @@
   box-sizing: border-box;
 }
 
+
+#search {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
 body {
   /* height: 100vw; */
 
@@ -193,11 +200,12 @@ button {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  transition:0.8s;
 }
 
 
 .playlist:hover {
-  background-color: rgba(0, 0, 0, 0.212);
+  transform: scale(1.1);
 }
 
 
