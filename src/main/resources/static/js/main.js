@@ -30,25 +30,29 @@ $(document).ready(function () {
                         $("<li>")
                             .addClass("playlist")
                             .append(
-                                $("<img>")
-                                    .addClass("album")
-                                    .attr({
-                                        src : data.img_url
-                                    }),
-                                $("<div>")
-                                    .addClass("sub")
+                                $("<a>")
+                                    .attr({href:data.soundcloud_url})
                                     .append(
-                                        $("<p>")
-                                            .addClass("title")
-                                            .text(data.title),
                                         $("<img>")
-                                            .addClass("like")
+                                            .addClass("album")
                                             .attr({
-                                                id : 'like'+index,
-                                                src : "images/unlike.png",
-                                                onclick : "click_heart("+index+")"
-                                            })
-                                    )
+                                                src : data.img_url
+                                            }),
+                                    ),
+                                        $("<div>")
+                                            .addClass("sub")
+                                            .append(
+                                                $("<p>")
+                                                    .addClass("title")
+                                                    .text(data.title),
+                                                $("<img>")
+                                                    .addClass("like")
+                                                    .attr({
+                                                        id : 'like'+index,
+                                                        src : "images/unlike.png",
+                                                        onclick : "click_heart("+index+")"
+                                                    })
+                                            ),
                             )
                     )
 
