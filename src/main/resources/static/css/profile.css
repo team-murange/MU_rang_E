@@ -37,6 +37,14 @@
   display: flex;
 }
 
+
+#feed {
+  position: relative;
+  top: -4vh;
+  left: 91vw;
+  width: 10vw;
+}
+
 body {
   /* height: 100vw; */
 

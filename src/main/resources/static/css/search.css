@@ -30,6 +30,14 @@
   box-sizing: border-box;
 }
 
+
+#feed {
+  position: relative;
+  top: -4vh;
+  left: 91vw;
+  width: 10vw;
+}
+
 .result {
   margin-top: 5vw;
   display: flex;
