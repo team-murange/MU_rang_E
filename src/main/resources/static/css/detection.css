@@ -104,15 +104,16 @@ h3 {
 header {
     position: sticky;
     background-color: var(--color-dark-grey);
-    height: 4vw;
+    height:  10vh;
     z-index: 500;
 }
 
+
 #logo {
     position: relative;
-    top: 2vh;
+    top: 3vh;
     left: 2vw;
-    width: 10vw;
+    height: 5vh;
 }
 
 a {
