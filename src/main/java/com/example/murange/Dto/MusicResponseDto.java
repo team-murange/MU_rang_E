@@ -19,7 +19,7 @@ public class MusicResponseDto {
     private String soundcloud_url;
 
     public MusicResponseDto(Music music) {
-        this.id = id;
+        this.id = music.getId();
         this.title = music.getTitle();
         this.music_url = music.getMusic_url();
         this.img_url = music.getImg_url();
