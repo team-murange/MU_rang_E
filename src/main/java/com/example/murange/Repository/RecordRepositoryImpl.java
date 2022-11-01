@@ -25,8 +25,8 @@ public class RecordRepositoryImpl implements RecordRepositoryCustom{
     @Override
     public List<RecordResponseDto> getRecordByUserId(String UserId) {
 
-        // 이번 달만 가져오기!
-        LocalDate start = YearMonth.now().atDay(1);
+        // 이번 년도 가져오기!
+        LocalDate start = LocalDate.of(2022, 1,1);
         LocalDate end   = YearMonth.now().atEndOfMonth();
 
         return queryFactory
