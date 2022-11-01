@@ -23,7 +23,7 @@ public class MusicService {
     }
 
     // 감정별 music 조회
-    public List<Music> getMusicByEmotion (String emotion) {
+    public List<Music> getMusicByEmotion (EmotionType emotion) {
         List<Music> musicList = musicRepository.getMusicByEmotion(emotion);
         return musicList;
     }

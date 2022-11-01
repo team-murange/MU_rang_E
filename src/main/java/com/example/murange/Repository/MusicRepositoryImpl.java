@@ -21,7 +21,7 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
 
     // + 동적 쿼리
     @Override
-    public List<Music> getMusicByEmotion(String emotion) {
+    public List<Music> getMusicByEmotion(EmotionType emotion) {
 
         return queryFactory
                 .select(music)
