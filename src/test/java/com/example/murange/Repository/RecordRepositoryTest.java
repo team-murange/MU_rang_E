@@ -42,7 +42,7 @@ public class RecordRepositoryTest {
         User userA = User.builder().id("1111").name("userA").build();
         userRepository.save(userA);
 
-        String colorCode = colorService.getFinalColorCodeByTwoEmotion(EmotionType.randomEmotionType(), EmotionType.randomEmotionType());
+        String colorCode = colorService.getColorCodeByTwoEmotion(EmotionType.disgust, EmotionType.fearful);
 
         Record record1 = Record.builder().user(userA).colorCode(colorCode).date(LocalDate.now()).build();
         Record record2 = Record.builder().user(userA).colorCode(colorCode).date(LocalDate.now()).build();
