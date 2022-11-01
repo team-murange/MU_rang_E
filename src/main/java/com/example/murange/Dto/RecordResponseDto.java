@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor
 @Setter
@@ -14,11 +16,11 @@ import java.time.LocalDate;
 @Data
 public class RecordResponseDto {
 
-    private LocalDate date;
-    private String colorCode;  // 컬러 코드
+    private String parsedDate;
+    private String colorCode;
 
     public RecordResponseDto(Record record) {
+        this.parsedDate = record.getDate().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         this.colorCode = record.getColorCode();
-        this.date = record.getDate();
     }
 }
