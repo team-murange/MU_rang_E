@@ -1,5 +1,7 @@
 package com.example.murange.Controller;
 
+import com.example.murange.Domain.EmotionType;
+import com.example.murange.Dto.EmotionColorDto;
 import com.example.murange.Dto.RecordResponseDto;
 import com.example.murange.Service.ColorService;
 import com.example.murange.Service.RecordService;
@@ -27,8 +29,10 @@ public class RecordController {
             @PathVariable(value = "main-emotion") String mainEmotion,
             @PathVariable(value = "sub-emotion") String subEmotion
     ) {
-        String colorCode = colorService.getFinalColorCodeByTwoEmotion(mainEmotion, subEmotion);
-        recordService.saveColorCode(userId, colorCode);
+        EmotionType main = EmotionType.valueOf(mainEmotion);
+        EmotionType sub = EmotionType.valueOf(subEmotion);
+        EmotionColorDto emotionColorDto = EmotionColorDto.builder().mainEmotion(main).subEmotion(sub).build();
+        recordService.saveEmotion(userId, emotionColorDto);
         return new ResponseEntity(HttpStatus.OK);
     }
 

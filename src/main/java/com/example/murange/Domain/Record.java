@@ -20,6 +20,10 @@ public class Record {
 
     private String colorCode;
 
+    private EmotionType mainEmotion;
+
+    private EmotionType subEmotion;
+
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,9 +31,11 @@ public class Record {
     private User user;
 
     @Builder
-    public Record(String colorCode, LocalDate date, User user) {
+    public Record(String colorCode, EmotionType mainEmotion, EmotionType subEmotion, LocalDate date, User user) {
         this.user = user;
         this.colorCode = colorCode;
         this.date = date;
+        this.mainEmotion = mainEmotion;
+        this.subEmotion = subEmotion;
     }
 }

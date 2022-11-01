@@ -3,12 +3,12 @@ package com.example.murange.Domain;
 import java.util.Random;
 
 public enum EmotionType {
-    sad,happiness,angry,neutral,disgust,scared,surprised;
+    sad,happy,angry,neutral,disgust,surprised,fearful,none;
 
     private static final Random PRNG = new Random();
 
-    public static String randomEmotionType()  {
+    public static EmotionType randomEmotionType()  {
         EmotionType[] emotionType = values();
-        return emotionType[PRNG.nextInt(emotionType.length)].toString();
+        return emotionType[PRNG.nextInt(emotionType.length)];
     }
 }

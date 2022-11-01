@@ -1,16 +1,18 @@
 package com.example.murange.Service;
 
+import com.example.murange.Domain.EmotionType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @Transactional
 @RunWith(SpringRunner.class)
-@Commit // 확인용!, 없으면 자동 rollback 되어서 디비에서 확인 못함!
+// @Commit // 확인용!, 없으면 자동 rollback 되어서 디비에서 확인 못함!
 public class ColorServiceTest {
 
     @Autowired
@@ -18,8 +20,8 @@ public class ColorServiceTest {
 
     @Test
     public void calcColorCode() {
-        int firstColor = colorService.getColorCodeByEmotion("sad");
-        int secondColor = colorService.getColorCodeByEmotion("happiness");
+        int firstColor = colorService.getColorCodeByEmotion(EmotionType.sad);
+        int secondColor = colorService.getColorCodeByEmotion(EmotionType.happy);
 
         String resultColorCode = colorService.calcColorCode(firstColor, secondColor);
 
@@ -27,6 +29,4 @@ public class ColorServiceTest {
         System.out.println(secondColor);
         System.out.println(resultColorCode);
     }
-
-
 }
