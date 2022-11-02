@@ -16,11 +16,11 @@ import java.time.format.DateTimeFormatter;
 @Data
 public class RecordResponseDto {
 
-    private String parsedDate;
+    private LocalDate date;
     private String colorCode;
 
     public RecordResponseDto(Record record) {
-        this.parsedDate = record.getDate().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        this.date = record.getDate();
         this.colorCode = record.getColorCode();
     }
 }
