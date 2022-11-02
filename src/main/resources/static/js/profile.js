@@ -26,8 +26,8 @@ $(document).ready(function () {
         dataType: "json",
         success: function (dataList) {
             $(dataList).each(function (index, data) {
-                // console.log(data.img_url);
-                // console.log(data.title);
+                console.log(data.img_url);
+                console.log(data.title);
                 $(".sample")
                     .append(
                         $("<li>")
@@ -42,9 +42,9 @@ $(document).ready(function () {
                                                 src : data.img_url
                                             }),
                                     ),
-                                        $("<p>")
-                                            .addClass("title")
-                                            .text(data.title)
+                                $("<span>")
+                                    .addClass("title")
+                                    .text(data.title)
                             )
                     )
             });
@@ -63,7 +63,7 @@ $(document).ready(function () {
         success : function(data) {
             var i;
             for(i=0; i<data.length; i++){
-                document.getElementById(data[i].date).style.backgroundColor = data[i].colorCode;
+                document.getElementById(data[i].date.replace('-', '').replace('-', '')).style.background = '#'+data[i].colorCode;
             }
         },
         error : function(data) {
@@ -74,9 +74,9 @@ $(document).ready(function () {
 
 });
 
-var flag = new Array(15); 
+var flag = new Array(15);
 var likey = document.getElementsByClassName("like");
- 
+
 window.onload = function () {
     for(var i=0; i<15; i++){
         likey[i].id = "like"+i;
@@ -89,7 +89,7 @@ window.onload = function () {
 function like_toggle(id)  {
     var flag_num = id.substr(4);
     if(flag[flag_num] == 0){
-    document.getElementById(id).src='images/like.png';
+        document.getElementById(id).src='images/like.png';
         flag[flag_num]=1;
         $.ajax({
             url: "http://localhost:8080/like/"+user_id,
@@ -142,11 +142,11 @@ $.ajax({
     contentType:"application/json;charset=UTF-8",
     dataType : "json",
     success : function(data) {
-    for (step = 1; step < 15; step++) {
-        document.getElementById('pl1_music'+step).src = data[step-1].img_url;
-    }},
+        for (step = 1; step < 15; step++) {
+            document.getElementById('pl1_music'+step).src = data[step-1].img_url;
+        }},
     error : function() {
-       console.log('좋아요 음악 불러오기 실패');
+        console.log('좋아요 음악 불러오기 실패');
     },
 });
 
@@ -154,6 +154,6 @@ $.ajax({
 const searchForm = document.querySelector('form');
 
 searchForm.addEventListener('submit', event => {
- const searchInput = event.target['search'];
- location.href = `search.html?${searchInput.value}`
+    const searchInput = event.target['search'];
+    location.href = `search.html?${searchInput.value}`
 });
