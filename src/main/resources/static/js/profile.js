@@ -26,8 +26,8 @@ $(document).ready(function () {
         dataType: "json",
         success: function (dataList) {
             $(dataList).each(function (index, data) {
-                console.log(data.img_url);
-                console.log(data.title);
+                // console.log(data.img_url);
+                // console.log(data.title);
                 $(".sample")
                     .append(
                         $("<li>")
@@ -42,7 +42,7 @@ $(document).ready(function () {
                                                 src : data.img_url
                                             }),
                                     ),
-                                        $("<span>")
+                                        $("<p>")
                                             .addClass("title")
                                             .text(data.title)
                             )

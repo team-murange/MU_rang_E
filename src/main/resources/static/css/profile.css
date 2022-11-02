@@ -47,10 +47,9 @@
 
 body {
   /* height: 100vw; */
-
+  font-family: 'Poppins', sans-serif;
   padding: 0;
   margin: 0;
-  font-family: 'Gothic A1', sans-serif;
   font-size: var(--font-regular);
 }
 
@@ -147,7 +146,7 @@ section {
 .playlist {
   display: flex;
   flex-direction: column;
-  margin-top: 5vh;
+  /*margin-top: 5vh;*/
   margin: 1%;
 }
 
@@ -197,11 +196,11 @@ button {
 
 /*앨범 커버*/
 .playlist {
+  padding: 0;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   display: inline-flex;
-  padding: 30px;
   margin: 1vw;
   width: 10vw;
   /*height: 10vw;*/
