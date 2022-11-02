@@ -39,10 +39,9 @@
 
 body {
     /* height: 100vw; */
-
+    font-family: 'Poppins', sans-serif;
     padding: 0;
     margin: 0;
-    font-family: 'Gothic A1', sans-serif;
     font-size: var(--font-regular);
 }
 
