@@ -210,6 +210,7 @@ function coloring(){
 
       calendar.append(body);
       calendar.append(eventContainer);
+      coloring()
     },
     changeMonth: function (value) {
       coloring()
