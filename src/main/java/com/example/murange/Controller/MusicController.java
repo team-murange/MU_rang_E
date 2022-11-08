@@ -30,25 +30,21 @@ public class MusicController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @ApiOperation(value = "인기 음악 조회", notes = "메인 page - 인기 음악 조회")
-    @GetMapping("/top")
+    @ApiOperation(value = "랜덤 감정명", notes = "메인 page - 감정별 음악 조회시 감정명")
+    @GetMapping("/random/title")
     @ResponseBody
-    public ResponseEntity<List<Music>> getTopMusic() {
-        List<Music> musicList= musicService.getMusicByStreamingCnt();
-        List<MusicResponseDto> result = new ArrayList<>();
-        for (Music music : musicList) {
-            result.add(new MusicResponseDto(music));
-        }
+    public ResponseEntity<String> getRandomMusicTitle() {
+        String result = musicService.getMusicByEmotionTitle();
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
     @ApiOperation(value = "감정별 음악 조회", notes = "메인 page - 감정별 음악 조회")
-    @GetMapping("/random")
+    @GetMapping("/random/{emotion}")
     @ResponseBody
-    public ResponseEntity<List<Music>> getRandomMusic() {
-        // EmotionType 랜덤하게 바꾸기
-        EmotionType emotionType = EmotionType.randomEmotionType();
-        List<Music> musicList= musicService.getMusicByEmotion(emotionType);
+    public ResponseEntity<List<Music>> getRandomMusic(
+            @PathVariable(value = "emotion") String emotion
+    ) {
+        List<Music> musicList= musicService.getMusicByEmotion(emotion);
         List<MusicResponseDto> result = new ArrayList<>();
         for (Music music : musicList) {
             result.add(new MusicResponseDto(music));
