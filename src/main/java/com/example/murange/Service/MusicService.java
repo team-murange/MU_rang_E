@@ -43,7 +43,7 @@ public class MusicService {
     }
 
     // 감정 수치 업데이트 - 좋아요 시 수치 업데이트
-    public void updateEmotionOfMusic (Long musicId, String likeEmotion) {
+    public void updateFigureOfMusic(Long musicId, String likeEmotion) {
         EmotionType emotionType = EmotionType.valueOf(likeEmotion);
         Figure figure = musicRepository.getFigureByMusic(musicId);
         figure.updateFigure(emotionType);
