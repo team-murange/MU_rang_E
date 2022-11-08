@@ -56,8 +56,31 @@ $(document).ready(function () {
         }
     });
 
+    //랜덤 타이틀 가져오기
+    $.ajax({
+        url: "http://localhost:8080/random",
+        data: 'get',
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (data) {
+            alert(data);
+        }
+    });
+    //랜덤 음악 가져오기
+    $.ajax({
+        url: "http://localhost:8080/like/" + user_id,
+        data: 'get',
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (dataList) {
+            $(dataList).each(function (index, data) {
+
+            })
+        }
+    });
 });
 
+//좋아요 클릭 함수
 function click_heart(id){
     if(flag[id] == 0) {
         document.getElementById('like'+id).src = 'images/like.png'

@@ -81,7 +81,7 @@ window.onload = function () {
 
 function like_toggle(id)  {
     var flag_num = id.substr(4);
-    if(flag[flag_num] == 0){
+    if(flag[flag_num] == 1){
         document.getElementById(id).src='images/like.png';
         flag[flag_num]=1;
         $.ajax({
