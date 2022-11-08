@@ -1,7 +1,6 @@
 package com.example.murange.Service;
 
-import com.example.murange.Repository.EmotionRepository;
-import com.example.murange.Repository.RecordRepository;
+import com.example.murange.Repository.FigureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class EmotionService {
+public class FigureService {
 
-    private final EmotionRepository emotionRepository;
+    private final FigureRepository figureRepository;
+
+
 
 }

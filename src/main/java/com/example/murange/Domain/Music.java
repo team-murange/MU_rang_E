@@ -33,7 +33,7 @@ public class Music {
 
     @OneToOne
     @JoinColumn(name = "emotion_id", insertable = false, updatable = false)
-    private Emotion emotion;
+    private Figure emotion;
 
     @OneToMany(mappedBy = "music")
     private List<Like> like = new ArrayList<Like>();
