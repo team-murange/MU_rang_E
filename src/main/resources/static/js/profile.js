@@ -43,9 +43,20 @@ $(document).ready(function () {
                                                 src : data.img_url
                                             }),
                                     ),
-                                $("<span>")
-                                    .addClass("title")
-                                    .text(data.title)
+                                $("<div>")
+                                    .addClass("sub")
+                                    .append(
+                                        $("<p>")
+                                            .addClass("title")
+                                            .text(data.title),
+                                        $("<img>")
+                                            .addClass("like")
+                                            .attr({
+                                                id : 'like'+index,
+                                                src : "images/unlike.png",
+                                                onclick : "click_heart("+index+")"
+                                            })
+                                    ),
                             )
                     )
             });
