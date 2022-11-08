@@ -21,7 +21,7 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
 
     // + 동적 쿼리
     @Override
-    public List<Music> getMusicByEmotion(EmotionType emotion) {
+    public List<Music> getMusicByEmotionType(EmotionType emotion) {
 
         return queryFactory
                 .select(music)
@@ -51,5 +51,15 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
                 .join(music.like, like)
                 .where(like.user.id.eq(userId))
                 .fetch();
+    }
+
+    @Override
+    public Figure getFigureByMusic(Long musicId) {
+        return queryFactory
+                .select(emotion)
+                .from(emotion)
+                .join(music.emotion, emotion)
+                .where(emotion.music.id.eq(musicId))
+                .fetchOne();
     }
 }
