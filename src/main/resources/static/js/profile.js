@@ -3,6 +3,7 @@ const profile_img = document.getElementsByClassName("profile");
 
 var user_id = '0'
 
+
 $(document).ready(function () {
     $.ajax({
         url: "http://localhost:8080/user/"+user_id,
@@ -42,9 +43,20 @@ $(document).ready(function () {
                                                 src : data.img_url
                                             }),
                                     ),
-                                $("<span>")
-                                    .addClass("title")
-                                    .text(data.title)
+                                $("<div>")
+                                    .addClass("sub")
+                                    .append(
+                                        $("<p>")
+                                            .addClass("title")
+                                            .text(data.title),
+                                        $("<img>")
+                                            .addClass("like")
+                                            .attr({
+                                                id : 'like'+index,
+                                                src : "images/unlike.png",
+                                                onclick : "click_heart("+index+")"
+                                            })
+                                    ),
                             )
                     )
             });
@@ -53,25 +65,6 @@ $(document).ready(function () {
             console.log("유저의 음악 정보 로딩 에러");
         }
     });
-
-    //감정기록 가져와서 날짜 색칠할 코드
-    $.ajax({
-        url : "http://localhost:8080/calendar/"+user_id,
-        data : 'get',
-        contentType:"application/json;charset=UTF-8",
-        dataType : "json",
-        success : function(data) {
-            var i;
-            for(i=0; i<data.length; i++){
-                document.getElementById(data[i].date.replace('-', '').replace('-', '')).style.background = '#'+data[i].colorCode;
-            }
-        },
-        error : function(data) {
-            alert('유저 정보 로딩 에러');
-        }
-    });
-
-
 });
 
 var flag = new Array(15);
@@ -131,9 +124,6 @@ function slide3(){
         else likey[i].style.display='none';
     }
 }
-
-
-
 
 //좋아요한 음악 불러오기
 $.ajax({

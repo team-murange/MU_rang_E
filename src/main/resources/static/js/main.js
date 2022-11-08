@@ -7,13 +7,6 @@ var music_id = new Array();
 //좋아요 음악을 불러와서 하나씩 음악 아이디를 배열에 저장해놓고
 //필요한 음악들 불러와서 표시할 때 
 //해당 음악 아이디가 좋아요배열에 존재하면 이미지를 색칠된 하트로 넣는다
-const searchForm = document.querySelector('form');
-
-searchForm.addEventListener('submit', event => {
- const searchInput = event.target['search'];
- location.href = `search.html?${searchInput.value}`
-});
-
 
 $(document).ready(function () {
     $.ajax({
@@ -24,7 +17,7 @@ $(document).ready(function () {
         success: function (dataList) {
             $(dataList).each(function (index, data) {
                 flag[index]=0;
-                music_id[index]=data.music_id;
+                music_id[index]=data.id;
                 $(".sample")
                     .append(
                         $("<li>")
@@ -78,6 +71,7 @@ function click_heart(id){
                 console.log('좋아요 전송 성공');
             },
             error: function () {
+
                 console.log('좋아요 전송 실패');
             }
         });
@@ -87,7 +81,12 @@ function click_heart(id){
         flag[id]=0;
     }
 }
+const searchForm = document.querySelector('form');
 
+searchForm.addEventListener('submit', event => {
+    const searchInput = event.target['search'];
+    location.href = `search.html?${searchInput.value}`
+});
 
 	// $(".like").click(function() {
 		// let flag_num = id.substr(4);
