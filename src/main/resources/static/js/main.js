@@ -56,31 +56,36 @@ $(document).ready(function () {
         }
     });
 
-    //랜덤 타이틀 가져오기
+//랜덤 타이틀 받아오기
     $.ajax({
-        url: "http://localhost:8080/random",
+        url: "http://localhost:8080/random/title",
         data: 'get',
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (data) {
-            alert(data);
+            document.getElementsByClassName('topic')[0].innerText = data.title
+        },
+        error: function () {
         }
     });
-    //랜덤 음악 가져오기
+
+    //랜덤 음악 받아오기
     $.ajax({
-        url: "http://localhost:8080/like/" + user_id,
+        url: "http://localhost:8080/like/"+user_id+"/"+music_id[id],
         data: 'get',
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
-        success: function (dataList) {
-            $(dataList).each(function (index, data) {
+        success: function (data) {
+            console.log('좋아요 전송 성공');
+        },
+        error: function () {
 
-            })
+            console.log('좋아요 전송 실패');
         }
     });
+
 });
 
-//좋아요 클릭 함수
 function click_heart(id){
     if(flag[id] == 0) {
         document.getElementById('like'+id).src = 'images/like.png'
@@ -103,6 +108,7 @@ function click_heart(id){
         document.getElementById('like'+id).src='images/unlike.png';
         flag[id]=0;
     }
+
 }
 const searchForm = document.querySelector('form');
 
@@ -110,6 +116,8 @@ searchForm.addEventListener('submit', event => {
     const searchInput = event.target['search'];
     location.href = `search.html?${searchInput.value}`
 });
+
+
 
 	// $(".like").click(function() {
 		// let flag_num = id.substr(4);
