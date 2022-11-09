@@ -5,6 +5,9 @@ import com.example.murange.Domain.EmotionType;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import static com.example.murange.Domain.QLike.*;
@@ -48,13 +51,16 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
 
     // 유저가 좋아요한 음악 조회
     @Override
-    public List<Music> getMusicByUserLike(String userId) {
-        return queryFactory
+    public Page<Music> getMusicByUserLike(String userId, Pageable pageable) {
+        List<Music> result = queryFactory
                 .select(music)
                 .from(music)
                 .join(music.like, like)
                 .where(like.user.id.eq(userId))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
+        return new PageImpl<>(result, pageable, result.size());
     }
 
     @Override

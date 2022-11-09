@@ -7,6 +7,9 @@ import com.example.murange.Service.LikeService;
 import com.example.murange.Service.MusicService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -70,14 +73,11 @@ public class MusicController {
     @ApiOperation(value = "좋아요한 음악 조회", notes = "프로필 page - 유저가 좋아요한 음악 조회")
     @GetMapping("/like/{user-id}")
     @ResponseBody
-    public ResponseEntity<List<Music>> getLikeMusic(
-            @PathVariable(value = "user-id") String userId
+    public ResponseEntity<Page<MusicResponseDto>> getLikeMusic(
+            @PathVariable(value = "user-id") String userId,
+            @PageableDefault(size = 2) Pageable pageable
     ) {
-        List<Music> musicList = musicService.getMusicByUserLike(userId);
-        List<MusicResponseDto> result = new ArrayList<>();
-        for (Music music : musicList) {
-            result.add(new MusicResponseDto(music));
-        }
-        return new ResponseEntity(result, HttpStatus.OK);
+        Page<MusicResponseDto> musicDtoList = musicService.getMusicByUserLike(userId, pageable);
+        return new ResponseEntity(musicDtoList, HttpStatus.OK);
     }
 }

@@ -18,19 +18,19 @@ public class Figure {
 
     private float sad;
 
-    private float happiness;
+    private float happy;
 
     private float angry;
 
     private float neutral;
 
-    private float disgust;
+    private float disgusted;
 
-    private float scared;
+    private float fearful;
 
     private float surprised;
 
-    @OneToOne(mappedBy = "emotion")
+    @OneToOne(mappedBy = "figure")
     private Music music;
 
     public void updateFigure(EmotionType emotionType) {
@@ -40,20 +40,20 @@ public class Figure {
             case angry:
                 calcFigure(angry);
             case happy:
-                calcFigure(happiness);
+                calcFigure(happy);
             case neutral:
                 calcFigure(neutral);
             case disgust:
-                calcFigure(disgust);
+                calcFigure(disgusted);
             case surprised:
                 calcFigure(surprised);
             case fearful:
-                calcFigure(scared);
+                calcFigure(fearful);
         };
     }
 
     public float calcFigure(float emotionFigure) {
-        float total = sad + happiness + angry + neutral + disgust + scared + surprised;
+        float total = sad + happy + angry + neutral + disgusted + fearful + surprised;
         if (total >= 1) resetFigure();
         emotionFigure += 0.01;
         return emotionFigure;
@@ -61,22 +61,22 @@ public class Figure {
 
     public void resetFigure() {
         sad %= 10;
-        happiness %= 10;
+        happy %= 10;
         angry %= 10;
         neutral %= 10;
-        disgust %= 10;
-        scared %= 10;
+        disgusted %= 10;
+        fearful %= 10;
         surprised %= 10;
     }
 
     @Builder
-    public Figure(float sad, float happiness, float angry, float neutral, float disgust, float scared, float surprised) {
+    public Figure(float sad, float happy, float angry, float neutral, float disgusted, float fearful, float surprised) {
         this.sad = sad;
         this.angry = angry;
-        this.happiness = happiness;
+        this.happy = happy;
         this.neutral = neutral;
-        this.disgust = disgust;
-        this.scared = scared;
+        this.disgusted = disgusted;
+        this.fearful = fearful;
         this.surprised = surprised;
     }
 }
