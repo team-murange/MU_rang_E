@@ -27,16 +27,22 @@ public class MusicService {
     }
 
     // 감정별 music 조회
-    public List<Music> getMusicByEmotion (String emotion) {
+    public Page<MusicResponseDto> getMusicByEmotion (String emotion, Pageable pageable) {
         EmotionType emotionType = EmotionType.valueOf(emotion);
-        List<Music> musicList = musicRepository.getMusicByEmotionType(emotionType);
-        return musicList;
+        Page<Music> musicList = musicRepository.getMusicByEmotionType(emotionType, pageable);
+        return musicList.map(music -> {
+            MusicResponseDto dto = new MusicResponseDto();
+            return dto.toMusicResponseDto(music);
+        });
     }
 
     // 감정 분석 페이지 - 표정 분석 후 음악 조회
-    public List<Music> getMusicByDetection (String mainEmotion, String subEmotion) {
-        List<Music> musicList = musicRepository.getMusicByTwoEmotion(mainEmotion, subEmotion);
-        return musicList;
+    public Page<MusicResponseDto> getMusicByDetection (String mainEmotion, String subEmotion, Pageable pageable) {
+        Page<Music> musicList = musicRepository.getMusicByTwoEmotion(mainEmotion, subEmotion, pageable);
+        return musicList.map(music -> {
+            MusicResponseDto dto = new MusicResponseDto();
+            return dto.toMusicResponseDto(music);
+        });
     }
 
     // 프로필 페이지 - 유저가 좋아요한 음악 조회

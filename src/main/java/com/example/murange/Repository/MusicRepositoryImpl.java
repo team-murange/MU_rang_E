@@ -2,6 +2,7 @@ package com.example.murange.Repository;
 
 import com.example.murange.Domain.*;
 import com.example.murange.Domain.EmotionType;
+import com.example.murange.Dto.MusicResponseDto;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -22,31 +23,39 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
     }
 
     @Override
-    public List<Music> getMusicByEmotionType(EmotionType emotion) {
+    public Page<Music> getMusicByEmotionType(EmotionType emotion, Pageable pageable) {
 
         BooleanBuilder builder = getEmotion(emotion);
-        return queryFactory
+        List<Music> result =  queryFactory
                 .select(music)
                 .from(music)
                 .join(music.figure, QFigure.figure)
                 .where(builder)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
+
+        return new PageImpl<>(result, pageable, result.size());
     }
 
     @Override
-    public List<Music> getMusicByTwoEmotion(String mainEmotion, String subEmotion) {
+    public Page<Music> getMusicByTwoEmotion(String mainEmotion, String subEmotion, Pageable pageable) {
 
         EmotionType main = EmotionType.valueOf(mainEmotion);
         EmotionType sub = EmotionType.valueOf(subEmotion);
         BooleanBuilder builderMain = getEmotion(main);
         BooleanBuilder builderSub = getEmotion(sub);
 
-        return queryFactory
+        List<Music> result =  queryFactory
                 .select(music)
                 .from(music)
                 .join(music.figure, QFigure.figure)
                 .where(builderMain, builderSub)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
+
+        return new PageImpl<>(result, pageable, result.size());
     }
 
     // 유저가 좋아요한 음악 조회
