@@ -7,6 +7,9 @@ import com.example.murange.Service.LikeService;
 import com.example.murange.Service.MusicService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,25 +33,21 @@ public class MusicController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @ApiOperation(value = "인기 음악 조회", notes = "메인 page - 인기 음악 조회")
-    @GetMapping("/top")
+    @ApiOperation(value = "랜덤 감정명", notes = "메인 page - 감정별 음악 조회시 감정명")
+    @GetMapping("/random/title")
     @ResponseBody
-    public ResponseEntity<List<Music>> getTopMusic() {
-        List<Music> musicList= musicService.getMusicByStreamingCnt();
-        List<MusicResponseDto> result = new ArrayList<>();
-        for (Music music : musicList) {
-            result.add(new MusicResponseDto(music));
-        }
+    public ResponseEntity<String> getRandomMusicTitle() {
+        String result = musicService.getMusicByEmotionTitle();
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
     @ApiOperation(value = "감정별 음악 조회", notes = "메인 page - 감정별 음악 조회")
-    @GetMapping("/random")
+    @GetMapping("/random/{emotion}")
     @ResponseBody
-    public ResponseEntity<List<Music>> getRandomMusic() {
-        // EmotionType 랜덤하게 바꾸기
-        EmotionType emotionType = EmotionType.randomEmotionType();
-        List<Music> musicList= musicService.getMusicByEmotion(emotionType);
+    public ResponseEntity<List<Music>> getRandomMusic(
+            @PathVariable(value = "emotion") String emotion
+    ) {
+        List<Music> musicList= musicService.getMusicByEmotion(emotion);
         List<MusicResponseDto> result = new ArrayList<>();
         for (Music music : musicList) {
             result.add(new MusicResponseDto(music));
@@ -74,14 +73,11 @@ public class MusicController {
     @ApiOperation(value = "좋아요한 음악 조회", notes = "프로필 page - 유저가 좋아요한 음악 조회")
     @GetMapping("/like/{user-id}")
     @ResponseBody
-    public ResponseEntity<List<Music>> getLikeMusic(
-            @PathVariable(value = "user-id") String userId
+    public ResponseEntity<Page<MusicResponseDto>> getLikeMusic(
+            @PathVariable(value = "user-id") String userId,
+            @PageableDefault(size = 2) Pageable pageable
     ) {
-        List<Music> musicList = musicService.getMusicByUserLike(userId);
-        List<MusicResponseDto> result = new ArrayList<>();
-        for (Music music : musicList) {
-            result.add(new MusicResponseDto(music));
-        }
-        return new ResponseEntity(result, HttpStatus.OK);
+        Page<MusicResponseDto> musicDtoList = musicService.getMusicByUserLike(userId, pageable);
+        return new ResponseEntity(musicDtoList, HttpStatus.OK);
     }
 }
