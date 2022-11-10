@@ -11,13 +11,13 @@ import java.util.List;
 public interface MusicRepositoryCustom {
 
     // 메인페이지 감정별 음악 조회
-    List<Music> getMusicByEmotionType(EmotionType emotion);
+    Page<Music> getMusicByEmotionType(EmotionType emotion, Pageable pageable);
 
     // 주,부감정 결과로 음악 조회
-    List<Music> getMusicByTwoEmotion(String mainEmotion, String secondEmotion);
+    Page<Music> getMusicByTwoEmotion(String mainEmotion, String secondEmotion, Pageable pageable);
 
     // 유저가 좋아요한 음악 조회
-    Page<Music> getMusicByUserLike(String userId, Pageable pageable);
+    Page<Music> getMusicByUserLike(Long userId, Pageable pageable);
 
     // 음악의 감정 조회
     Figure getFigureByMusic(Long musicId);

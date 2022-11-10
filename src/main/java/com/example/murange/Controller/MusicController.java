@@ -45,14 +45,12 @@ public class MusicController {
     @GetMapping("/random/{emotion}")
     @ResponseBody
     public ResponseEntity<List<Music>> getRandomMusic(
-            @PathVariable(value = "emotion") String emotion
+            @PathVariable(value = "emotion") String emotion,
+            @PageableDefault(size = 5) Pageable pageable
+
     ) {
-        List<Music> musicList= musicService.getMusicByEmotion(emotion);
-        List<MusicResponseDto> result = new ArrayList<>();
-        for (Music music : musicList) {
-            result.add(new MusicResponseDto(music));
-        }
-        return new ResponseEntity(result, HttpStatus.OK);
+        Page<MusicResponseDto> musicDtoList = musicService.getMusicByEmotion(emotion, pageable);
+        return new ResponseEntity(musicDtoList, HttpStatus.OK);
     }
 
     @ApiOperation(value = "표정 분석 후 음악 조회", notes = "표정 분석 page - 해당 주/부감정에 맞는 음악 조회")
@@ -60,22 +58,20 @@ public class MusicController {
     @ResponseBody
     public ResponseEntity<List<Music>> getMusicByEmotion(
             @PathVariable(value = "main-emotion") String mainEmotion,
-            @PathVariable(value = "sub-emotion") String subEmotion
+            @PathVariable(value = "sub-emotion") String subEmotion,
+            @PageableDefault(size = 10) Pageable pageable
+
     ) {
-        List<Music> musicList= musicService.getMusicByDetection(mainEmotion, subEmotion);
-        List<MusicResponseDto> result = new ArrayList<>();
-        for (Music music : musicList) {
-            result.add(new MusicResponseDto(music));
-        }
-        return new ResponseEntity(result, HttpStatus.OK);
+        Page<MusicResponseDto> musicDtoList = musicService.getMusicByDetection(mainEmotion, subEmotion, pageable);
+        return new ResponseEntity(musicDtoList, HttpStatus.OK);
     }
 
     @ApiOperation(value = "좋아요한 음악 조회", notes = "프로필 page - 유저가 좋아요한 음악 조회")
     @GetMapping("/like/{user-id}")
     @ResponseBody
     public ResponseEntity<Page<MusicResponseDto>> getLikeMusic(
-            @PathVariable(value = "user-id") String userId,
-            @PageableDefault(size = 2) Pageable pageable
+            @PathVariable(value = "user-id") Long userId,
+            @PageableDefault(size = 5) Pageable pageable
     ) {
         Page<MusicResponseDto> musicDtoList = musicService.getMusicByUserLike(userId, pageable);
         return new ResponseEntity(musicDtoList, HttpStatus.OK);

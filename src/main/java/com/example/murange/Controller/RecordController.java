@@ -25,7 +25,7 @@ public class RecordController {
     @GetMapping("/figure/{user-id}/{main-emotion}/{sub-emotion}")
     @ResponseBody
     public ResponseEntity saveEmotion(
-            @PathVariable(value = "user-id") String userId,
+            @PathVariable(value = "user-id") Long userId,
             @PathVariable(value = "main-emotion") String mainEmotion,
             @PathVariable(value = "sub-emotion") String subEmotion
     ) {
@@ -40,7 +40,7 @@ public class RecordController {
     @GetMapping("/calendar/{user-id}")
     @ResponseBody
     public ResponseEntity<List<RecordResponseDto>> getCalendar(
-            @PathVariable(value = "user-id") String userId
+            @PathVariable(value = "user-id") Long userId
     ) {
         List<RecordResponseDto> result = recordService.getRecordByUserId(userId);
         return new ResponseEntity(result, HttpStatus.OK);

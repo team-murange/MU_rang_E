@@ -25,12 +25,12 @@ public class RecordService {
     // 유저의 이번달 감정 기록 다 가져오기
     // R 유저 조회
     @Transactional(readOnly = true)
-    public List<RecordResponseDto> getRecordByUserId(String userId) {
+    public List<RecordResponseDto> getRecordByUserId(Long userId) {
         return recordRepository.getRecordByUserId(userId);
     }
 
     // 표정 분석 후 해당 컬러코드 저장
-    public void saveEmotion (String userId, EmotionColorDto emotionColorDto) {
+    public void saveEmotion (Long userId, EmotionColorDto emotionColorDto) {
 
         LocalDate today = LocalDate.now();
 

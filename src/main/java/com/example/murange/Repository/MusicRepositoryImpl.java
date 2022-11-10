@@ -2,6 +2,7 @@ package com.example.murange.Repository;
 
 import com.example.murange.Domain.*;
 import com.example.murange.Domain.EmotionType;
+import com.example.murange.Dto.MusicResponseDto;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -22,36 +23,44 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
     }
 
     @Override
-    public List<Music> getMusicByEmotionType(EmotionType emotion) {
+    public Page<Music> getMusicByEmotionType(EmotionType emotion, Pageable pageable) {
 
         BooleanBuilder builder = getEmotion(emotion);
-        return queryFactory
+        List<Music> result =  queryFactory
                 .select(music)
                 .from(music)
                 .join(music.figure, QFigure.figure)
                 .where(builder)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
+
+        return new PageImpl<>(result, pageable, result.size());
     }
 
     @Override
-    public List<Music> getMusicByTwoEmotion(String mainEmotion, String subEmotion) {
+    public Page<Music> getMusicByTwoEmotion(String mainEmotion, String subEmotion, Pageable pageable) {
 
         EmotionType main = EmotionType.valueOf(mainEmotion);
         EmotionType sub = EmotionType.valueOf(subEmotion);
         BooleanBuilder builderMain = getEmotion(main);
         BooleanBuilder builderSub = getEmotion(sub);
 
-        return queryFactory
+        List<Music> result =  queryFactory
                 .select(music)
                 .from(music)
                 .join(music.figure, QFigure.figure)
                 .where(builderMain, builderSub)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
+
+        return new PageImpl<>(result, pageable, result.size());
     }
 
     // 유저가 좋아요한 음악 조회
     @Override
-    public Page<Music> getMusicByUserLike(String userId, Pageable pageable) {
+    public Page<Music> getMusicByUserLike(Long userId, Pageable pageable) {
         List<Music> result = queryFactory
                 .select(music)
                 .from(music)
@@ -77,15 +86,15 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
         BooleanBuilder builder = new BooleanBuilder();
         switch (emotion) {
             case disgust:
-                return builder.and((Predicate) QFigure.figure.disgust.desc());
+                return builder.and((Predicate) QFigure.figure.disgusted.desc());
             case happy:
-                return builder.and((Predicate) QFigure.figure.happiness.desc());
+                return builder.and((Predicate) QFigure.figure.happy.desc());
             case sad:
                 return builder.and((Predicate) QFigure.figure.sad.desc());
             case surprised:
                 return builder.and((Predicate) QFigure.figure.surprised.desc());
             case fearful:
-                return builder.and((Predicate) QFigure.figure.scared.desc());
+                return builder.and((Predicate) QFigure.figure.fearful.desc());
             case neutral:
                 return builder.and((Predicate) QFigure.figure.neutral.desc());
             case angry:
