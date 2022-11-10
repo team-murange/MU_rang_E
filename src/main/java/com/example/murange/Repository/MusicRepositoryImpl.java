@@ -60,7 +60,7 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
 
     // 유저가 좋아요한 음악 조회
     @Override
-    public Page<Music> getMusicByUserLike(String userId, Pageable pageable) {
+    public Page<Music> getMusicByUserLike(Long userId, Pageable pageable) {
         List<Music> result = queryFactory
                 .select(music)
                 .from(music)
@@ -86,15 +86,15 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
         BooleanBuilder builder = new BooleanBuilder();
         switch (emotion) {
             case disgust:
-                return builder.and((Predicate) QFigure.figure.disgust.desc());
+                return builder.and((Predicate) QFigure.figure.disgusted.desc());
             case happy:
-                return builder.and((Predicate) QFigure.figure.happiness.desc());
+                return builder.and((Predicate) QFigure.figure.happy.desc());
             case sad:
                 return builder.and((Predicate) QFigure.figure.sad.desc());
             case surprised:
                 return builder.and((Predicate) QFigure.figure.surprised.desc());
             case fearful:
-                return builder.and((Predicate) QFigure.figure.scared.desc());
+                return builder.and((Predicate) QFigure.figure.fearful.desc());
             case neutral:
                 return builder.and((Predicate) QFigure.figure.neutral.desc());
             case angry:

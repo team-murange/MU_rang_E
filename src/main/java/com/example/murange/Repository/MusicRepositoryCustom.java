@@ -17,7 +17,7 @@ public interface MusicRepositoryCustom {
     Page<Music> getMusicByTwoEmotion(String mainEmotion, String secondEmotion, Pageable pageable);
 
     // 유저가 좋아요한 음악 조회
-    Page<Music> getMusicByUserLike(String userId, Pageable pageable);
+    Page<Music> getMusicByUserLike(Long userId, Pageable pageable);
 
     // 음악의 감정 조회
     Figure getFigureByMusic(Long musicId);

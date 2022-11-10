@@ -46,7 +46,7 @@ public class MusicService {
     }
 
     // 프로필 페이지 - 유저가 좋아요한 음악 조회
-    public Page<MusicResponseDto> getMusicByUserLike (String userId, Pageable pageable) {
+    public Page<MusicResponseDto> getMusicByUserLike (Long userId, Pageable pageable) {
         Page<Music> musicList = musicRepository.getMusicByUserLike(userId, pageable);
         return musicList.map(music -> {
             MusicResponseDto dto = new MusicResponseDto();

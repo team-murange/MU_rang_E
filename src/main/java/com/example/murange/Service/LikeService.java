@@ -25,7 +25,7 @@ public class LikeService {
     private final MusicRepository musicRepository;
 
     // 노래 좋아요 저장
-    public void createLike (String user_id, Long music_id) {
+    public void createLike (Long user_id, Long music_id) {
         User user = userRepository.getReferenceById(user_id);
         Music music = musicRepository.getReferenceById(music_id);
         Like like = Like.builder().user(user).music(music).build();

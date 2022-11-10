@@ -70,7 +70,7 @@ public class MusicController {
     @GetMapping("/like/{user-id}")
     @ResponseBody
     public ResponseEntity<Page<MusicResponseDto>> getLikeMusic(
-            @PathVariable(value = "user-id") String userId,
+            @PathVariable(value = "user-id") Long userId,
             @PageableDefault(size = 5) Pageable pageable
     ) {
         Page<MusicResponseDto> musicDtoList = musicService.getMusicByUserLike(userId, pageable);
