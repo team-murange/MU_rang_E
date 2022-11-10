@@ -12,7 +12,7 @@ import lombok.Setter;
 public class LikeDto {
 
     private Long id;
-    private String userId;
+    private Long userId;
     private Long musicId;
 
 

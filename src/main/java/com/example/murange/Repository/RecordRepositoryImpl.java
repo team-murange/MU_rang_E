@@ -1,8 +1,5 @@
 package com.example.murange.Repository;
 
-import com.example.murange.Domain.QRecord;
-import com.example.murange.Domain.QUser;
-import com.example.murange.Domain.Record;
 import com.example.murange.Dto.RecordResponseDto;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -23,7 +20,7 @@ public class RecordRepositoryImpl implements RecordRepositoryCustom{
     }
 
     @Override
-    public List<RecordResponseDto> getRecordByUserId(String UserId) {
+    public List<RecordResponseDto> getRecordByUserId(Long userId) {
 
         // 이번 년도 가져오기!
         LocalDate start = LocalDate.of(2022, 1,1);
@@ -35,7 +32,7 @@ public class RecordRepositoryImpl implements RecordRepositoryCustom{
                         record.date))
                 .from(record)
                 .join(record.user, user)
-                .where(user.id.eq(UserId))
+                .where(user.id.eq(userId))
                 .where(record.date.between(start,end))
                 .fetch();
     }

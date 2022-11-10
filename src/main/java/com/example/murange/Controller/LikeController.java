@@ -20,7 +20,7 @@ public class LikeController {
     @ResponseBody
     @ApiOperation(value = "음악 좋아요 저장", notes = "감정 분석 page - 해당 음악 좋아요 저장")
     public ResponseEntity getCalendar(
-            @PathVariable(value = "user-id") String userId,
+            @PathVariable(value = "user-id") Long userId,
             @PathVariable(value = "music-id") Long musicId,
             @PathVariable(value = "emotion") String emotion
             ) {

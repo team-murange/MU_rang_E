@@ -70,14 +70,4 @@ public class LikeRepositoryTest {
         likeRepository.save(like5);
 
     }
-
-    @Test
-    public void getMusicByUserLike() {
-
-        List<Music> musicList = musicRepository.getMusicByUserLike("111112");
-
-        for (Music music : musicList) {
-            System.out.print(music.getTitle());
-        }
-    }
 }
