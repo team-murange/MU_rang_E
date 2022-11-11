@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,57 +13,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="js/main.js" async defer></script>
+
+
 </head>
 
 <body>
-    <header>
-        <a href="main.html" style="text-decoration:none">
-            <img id="logo" src="images/icon.png" alt="icon" ></img>
-        </a>
-<!--        <div id="search">-->
-<!--            <form action="search.html" method="get">-->
-<!--                <input type="search" name="search" placeholder="검색어 입력">-->
-<!--                <input type="submit" value="검색" >-->
-<!--            </form>-->
-<!--        </div>-->
+<header>
+    <button onclick="location.href='/main'" style="text-decoration:none">
+        <div id="logo">Murange</div>
+    </button>
 
+    <div id="search"> </div>
+
+    <div id="feed" >
         <a href="/oauth2/authorization/google" style="text-decoration:none">
-            <div id="feed" >My Page</div>
-        </a>
-        <div id="login"></div>
-    </header>
-
-    <div class="content">
-        <!-- 1. 상단 : 감정 분석 페이지 이동 -->
-        <section class="banner">
-            <a href="detection.html" target="_blank">
-                <img class="picture" src="images/banner.png" alt="banner">
-            </a>
-        </section>
-
-        <!-- 2. 첫번째 음악 목록 : 감정별 랜덤 -->
-        <section class="playlist__emotion">
-            <div class="topic">Emotion</div>
-            <div class="line"></div>
-            <ul class="sample">
-            </ul>
-        </section>
-
-        <!-- 3. 두번째 음악 목록 : TopDaily -->
-<!--        <section class="playlist__top">-->
-<!--            <div class="topic">TopDaily</div>-->
-<!--            <div class="line"></div>-->
-<!--            <ul class="sample">-->
-<!--            </ul>-->
-<!--        </section>-->
-
-        <section class="bottom_nav">
-            <div id="bottom_line"> </div>
-        </section>
-
+            My Page</a>
     </div>
+</header>
+
+<div class="content">
+    <!-- 1. 상단 : 감정 분석 페이지 이동 -->
+    <section class="banner">
+        <a href="detection.html" target="_blank">
+            <img class="picture" src="images/banner.png" alt="banner">
+        </a>
+    </section>
+
+    <!-- 2. 첫번째 음악 목록 : 감정별 랜덤 -->
+    <section class="playlist__emotion">
+        <div class="topic"></div>
+        <div class="line"></div>
+        <ul class="sample">
+        </ul>
+    </section>
+
+    <section class="bottom_nav">
+        <div id="bottom_line"> </div>
+    </section>
+
+</div>
 
 </body>
+<script src="js/main.js" async defer></script>
 
 </html>
