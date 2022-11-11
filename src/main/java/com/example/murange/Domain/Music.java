@@ -29,8 +29,6 @@ public class Music {
     @Column(length=5000)
     private String soundcloud_url; // 실제 SoundCloud 링크
 
-    private int streaming_cnt;
-
     @OneToOne
     @JoinColumn(name = "figure_id", insertable = false, updatable = false)
     private Figure figure;
@@ -39,12 +37,11 @@ public class Music {
     private List<Like> like = new ArrayList<Like>();
 
     @Builder
-    public Music(Long id, String title, String music_url, String img_url, String soundcloud_url, int streaming_cnt, long emotion_id) {
+    public Music(Long id, String title, String music_url, String img_url, String soundcloud_url) {
         this.id = id;
         this.title = title;
         this.music_url = music_url;
         this.img_url = img_url;
         this.soundcloud_url = soundcloud_url;
-        this.streaming_cnt = streaming_cnt;
     }
 }
