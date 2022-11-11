@@ -171,18 +171,16 @@ function predict(){
 
 
 
-
-
       //표정분석결과 전달
         $.ajax({
-            url : "http://localhost:8080/music/"+first_emotion+"/"+second_emotion,
+            url : "http://localhost:8080/figure/" +user_id +'/'+first_emotion+"/"+second_emotion,
             data : 'get',
             contentType:"application/json;charset=UTF-8",
             dataType : "json",
-            success : function(data) {
+            success : function() {
                console.log('분석결과 전송 성공')
             },
-            error : function(data){
+            error : function(){
               console.log('분석 결과 전송 error');
             }
           });
