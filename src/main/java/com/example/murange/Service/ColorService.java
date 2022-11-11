@@ -44,10 +44,8 @@ public class ColorService {
             case disgust :
                 colorCode = 0x9092A7; // 남색
                 break;
-            case none :
+            default :
                 colorCode = 0xf8f8d9; // 미색
-                break;
-            default:
                 break;
         }
         return colorCode;
