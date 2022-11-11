@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Getter
-@Table(name = "emotion")
+@Table(name = "figure")
 public class Figure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="emotion_id")
+    @Column(name="figure_id")
     private Long id;
 
     private float sad;
