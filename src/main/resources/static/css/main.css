@@ -32,9 +32,10 @@
 
 body {
   /* height: 100vw; */
-  font-family: 'Poppins', sans-serif;
+
   padding: 0;
   margin: 0;
+  font-family: 'Gothic A1', sans-serif;
   font-size: var(--font-regular);
 }
 
@@ -61,90 +62,13 @@ h3 {
 
 header {
   background-color: var(--color-dark-grey);
-  height: 10vh;
+  height: 4vw;
 }
 
 #logo {
   position: relative;
-  top: 3vh;
+  top: 2vh;
   left: 2vw;
-  height: 5vh;
-}
-
-
-/* 스크롤바 */
-::-webkit-scrollbar {
-  width: 10px;
-  /*스크롤바의 너비*/
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-dark-white);
-  /*스크롤바의 색상*/
-  border-radius: 50px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: rgba(249, 249, 249, 0.85)
-  /*스크롤바 트랙 색상*/
-}
-
-#search {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-
-/* 검색바 */
-.searchbar{
-  margin-bottom: auto;
-  margin-top: auto;
-  height: 60px;
-  background-color: #353b48;
-  border-radius: 30px;
-  padding: 10px;
-}
-
-.search_input{
-  color: white;
-  border: 0;
-  outline: 0;
-  background: none;
-  width: 0;
-  caret-color:transparent;
-  line-height: 40px;
-  transition: width 0.4s linear;
-}
-
-.searchbar:hover > .search_input{
-  padding: 0 10px;
-  width: 450px;
-  caret-color:red;
-  transition: width 0.4s linear;
-}
-
-  .searchbar:hover > .search_icon{
-    background: white;
-    color: #e74c3c;
-  }
-
-.search_icon{
-  height: 40px;
-  width: 40px;
-  float: right;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  color:white;
-  text-decoration:none;
-}
-
-#feed {
-  position: relative;
-  top: -4vh;
-  left: 91vw;
   width: 10vw;
 }
 
@@ -173,7 +97,7 @@ ul {
   padding: 0;
 }
 
-.sample {
+sample {
   display: flex;
   flex-direction: row;
 }
@@ -200,15 +124,6 @@ button {
 
 /* 2. 첫번째 음악 목록 : 감정별 랜덤 */
 /* 3. 두번째 음악 목록 : TopDaily */
-
-li{
-  transition: 0.8s;
-}
-
-li:hover{
-  transform: scale(1.1);
-}
-
 .playlist__emotion, .playlist__top {
   width: 70vw;
 }
@@ -235,14 +150,6 @@ li:hover{
   /* margin: 0.3vw; */
 }
 
-.sub {
-  width: 12vw;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .title {
   width: 12vw;
   text-align: start;
@@ -251,27 +158,6 @@ li:hover{
   color:var(--color-dark-grey);
   text-overflow: ellipsis;
   white-space:nowrap;
-  flex-basis: 10vw;
-}
-
-.like {
-  width: 15px;
-  height: 15px;
-  flex-basis: 1vw;
-  margin-top: 2vh;
-  margin-right: 0.3vw;
-  position:relative;
-  display: block;
-}
-
-.like:hover{
-    content: url('../images/hover-like.png');
-}
-.like_toggle {
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
 }
 
 ul {
@@ -293,6 +179,7 @@ ul {
   margin-bottom: 1vh;
 }
 
+
 /* 가장 아래 */
 .bottom_nav {
   margin-top: 5vh;
@@ -305,3 +192,14 @@ ul {
   background-color: var(--color-light-grey);
 }
 
+#feed {
+  position: relative;
+  top: -4vh;
+  left: 91vw;
+  width: 10vw;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+}

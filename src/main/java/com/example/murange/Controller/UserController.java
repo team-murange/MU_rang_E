@@ -25,8 +25,8 @@ public class UserController {
 
     @GetMapping("/user")
     @ResponseBody
-    public String user(@AuthenticationPrincipal PrincipalDetails principalDetails) {
-        return "principalDetails : " + principalDetails.getUser().getUsername();
+    public Long user(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        return principalDetails.getUser().getId();
     }
 
 //    @PostMapping("/join")
