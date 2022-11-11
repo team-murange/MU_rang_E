@@ -1,5 +1,6 @@
 // the semi-colon before function invocation is a safety net against concatenated
 // scripts and/or other plugins which may not be closed properly.
+var user_id;
 
 function coloring(){
   //감정기록 가져와서 날짜 색칠할 코드
@@ -15,10 +16,29 @@ function coloring(){
       }
     },
     error : function(data) {
-      alert('유저 정보 로딩 에러');
+      console.log('색칠 에러');
     }
   });
 }
+
+const promise_user = new Promise((resolve, reject) => {
+  $.ajax({
+    url: "http://localhost:8080/user",
+    data: 'get',
+    contentType: "application/json;charset=UTF-8",
+    dataType: "text",
+    success: function (data) {
+      console.log(data)
+      user_id = data;
+      resolve();
+    },
+    error: function () {
+      console.log('유저 아이디 없음')
+    }
+  });
+});
+promise_user.then(()=> {coloring()});
+
 
 (function ($, window, document, undefined) {
   "use strict";
@@ -203,14 +223,11 @@ function coloring(){
       
       body.append(thead);
       body.append(tbody);
-
       var eventContainer = $(
         '<div class="event-container"><div class="close"></div><div class="event-wrapper"></div></div>'
       );
-
-      calendar.append(body);
-      calendar.append(eventContainer);
-      coloring()
+        calendar.append(body);
+        calendar.append(eventContainer);
     },
     changeMonth: function (value) {
       coloring()
@@ -402,4 +419,3 @@ function coloring(){
     });
   };
 })(jQuery, window, document);
-
