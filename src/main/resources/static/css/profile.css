@@ -215,20 +215,32 @@ button {
   transform: scale(1.1);
 }
 
+.sub {
+  width: 10vw;
 
-.like {
-  display: none;
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  z-index: 1;
-  /* 좋아요 버튼 위치 변경하고싶을때 사용 */
-  /* transform: translate(20px, -20px); */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
+.like {
+  width: 15px;
+  height: 15px;
+  flex-basis: 1vw;
+  margin-top: 2vh;
+  margin-right: 0.3vw;
+  position:relative;
+  display: block;
+}
 
 .like:hover{
   content: url('../images/hover-like.png');
+}
+.like_toggle {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
 } 
 
 /* 스크롤바 */

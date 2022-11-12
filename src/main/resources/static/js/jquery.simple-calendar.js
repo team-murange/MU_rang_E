@@ -1,5 +1,25 @@
 // the semi-colon before function invocation is a safety net against concatenated
 // scripts and/or other plugins which may not be closed properly.
+
+function coloring(){
+  //감정기록 가져와서 날짜 색칠할 코드
+  $.ajax({
+    url : "http://localhost:8080/calendar/"+user_id,
+    data : 'get',
+    contentType:"application/json;charset=UTF-8",
+    dataType : "json",
+    success : function(data) {
+      var i;
+      for(i=0; i<data.length; i++){
+        document.getElementById(data[i].date.replace('-', '').replace('-', '')).style.background = '#'+data[i].colorCode;
+      }
+    },
+    error : function(data) {
+      alert('유저 정보 로딩 에러');
+    }
+  });
+}
+
 (function ($, window, document, undefined) {
   "use strict";
 
@@ -190,8 +210,10 @@
 
       calendar.append(body);
       calendar.append(eventContainer);
+      coloring()
     },
     changeMonth: function (value) {
+      coloring()
       this.currentDate.setMonth(this.currentDate.getMonth() + value, 1);
       this.buildCalendar(this.currentDate, $(this.element).find(".calendar"));
       this.updateHeader(
