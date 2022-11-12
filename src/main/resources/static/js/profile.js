@@ -70,7 +70,7 @@ $(document).ready(function () {
                                                 .addClass("like")
                                                 .attr({
                                                     id: 'like' + index,
-                                                    src: "images/unlike.png",
+                                                    src: "images/like.png",
                                                     onclick: "click_heart(" + index + ")"
                                                 })
                                         ),

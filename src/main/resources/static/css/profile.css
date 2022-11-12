@@ -117,8 +117,8 @@ section {
 }
 
 #picture {
-  margin-left: 1.2vw;
-  margin-top: 1vh;
+  margin-left: 1vw;
+  margin-top: 4vh;
   margin-bottom: 1vh;
   border-radius: 50%;
   border: 1px solid #c6c6c6;
@@ -139,7 +139,7 @@ section {
 }
 
 .playlist__emotion {
-  margin-top: 10vh;
+  margin-top: 12vh;
   width: 60vw;
 }
 
