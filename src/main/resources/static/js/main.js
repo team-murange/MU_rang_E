@@ -1,6 +1,7 @@
 
 let container = $('#pagination');
-var tmp;
+var tmp ;
+var ul = new Array();
 $(function () {
     const promise_random = new Promise((resolve, reject) => {
         $.ajax({
@@ -17,35 +18,43 @@ $(function () {
         });
     });
     promise_random.then(()=> {
-        $.ajax({
-            url: "http://localhost:8080/random/" + random,
-            data: 'get',
-            contentType: "application/json;charset=UTF-8",
-            dataType: "json",
-            success: function (dataList) {
-                tmp = dataList.content;
-                container.pagination({
-                    dataSource: tmp,
-                    pageSize:5,
-                    // showPrevious: false,
-                    // showNext: false,
-                    callback: function (data, pagination) {
+            for (i = 0; i < 3; i++) {
+                $.ajax({
+                    url: "http://localhost:8080/random/" + random + '?page=' + i,
+                    data: 'get',
+                    async:false,
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    success: function (dataList) {
+                        tmp = dataList.content;
                         $(tmp).each(function (index, data) {
-                        });
-                        var dataHtml = '<ul>';
-                        $.each(data, function (index, item) {
-                            dataHtml += '<li class="playlist"> <a href="'+item.soundcloud_url+'"><img class="album" src="'+item.img_url+'"><p class="title">'+item.title+'</p></a>'+ '</li>';
+                            ul.push(data);
                         });
 
-                        dataHtml += '</ul>';
-
-                        $("#data-container").html(dataHtml);
+                    },
+                    error: function () {
                     }
-                })
-            },
-            error: function () {
+                });
             }
-        });
+
+            container.pagination({
+                dataSource: ul,
+                pageSize: 5,
+                showPrevious: false,
+                showNext: false,
+                callback: function (data, pagination) {
+                    $(ul).each(function (index, data) {
+                    });
+                    var dataHtml = '<ul>';
+                    $.each(data, function (index, item) {
+                        dataHtml += '<li class="playlist"> <a href="' + item.soundcloud_url + '"><img class="album" src="' + item.img_url + '"><p class="title">' + item.title + '</p></a>' + '</li>';
+                    });
+
+                    dataHtml += '</ul>';
+
+                    $("#data-container").html(dataHtml);
+                }
+            })
     });
 
 })
