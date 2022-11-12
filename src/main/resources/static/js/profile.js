@@ -1,129 +1,127 @@
 
 const profile_img = document.getElementsByClassName("profile");
 
-var user_id = '0'
+var user_id;
 
 
 $(document).ready(function () {
-    $.ajax({
-        url: "http://localhost:8080/user/"+user_id,
-        data: 'get',
-        contentType: "application/json;charset=UTF-8",
-        dataType: "json",
-        success: function (data) {
-            $("#picture").attr("src", data.img_url);
-            $("#username").html(data.name);
-            $("#email").html(data.email);
-        },
-        error: function () {
-            console.log("유저 정보 로딩 에러");
-        }
-    });
-
-    $.ajax({
-        url: "http://localhost:8080/like/" + user_id,
-        data: 'get',
-        contentType: "application/json;charset=UTF-8",
-        dataType: "json",
-        success: function (dataList) {
-            $(dataList).each(function (index, data) {
-                console.log(data.img_url);
-                console.log(data.title);
-                $(".sample")
-                    .append(
-                        $("<li>")
-                            .addClass("playlist")
-                            .append(
-                                $("<a>")
-                                    .attr({href:data.soundcloud_url})
-                                    .append(
-                                        $("<img>")
-                                            .addClass("album")
-                                            .attr({
-                                                src : data.img_url
-                                            }),
-                                    ),
-                                $("<div>")
-                                    .addClass("sub")
-                                    .append(
-                                        $("<p>")
-                                            .addClass("title")
-                                            .text(data.title),
-                                        $("<img>")
-                                            .addClass("like")
-                                            .attr({
-                                                id : 'like'+index,
-                                                src : "images/unlike.png",
-                                                onclick : "click_heart("+index+")"
-                                            })
-                                    ),
-                            )
-                    )
-            });
-        },
-        error: function () {
-            console.log("유저의 음악 정보 로딩 에러");
-        }
-    });
-});
-
-var flag = new Array(15);
-var likey = document.getElementsByClassName("like");
-
-window.onload = function () {
-    for(var i=0; i<15; i++){
-        likey[i].id = "like"+i;
-        likey[i].src='images/unlike.png';
-        if(i<5) likey[i].style.display='block';
-        flag[i]=1;
-    }
-}
-
-function like_toggle(id)  {
-    var flag_num = id.substr(4);
-    if(flag[flag_num] == 1){
-        document.getElementById(id).src='images/like.png';
-        flag[flag_num]=1;
+    const promise_user = new Promise((resolve, reject) => {
         $.ajax({
-            url: "http://localhost:8080/like/"+user_id,
+            url: "http://localhost:8080/user",
+            data: 'get',
+            contentType: "application/json;charset=UTF-8",
+            dataType: "text",
+            success: function (data) {
+                console.log(data)
+                user_id = data;
+                resolve();
+            },
+            error: function () {
+                console.log('유저 아이디 없음')
+            }
+        });
+    });
+    promise_user.then(()=> {
+        $.ajax({
+            url: "http://localhost:8080/user/" + user_id,
             data: 'get',
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
             success: function (data) {
-                console.log('좋아요 전송 성공');
+                $("#picture").attr("src", data.img_url);
+                $("#username").html(data.name);
+                $("#email").html(data.email);
             },
             error: function () {
-                console.log('좋아요 전송 실패');
+                console.log("유저 정보 로딩 에러");
             }
         });
-    }
-    else{
-        document.getElementById(id).src='images/unlike.png';
-        flag[flag_num]=0;
-        //좋아요취소
-    }
-}
 
-// function slide1(){
+        $.ajax({
+            url: "http://localhost:8080/like/" + user_id,
+            data: 'get',
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (dataList) {
+                $(dataList.content).each(function (index, data) {
+                    console.log(data.img_url);
+                    console.log(data.title);
+                    $(".sample")
+                        .append(
+                            $("<li>")
+                                .addClass("playlist")
+                                .append(
+                                    $("<a>")
+                                        .attr({href: data.soundcloud_url})
+                                        .append(
+                                            $("<img>")
+                                                .addClass("album")
+                                                .attr({
+                                                    src: data.img_url
+                                                }),
+                                        ),
+                                    $("<div>")
+                                        .addClass("sub")
+                                        .append(
+                                            $("<p>")
+                                                .addClass("title")
+                                                .text(data.title),
+                                            $("<img>")
+                                                .addClass("like")
+                                                .attr({
+                                                    id: 'like' + index,
+                                                    src: "images/unlike.png",
+                                                    onclick: "click_heart(" + index + ")"
+                                                })
+                                        ),
+                                )
+                        )
+                });
+            },
+            error: function () {
+                console.log("유저의 음악 정보 로딩 에러");
+            }
+        });
+    });
+});
+
+// var flag = new Array(15);
+// var likey = document.getElementsByClassName("like");
+//
+// window.onload = function () {
 //     for(var i=0; i<15; i++){
-//         if(i<5)likey[i].style.display='block';
-//         else likey[i].style.display='none';
+//         likey[i].id = "like"+i;
+//         likey[i].src='images/unlike.png';
+//         if(i<5) likey[i].style.display='block';
+//         flag[i]=1;
 //     }
 // }
 //
-// function slide2(){
-//     for(var i=0; i<15; i++){
-//         if(i>=5 && i<10)likey[i].style.display='block';
-//         else likey[i].style.display='none';
+// function like_toggle(id)  {
+//     var flag_num = id.substr(4);
+//     if(flag[flag_num] == 1){
+//         document.getElementById(id).src='images/like.png';
+//         flag[flag_num]=1;
+//         $.ajax({
+//             url: "http://localhost:8080/like/"+user_id,
+//             data: 'get',
+//             contentType: "application/json;charset=UTF-8",
+//             dataType: "json",
+//             success: function (data) {
+//                 console.log('좋아요 전송 성공');
+//             },
+//             error: function () {
+//                 console.log('좋아요 전송 실패');
+//             }
+//         });
+//     }
+//     else{
+//         document.getElementById(id).src='images/unlike.png';
+//         flag[flag_num]=0;
+//         //좋아요취소
 //     }
 // }
-//
-// function slide3(){
-//     for(var i=0; i<15; i++){
-//         if(i>=10 && i<15)likey[i].style.display='block';
-//         else likey[i].style.display='none';
-//     }
-// }
+
 //
 // //좋아요한 음악 불러오기
 // $.ajax({
@@ -141,9 +139,9 @@ function like_toggle(id)  {
 // });
 
 
-const searchForm = document.querySelector('form');
-
-searchForm.addEventListener('submit', event => {
-    const searchInput = event.target['search'];
-    location.href = `search.html?${searchInput.value}`
-});
+// const searchForm = document.querySelector('form');
+//
+// searchForm.addEventListener('submit', event => {
+//     const searchInput = event.target['search'];
+//     location.href = `search.html?${searchInput.value}`
+// });
