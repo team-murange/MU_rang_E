@@ -1,5 +1,5 @@
 
-var user_id = '0'
+var user_id = '10'
 var restart = 0;
 var first_emotion = 'none'
 var second_emotion = 'none'
@@ -159,24 +159,12 @@ function predict(){
       video.removeEventListener("play", loading);
 
 
-      //오늘 날짜에 색깔 칠하는 코드
-      //필요시 수정하여 사용할 예정
-      // let today = new Date();
-      // var theDay = today.getDate();
-      // var theMonth = today.getMonth()+1;
-      // if(theDay<10) theDay = '0'+theDay;
-      // if(theMonth<10) theMonth = '0'+theMonth;
-      // var today_var = ''+ today.getFullYear()+ theMonth + theDay;
-      //document.getElementById(today_var).style.backgroundColor= '#73aace';
-
-
 
       //표정분석결과 전달
         $.ajax({
             url : "http://localhost:8080/figure/" +user_id +'/'+first_emotion+"/"+second_emotion,
             data : 'get',
             contentType:"application/json;charset=UTF-8",
-            dataType : "json",
             success : function() {
                console.log('분석결과 전송 성공')
             },
@@ -184,16 +172,15 @@ function predict(){
               console.log('분석 결과 전송 error');
             }
           });
-
         $(document).ready(function () {
             $.ajax({
-                url: "http://localhost:8080/like/" + user_id,
+                url: "http://localhost:8080/music/" + first_emotion+'/'+second_emotion,
                 data: 'get',
                 contentType: "application/json;charset=UTF-8",
                 dataType: "json",
                 success: function (dataList) {
-                    $(dataList).each(function (index, data) {
-                        console.log(data.music_url);
+                    $(dataList.content).each(function (index, data) {
+                        console.log(data.title);
                         $(".result")
                             .append(
                                 $("<li>")
@@ -207,8 +194,6 @@ function predict(){
                 }
             });
         });
-
-
 //추천 음악 불러오기
 //       $.ajax({
 //         url : "http://localhost:8080/music/"+first_emotion+"/"+second_emotion,
@@ -256,7 +241,7 @@ function like_toggle(id)  {
     document.getElementById(id).src='images/like.png';
         flag[flag_num]=1;
         $.ajax({
-          url: "http://localhost:8080/like/{user-id}/{music-id}",
+          url: "http://localhost:8080/like/"+user_id,
           data: 'get',
           contentType: "application/json;charset=UTF-8",
           dataType: "json",
