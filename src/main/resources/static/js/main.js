@@ -40,8 +40,8 @@ $(function () {
             container.pagination({
                 dataSource: ul,
                 pageSize: 5,
-                // showPrevious: false,
-                // showNext: false,
+                showPrevious: false,
+                showNext: false,
                 callback: function (data, pagination) {
                     $(ul).each(function (index, data) {
                     });
