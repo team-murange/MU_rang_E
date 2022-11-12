@@ -52,15 +52,24 @@ function loading(){
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     faceapi.draw.drawDetections(canvas, resizedDetections);
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-    
+
     // 창에 감정수치 표시, 소숫점 4자리까지
-    document.getElementById('sad').innerHTML=  ' '+resizedDetections[0].expressions.sad.toFixed(4)
-    document.getElementById('neutral').innerHTML=  ' '+resizedDetections[0].expressions.neutral.toFixed(4)
-    document.getElementById('angry').innerHTML=  ' '+resizedDetections[0].expressions.angry.toFixed(4)
-    document.getElementById('surprised').innerHTML=  ' '+resizedDetections[0].expressions.surprised.toFixed(4)
-    document.getElementById('happy').innerHTML=  ' '+resizedDetections[0].expressions.happy.toFixed(4)
-    document.getElementById('disgusted').innerHTML=  ' '+resizedDetections[0].expressions.disgusted.toFixed(4)
-    document.getElementById('fearful').innerHTML=  ' '+resizedDetections[0].expressions.fearful.toFixed(4)
+    var sad_text =  ' '+resizedDetections[0].expressions.sad//.toFixed(4)
+    var neutral_text = ' '+resizedDetections[0].expressions.neutral//.toFixed(4)
+    var angry_text =  ' '+resizedDetections[0].expressions.angry//.toFixed(4)
+    var surprised_text = ' '+resizedDetections[0].expressions.surprised//.toFixed(4)
+     var happy_text=  ' '+resizedDetections[0].expressions.happy//.toFixed(4)
+    var disgusted_text =  ' '+resizedDetections[0].expressions.disgusted//.toFixed(4)
+    var fearful_text =  ' '+resizedDetections[0].expressions.fearful//.toFixed(4)
+
+
+      document.getElementById('sad').innerHTML=  sad_text.substr(0,6)
+      document.getElementById('neutral').innerHTML=  neutral_text.substr(0,6)
+      document.getElementById('angry').innerHTML=  angry_text.substr(0,6)
+      document.getElementById('surprised').innerHTML=  surprised_text.substr(0,6)
+      document.getElementById('happy').innerHTML=  happy_text.substr(0,6)
+      document.getElementById('disgusted').innerHTML=  disgusted_text.substr(0,6)
+      document.getElementById('fearful').innerHTML=  fearful_text.substr(0,6)
   }, 100);
 
   predict();
@@ -80,12 +89,12 @@ function predict(){
 
   doing();
   function doing(){
-  let left_second=5;
+  let left_second=6;
   let count_second=0;
 
   //1초마다 감정수치 저장
   var predicting = setInterval(async () => {
-    document.getElementById('emotion_result').innerHTML = left_second + "seconds left"
+    document.getElementById('emotion_result').innerHTML = (left_second-1) + "seconds left"
 
     if(count_second<5) {
       sad_ary[count_second] = parseFloat(document.getElementById('sad').innerHTML);
@@ -99,9 +108,9 @@ function predict(){
 
     left_second = left_second-1;
     count_second = count_second+1;
-    if(left_second<0) 
+    if(left_second<0)
     {
-      //5초 뒤 실행되는 코드 
+      //5초 뒤 실행되는 코드
       clearInterval(predicting)
 
       //각 감정의 평균값 계산
@@ -176,9 +185,11 @@ function predict(){
             $.ajax({
                 url: "http://localhost:8080/music/" + first_emotion+'/'+second_emotion,
                 data: 'get',
+                async: false,
                 contentType: "application/json;charset=UTF-8",
                 dataType: "json",
                 success: function (dataList) {
+                    $(".result").html(' ');
                     $(dataList.content).each(function (index, data) {
                         console.log(data.title);
                         $(".result")
@@ -194,46 +205,24 @@ function predict(){
                 }
             });
         });
-//추천 음악 불러오기
-//       $.ajax({
-//         url : "http://localhost:8080/music/"+first_emotion+"/"+second_emotion,
-//         data : 'get',
-//         contentType:"application/json;charset=UTF-8",
-//         dataType : "json",
-//         success : function(data) {
-//         alert('success');
-//         for (step = 1; step < 11; step++) {
-//             document.getElementById('pl1__music__'+step).src = data[step-1].music_url;
-//             document.getElementById('pl1__music__'+step).style.backgroundSize = "contain";
-//             document.getElementById('pl1__music__'+step).innerHTML=data[step-1].title;
-//             document.getElementById('pl1__music__'+step).style.backgroundImage = data[step-1].img_url;
-//         }},
-//         error : function() {
-//         alert('음악 재생 에러');
-//         },
-//               });
-      
     }
   },1000)
-  }  
-
-
+  }
 };
-
 
 
 //좋아요 코드
 
-var flag = new Array(10); 
+var flag = new Array(10);
 var likey = document.getElementsByClassName("like");
- 
-window.onload = function () {
-    for(var i=0; i<10; i++){
-        likey[i].id = "like"+i;
-        likey[i].src='images/unlike.png';
-        flag[i]=0;
-    }
-}
+
+// window.onload = function () {
+//     for(var i=0; i<10; i++){
+//         likey[i].id = "like"+i;
+//         likey[i].src='images/unlike.png';
+//         flag[i]=0;
+//     }
+// }
 
 function like_toggle(id)  {
     var flag_num = id.substr(4);
