@@ -17,7 +17,7 @@
   --font-large: 48px;
   --font-medium: 28px;
   --font-regular: 18px;
-  --font-small: 16px;
+  --font-: 16px;
   --font-micro: 14px;
 
   /* Font weight */
@@ -62,14 +62,29 @@ h3 {
 
 header {
   background-color: var(--color-dark-grey);
-  height: 4vw;
+  height: 5vw;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+#logo_btn {
+    margin-top: 2vh;
+    margin-left: 15vw;
+      display: flex;
+      flex-direction: row;
 }
 
 #logo {
-  position: relative;
-  top: 2vh;
-  left: 2vw;
-  width: 10vw;
+  width: 3vw;
+}
+
+#logo_title {
+    margin-left: 1vw;
+    margin-top: 2vh;
+    font-size: var(--font-regular);
 }
 
 a {
@@ -193,13 +208,19 @@ ul {
 }
 
 #feed {
-  position: relative;
-  top: -4vh;
-  left: 91vw;
-  width: 10vw;
+  margin-top: 3vh;
+  margin-left: 53vw;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
+#login_btn {
+    border: 2px solid white;
+    border-radius: 5%;
+    background-color: var(--color-dark-grey);
+    width: 5vw;
+    height: 5vh;
+}
+
+#login_link {
+    color: white;
+    font-size: var(--font-small);
 }

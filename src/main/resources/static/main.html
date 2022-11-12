@@ -22,15 +22,20 @@
 
 <body>
 <header>
-    <button onclick="location.href='/main'" style="text-decoration:none">
-        <div id="logo">Murange</div>
-    </button>
+    <div class="header">
+        <button id="logo_btn" onclick="location.href='/main'" style="text-decoration:none">
+            <img id="logo" src="images/icon.png" alt="icon">
+            <div id="logo_title">MURANGE</div>
+        </button>
 
-    <div id="search"> </div>
+        <div id="search"> </div>
 
-    <div id="feed" >
-        <a href="/oauth2/authorization/google" style="text-decoration:none">
-            My Page</a>
+        <div id="feed" >
+            <button id = "login_btn">
+                <a id = "login_link" href="/oauth2/authorization/google" style="text-decoration:none">
+                    Sign in</a>
+            </button>
+        </div>
     </div>
 </header>
 
