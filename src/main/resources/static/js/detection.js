@@ -194,8 +194,17 @@ function predict(){
                         $(".result")
                             .append(
                                 $("<li>")
-                                    .addClass("result__music")
-                                    .html(data.music_url)
+                                    .addClass("like__pos")
+                                    .append(
+                                        $("<img>")
+                                            .addClass("like__music")
+                                            .attr({
+                                                src: "images/like.png"
+                                            }),
+                                        $("<div>")
+                                            .addClass("result__music") /*result__music*/
+                                            .html(data.music_url)
+                                    )
                             )
                     });
                 },
@@ -215,13 +224,13 @@ function predict(){
 var flag = new Array(10);
 var likey = document.getElementsByClassName("like");
 
-// window.onload = function () {
-//     for(var i=0; i<10; i++){
-//         likey[i].id = "like"+i;
-//         likey[i].src='images/unlike.png';
-//         flag[i]=0;
-//     }
-// }
+window.onload = function () {
+    for(var i=0; i<10; i++){
+        likey[i].id = "like"+i;
+        likey[i].src='images/like.png';
+        flag[i]=0;
+    }
+}
 
 function like_toggle(id)  {
     var flag_num = id.substr(4);
