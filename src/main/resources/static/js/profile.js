@@ -12,7 +12,6 @@ $(document).ready(function () {
             contentType: "application/json;charset=UTF-8",
             dataType: "text",
             success: function (data) {
-                console.log(data)
                 user_id = data;
                 resolve();
             },
@@ -44,8 +43,6 @@ $(document).ready(function () {
             dataType: "json",
             success: function (dataList) {
                 $(dataList.content).each(function (index, data) {
-                    console.log(data.img_url);
-                    console.log(data.title);
                     $(".sample")
                         .append(
                             $("<li>")
