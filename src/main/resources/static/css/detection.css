@@ -107,14 +107,6 @@ header {
     z-index: 500;
 }
 
-
-#logo {
-    position: relative;
-    top: 3vh;
-    left: 2vw;
-    height: 5vh;
-}
-
 a {
     color: black;
     text-decoration: none;
@@ -177,7 +169,7 @@ video {
     height: 51vh;
     float: left;
     padding: 1%;
-    z-index: 500;
+    /*z-index: 500;*/
     position: relative;
 }
 
@@ -258,19 +250,3 @@ button {
     cursor: pointer;
 }
 
-/* 스크롤바 */
-::-webkit-scrollbar {
-    width: 8px;
-    /*스크롤바의 너비*/
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--color-dark-white);
-    /*스크롤바의 색상*/
-    border-radius: 50px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: rgba(249, 249, 249, 0.85)
-        /*스크롤바 트랙 색상*/
-}
