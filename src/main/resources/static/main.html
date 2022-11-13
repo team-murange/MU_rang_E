@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
@@ -16,8 +15,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
 
 <body>
@@ -42,7 +43,7 @@
 <div class="content">
     <!-- 1. 상단 : 감정 분석 페이지 이동 -->
     <section class="banner">
-        <a href="detection.html" target="_blank">
+        <a onclick="location.href='/detection'" target="_blank">
             <img class="picture" src="images/banner.png" alt="banner">
         </a>
     </section>
@@ -63,5 +64,5 @@
 
 </body>
 <script src="js/main.js" async defer></script>
-
+<script src="js/paging.js" async defer></script>
 </html>

@@ -15,7 +15,7 @@
 
   /* Font size */
   --font-large: 48px;
-  --font-medium: 28px;
+  --font-medium: 23px;
   --font-regular: 18px;
   --font-: 16px;
   --font-micro: 14px;
@@ -35,7 +35,7 @@ body {
 
   padding: 0;
   margin: 0;
-  font-family: 'Gothic A1', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: var(--font-regular);
 }
 
@@ -58,33 +58,6 @@ h3 {
   font-weight: var(--weight-regular);
   color: var(--color-black);
   margin: 8px 0;
-}
-
-header {
-  background-color: var(--color-dark-grey);
-  height: 5vw;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-}
-
-#logo_btn {
-    margin-top: 2vh;
-    margin-left: 15vw;
-      display: flex;
-      flex-direction: row;
-}
-
-#logo {
-  width: 3vw;
-}
-
-#logo_title {
-    margin-left: 1vw;
-    margin-top: 2vh;
-    font-size: var(--font-regular);
 }
 
 a {
@@ -170,9 +143,10 @@ button {
   text-align: start;
   margin-top: 2vh;
   font-size: small;
-  color:var(--color-dark-grey);
+  color: #101010;
   text-overflow: ellipsis;
   white-space:nowrap;
+  font-family: 'Poppins', sans-serif;
 }
 
 ul {
@@ -185,6 +159,8 @@ ul {
 .topic {
   text-align: left;
   margin-left: 1vw;
+  font-size: var(--font-medium);
+  font-weight: 600;
 }
 
 .line {
@@ -205,22 +181,4 @@ ul {
   width: 90vw;
   height: 0.1px;
   background-color: var(--color-light-grey);
-}
-
-#feed {
-  margin-top: 3vh;
-  margin-left: 53vw;
-}
-
-#login_btn {
-    border: 2px solid white;
-    border-radius: 5%;
-    background-color: var(--color-dark-grey);
-    width: 5vw;
-    height: 5vh;
-}
-
-#login_link {
-    color: white;
-    font-size: var(--font-small);
 }

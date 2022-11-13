@@ -49,6 +49,8 @@ public class MusicController {
             @PageableDefault(size = 5) Pageable pageable
 
     ) {
+        if (emotion.equals("none")) emotion = "neutral";
+
         Page<MusicResponseDto> musicDtoList = musicService.getMusicByEmotion(emotion, pageable);
         return new ResponseEntity(musicDtoList, HttpStatus.OK);
     }
@@ -62,6 +64,9 @@ public class MusicController {
             @PageableDefault(size = 10) Pageable pageable
 
     ) {
+        if (mainEmotion.equals("none")) mainEmotion = "neutral";
+        if (subEmotion.equals("none")) subEmotion = "neutral";
+
         Page<MusicResponseDto> musicDtoList = musicService.getMusicByDetection(mainEmotion, subEmotion, pageable);
         return new ResponseEntity(musicDtoList, HttpStatus.OK);
     }

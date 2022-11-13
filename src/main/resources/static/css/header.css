@@ -1,0 +1,42 @@
+.header {
+    background-color: var(--color-dark-grey);
+    height:  11vh;
+    display: flex;
+    flex-direction: row;
+}
+
+#logo_btn {
+    margin-top: 2vh;
+    margin-left: 15vw;
+    display: flex;
+    flex-direction: row;
+}
+
+#logo {
+    width: 3vw;
+}
+
+#logo_title {
+    margin-left: 1vw;
+    margin-top: 2vh;
+    font-size: var(--font-regular);
+    font-family: Bahnschrift;
+}
+
+#feed {
+    margin-top: 3vh;
+    margin-left: 53vw;
+}
+
+#login_btn {
+    border: 2px solid white;
+    border-radius: 5%;
+    background-color: var(--color-dark-grey);
+    width: 5vw;
+    height: 5vh;
+}
+
+#login_link {
+    color: white;
+    font-size: var(--font-small);
+}
