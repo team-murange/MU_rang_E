@@ -166,7 +166,7 @@ video {
     margin-top: 6%;
     background: rgba(249, 249, 249, 0.9);
     width: 21vw;
-    height: 51vh;
+    height: 53vh;
     float: left;
     padding: 1%;
     /*z-index: 500;*/
@@ -214,11 +214,12 @@ video {
 
 /* 오른쪽 : 음악 플레이리스트 */
 #playlist {
+    opacity: 90%;
     background: rgba(249, 249, 249, 0.9);
     width: 30vw;
     height: 90vh;
     float: right;
-    z-index: 500;
+    /*z-index: 500;*/
     position: relative;
 }
 
