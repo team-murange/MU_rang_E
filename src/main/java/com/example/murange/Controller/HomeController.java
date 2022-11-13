@@ -50,6 +50,11 @@ public class HomeController {
         return "profile";
     }
 
+    @GetMapping("/detection")
+    String detection() {
+        return "detection";
+    }
+
     @GetMapping("/joinForm")
     public String joinForm() {
         return "joinForm";

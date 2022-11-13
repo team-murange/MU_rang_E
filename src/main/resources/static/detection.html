@@ -18,76 +18,79 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
+    <link rel="stylesheet" href="css/header.css">
+    <!--    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>-->
 </head>
 
 <body>
-    <header>
-        <button onclick="location.href='/main'" style="text-decoration:none">
-            <div id="logo">Murange</div>
+<header>
+    <div class="header">
+        <button id="logo_btn" onclick="location.href='/main'" style="text-decoration:none">
+            <img id="logo" src="images/icon.png" alt="icon">
+            <div id="logo_title">murange</div>
         </button>
 
-        <a href="profile.html" style="text-decoration:none">
-            <div id="feed">My Page</div>
-        </a>
-    </header>
-    <div id="webcam">
-        <video id="video" width="100%" height="99% - 4vh" autoplay muted></video>
     </div>
+</header>
 
-    <div class="content">
-        <!-- 왼쪽 : 감정 분석 후 감정 수치 -->
-        <section id="emotion">
-            <div class="ment" id="id_insert">..님의 지금 감정은</div>
-            <div class="ment" id="emotion_result">Please wait...</div>
-            <div class="ment">
-                <div class="ment__emotion">
-                    <div class="ment__word">Sad</div>
-                    <div class="ment__figure" id="sad"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Angry</div>
-                    <div class="ment__figure" id="angry"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Disgusted</div>
-                    <div class="ment__figure" id="disgusted"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Happy</div>
-                    <div class="ment__figure" id="happy"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Surprised</div>
-                    <div class="ment__figure" id="surprised"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Neutral</div>
-                    <div class="ment__figure" id="neutral"> 0.0000 </div>
-                </div>
-                <div class="ment__emotion">
-                    <div class="ment__word">Fearful</div>
-                    <div class="ment__figure" id="fearful"> 0.0000 </div>
-                </div>
+<div id="webcam">
+    <video id="video" width="100%" height="99% - 4vh" autoplay muted></video>
+</div>
+
+<div class="content">
+    <!-- 왼쪽 : 감정 분석 후 감정 수치 -->
+    <section id="emotion">
+        <div class="ment" id="id_insert">..님의 지금 감정은</div>
+        <div class="ment" id="emotion_result">Please wait...</div>
+        <div class="ment">
+            <div class="ment__emotion">
+                <div class="ment__word">Sad</div>
+                <div class="ment__figure" id="sad"> 0.0000 </div>
             </div>
-        </section>
+            <div class="ment__emotion">
+                <div class="ment__word">Angry</div>
+                <div class="ment__figure" id="angry"> 0.0000 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Disgusted</div>
+                <div class="ment__figure" id="disgusted"> 0.0000 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Happy</div>
+                <div class="ment__figure" id="happy"> 0.0000 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Surprised</div>
+                <div class="ment__figure" id="surprised"> 0.0000 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Neutral</div>
+                <div class="ment__figure" id="neutral"> 0.0000 </div>
+            </div>
+            <div class="ment__emotion">
+                <div class="ment__word">Fearful</div>
+                <div class="ment__figure" id="fearful"> 0.0000 </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- 중간 : 사용자 감정 분석 회면 -->
-        <section id="detection">
-            <div id="detection__frame"></div>
-<!--            <div id="detection__button" onclick="predict()">기분 분석을 다시 할까요?</div>-->
-            <button id="start__button" onclick="startDetection()">기분 분석하기</button>
-        </section>
+    <!-- 중간 : 사용자 감정 분석 회면 -->
+    <section id="detection">
+        <div id="detection__frame"></div>
+        <!--            <div id="detection__button" onclick="predict()">기분 분석을 다시 할까요?</div>-->
+        <button id="start__button" onclick="startDetection()">기분 분석하기</button>
+    </section>
 
-        <!-- 오른쪽 : 분석후 플레이리스트 -->
-        <section id="playlist" style="overflow:scroll; height: 91vh">
-            <div class="ment" id="ment__top"> 기분에 맞는 </div>
-            <div class="ment" id="ment__mid"> 추천 플레이리스트 </div>
-            <ul class="result">
+    <!-- 오른쪽 : 분석후 플레이리스트 -->
+    <section id="playlist" style="overflow:scroll; height: 90vh">
+        <div class="ment" id="ment__top"> 기분에 맞는 </div>
+        <div class="ment" id="ment__mid"> 추천 플레이리스트 </div>
+        <ul class="result">
 
-            </ul>
-        </section>
+        </ul>
+    </section>
 
-    </div>
+</div>
 
 </body>
 

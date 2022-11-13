@@ -191,7 +191,6 @@ function predict(){
                 success: function (dataList) {
                     $(".result").html(' ');
                     $(dataList.content).each(function (index, data) {
-                        console.log(data.title);
                         $(".result")
                             .append(
                                 $("<li>")

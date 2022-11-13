@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;600&display=swap" rel="stylesheet">
@@ -19,24 +18,28 @@
     <script src="js/profile.js" async defer></script>
     <script defer src="js/jquery.simple-calendar.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/simple-calendar.css">
     <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
 
 <body>
-    <header id="header">
-        <button onclick="location.href='/main'" style="text-decoration:none">
-            <div id="logo">Murange</div>
+<header>
+    <div class="header">
+        <button id="logo_btn" onclick="location.href='/main'" style="text-decoration:none">
+            <img id="logo" src="images/icon.png" alt="icon">
+            <div id="logo_title">murange</div>
         </button>
-        <div id="login"></div>
-        <a href="profile.html" style="text-decoration:none">
-            <div id="feed">My Page</div>
-        </a>
-    </header>
+
+    </div>
+</header>
 
     <div class="content">
         <!-- 유저 피드 (달력 + 유저 프로필) -->
-        <section style="margin-top: 5vh;" class="feed">
+        <div style="margin-top: 5vh;" class="feed">
             <!-- 1. 유저 달력 -->
             <div id="container" class="calendar-container"></div>
             <script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -60,7 +63,7 @@
                 <div id="email"></div>
             </div>
 
-        </section>
+        </div>
 
         <!-- 3. 유저의 음악 목록 -->
         <section class="playlist__emotion">

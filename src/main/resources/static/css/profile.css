@@ -37,14 +37,6 @@
   display: flex;
 }
 
-
-#feed {
-  position: relative;
-  top: -4vh;
-  left: 91vw;
-  width: 10vw;
-}
-
 body {
   /* height: 100vw; */
   font-family: 'Poppins', sans-serif;
@@ -74,18 +66,6 @@ h3 {
   margin: 8px 0;
 }
 
-#header {
-  background-color: var(--color-dark-grey);
-  height:  10vh;
-}
-
-#logo {
-  position: relative;
-  top: 3vh;
-  left: 2vw;
-  height: 5vh;
-}
-
 a {
   color: black;
   text-decoration: none;
@@ -108,14 +88,15 @@ section {
 }
 
 .feed {
-  margin-top: 5%;
+  margin-top: 14vh;
+  margin-bottom: 5vh;
   margin-left: 0;
   height: 45vh;
   margin-bottom: 5vh;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 /* 1. 유저 달력 */
@@ -129,17 +110,24 @@ section {
 .profile {
   width: 10%;
   flex: auto;
-  margin-left:2vw;
+  margin-top: 2vh;
+  margin-left:4vw;
+  display: flex;
+  flex-direction: column;
 }
 
 #picture {
+  margin-left: 1vw;
+  margin-top: 4vh;
+  margin-bottom: 1vh;
   border-radius: 50%;
+  border: 1px solid #c6c6c6;
 }
 #username {
   margin-top: 3vh;
   margin-bottom: 2vh;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 /* 3. 유저의 음악 목록 */
@@ -151,6 +139,7 @@ section {
 }
 
 .playlist__emotion {
+  margin-top: 12vh;
   width: 60vw;
 }
 
@@ -167,7 +156,7 @@ ul {
 }
 .title {
   text-align: start;
-  margin-top: 2vh;
+  margin-top: 0vh;
   font-size: small;
   color:black;
   text-overflow: clip
@@ -177,11 +166,12 @@ ul {
 .topic {
   text-align: left;
   margin-left: 1vw;
+  font-size: 21px;
 }
 
 .line {
-  height: 0.8px;
-  background-color: #636363;
+  height: 0.5px;
+  background-color: #9f9f9f;
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
@@ -224,10 +214,10 @@ button {
 }
 
 .like {
-  width: 15px;
-  height: 15px;
+  width: 3px;
+  height: 100%;
   flex-basis: 1vw;
-  margin-top: 2vh;
+  margin-top: 1vh;
   margin-right: 0.3vw;
   position:relative;
   display: block;
@@ -258,4 +248,7 @@ button {
 ::-webkit-scrollbar-track {
   background-color: rgba(249, 249, 249, 0.85)
     /*스크롤바 트랙 색상*/
+}
+
+.calendar-container {
 }

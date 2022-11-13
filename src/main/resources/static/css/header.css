@@ -1,0 +1,61 @@
+.header {
+    background-color: var(--color-dark-grey);
+    height:  11vh;
+    display: flex;
+    flex-direction: row;
+}
+
+#logo_btn {
+    margin-top: 2vh;
+    margin-left: 15vw;
+    display: flex;
+    flex-direction: row;
+}
+
+#logo {
+    width: 3vw;
+}
+
+#logo_title {
+    margin-left: 1vw;
+    margin-top: 1vh;
+    font-size: 28px;
+    font-family: 'Dosis', sans-serif;
+    color: var(--color-light-white);
+    font-weight: 600;
+}
+
+#feed {
+    margin-top: 3vh;
+    margin-left: 53vw;
+}
+
+#login_btn {
+    border: 1px solid white;
+    border-radius: 5%;
+    background-color: var(--color-dark-grey);
+    width: 5vw;
+    height: 5vh;
+}
+
+#login_link {
+    color: white;
+    font-size: var(--font-small);
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar {
+    width: 12px;
+    /*스크롤바의 너비*/
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-dark-white);
+    /*스크롤바의 색상*/
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(249, 249, 249, 0.85)
+    /*스크롤바 트랙 색상*/
+}
