@@ -138,6 +138,7 @@ canvas {
     height: 130vh;
     position: fixed;
     top:-6vh;
+    right:0vh;
     transform: scaleX(-1);
 }
 
