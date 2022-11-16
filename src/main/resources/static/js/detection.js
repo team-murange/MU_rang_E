@@ -54,22 +54,22 @@ function loading(){
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
 
     // 창에 감정수치 표시, 소숫점 4자리까지
-    var sad_text =  ' '+resizedDetections[0].expressions.sad//.toFixed(4)
-    var neutral_text = ' '+resizedDetections[0].expressions.neutral//.toFixed(4)
-    var angry_text =  ' '+resizedDetections[0].expressions.angry//.toFixed(4)
-    var surprised_text = ' '+resizedDetections[0].expressions.surprised//.toFixed(4)
-     var happy_text=  ' '+resizedDetections[0].expressions.happy//.toFixed(4)
-    var disgusted_text =  ' '+resizedDetections[0].expressions.disgusted//.toFixed(4)
-    var fearful_text =  ' '+resizedDetections[0].expressions.fearful//.toFixed(4)
+    var sad_text =  ' '+resizedDetections[0].expressions.sad.toFixed(3)
+    var neutral_text = ' '+resizedDetections[0].expressions.neutral.toFixed(3)
+    var angry_text =  ' '+resizedDetections[0].expressions.angry.toFixed(3)
+    var surprised_text = ' '+resizedDetections[0].expressions.surprised.toFixed(3)
+     var happy_text=  ' '+resizedDetections[0].expressions.happy.toFixed(3)
+    var disgusted_text =  ' '+resizedDetections[0].expressions.disgusted.toFixed(3)
+    var fearful_text =  ' '+resizedDetections[0].expressions.fearful.toFixed(3)
 
 
-      document.getElementById('sad').innerHTML=  sad_text.substr(0,6)
-      document.getElementById('neutral').innerHTML=  neutral_text.substr(0,6)
-      document.getElementById('angry').innerHTML=  angry_text.substr(0,6)
-      document.getElementById('surprised').innerHTML=  surprised_text.substr(0,6)
-      document.getElementById('happy').innerHTML=  happy_text.substr(0,6)
-      document.getElementById('disgusted').innerHTML=  disgusted_text.substr(0,6)
-      document.getElementById('fearful').innerHTML=  fearful_text.substr(0,6)
+      document.getElementById('sad').innerHTML=  sad_text//.substr(0,6)
+      document.getElementById('neutral').innerHTML=  neutral_text//.substr(0,6)
+      document.getElementById('angry').innerHTML=  angry_text//.substr(0,6)
+      document.getElementById('surprised').innerHTML=  surprised_text//.substr(0,6)
+      document.getElementById('happy').innerHTML=  happy_text//.substr(0,6)
+      document.getElementById('disgusted').innerHTML=  disgusted_text//.substr(0,6)
+      document.getElementById('fearful').innerHTML=  fearful_text//.substr(0,6)
   }, 100);
 
   predict();
@@ -174,6 +174,7 @@ function predict(){
             $.ajax({
                 url: "http://localhost:8080/figure/" + user_id + '/' + first_emotion + "/" + second_emotion,
                 data: 'get',
+                async:false,
                 contentType: "application/json;charset=UTF-8",
                 success: function () {
                     console.log('분석결과 전송 성공');
