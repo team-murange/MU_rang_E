@@ -170,49 +170,55 @@ function predict(){
 
 
       //표정분석결과 전달
-        $.ajax({
-            url : "http://localhost:8080/figure/" +user_id +'/'+first_emotion+"/"+second_emotion,
-            data : 'get',
-            contentType:"application/json;charset=UTF-8",
-            success : function() {
-               console.log('분석결과 전송 성공')
-            },
-            error : function(){
-              console.log('분석 결과 전송 error');
-            }
-          });
-        $(document).ready(function () {
+        const promise_result = new Promise((resolve, reject) => {
             $.ajax({
-                url: "http://localhost:8080/music/" + first_emotion+'/'+second_emotion,
+                url: "http://localhost:8080/figure/" + user_id + '/' + first_emotion + "/" + second_emotion,
                 data: 'get',
-                async: false,
                 contentType: "application/json;charset=UTF-8",
-                dataType: "json",
-                success: function (dataList) {
-                    $(".result").html(' ');
-                    $(dataList.content).each(function (index, data) {
-                        $(".result")
-                            .append(
-                                $("<li>")
-                                    .addClass("like__pos")
-                                    .append(
-                                        $("<img>")
-                                            .addClass("like__music")
-                                            .attr({
-                                                src: "images/like.png"
-                                            }),
-                                        $("<div>")
-                                            .addClass("result__music") /*result__music*/
-                                            .html(data.music_url)
-                                    )
-                            )
-                    });
+                success: function () {
+                    console.log('분석결과 전송 성공');
+                    resolve();
                 },
                 error: function () {
-                    console.log("음악 정보 로딩 에러");
+                    console.log('분석 결과 전송 error');
                 }
             });
-        });
+        })
+        promise_result.then(()=> {
+            $(document).ready(function () {
+                $.ajax({
+                    url: "http://localhost:8080/music/" + first_emotion + '/' + second_emotion,
+                    data: 'get',
+                    async: false,
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    success: function (dataList) {
+                        console.log('음악 정보 로딩 성공')
+                        $(".result").html(' ');
+                        $(dataList.content).each(function (index, data) {
+                            $(".result")
+                                .append(
+                                    $("<li>")
+                                        .addClass("like__pos")
+                                        .append(
+                                            $("<img>")
+                                                .addClass("like__music")
+                                                .attr({
+                                                    src: "images/like.png"
+                                                }),
+                                            $("<div>")
+                                                .addClass("result__music") /*result__music*/
+                                                .html(data.music_url)
+                                        )
+                                )
+                        });
+                    },
+                    error: function () {
+                        console.log("음악 정보 로딩 에러");
+                    }
+                });
+            });
+        })
     }
   },1000)
   }
