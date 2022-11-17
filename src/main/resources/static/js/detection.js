@@ -3,7 +3,7 @@ var user_id = '10'
 var restart = 0;
 var first_emotion = 'none'
 var second_emotion = 'none'
-
+var flag = new Array();
 
 const video = document.getElementById("video");
 
@@ -54,22 +54,22 @@ function loading(){
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
 
     // 창에 감정수치 표시, 소숫점 4자리까지
-    var sad_text =  ' '+resizedDetections[0].expressions.sad//.toFixed(4)
-    var neutral_text = ' '+resizedDetections[0].expressions.neutral//.toFixed(4)
-    var angry_text =  ' '+resizedDetections[0].expressions.angry//.toFixed(4)
-    var surprised_text = ' '+resizedDetections[0].expressions.surprised//.toFixed(4)
-     var happy_text=  ' '+resizedDetections[0].expressions.happy//.toFixed(4)
-    var disgusted_text =  ' '+resizedDetections[0].expressions.disgusted//.toFixed(4)
-    var fearful_text =  ' '+resizedDetections[0].expressions.fearful//.toFixed(4)
+    var sad_text =  ' '+resizedDetections[0].expressions.sad.toFixed(3)
+    var neutral_text = ' '+resizedDetections[0].expressions.neutral.toFixed(3)
+    var angry_text =  ' '+resizedDetections[0].expressions.angry.toFixed(3)
+    var surprised_text = ' '+resizedDetections[0].expressions.surprised.toFixed(3)
+     var happy_text=  ' '+resizedDetections[0].expressions.happy.toFixed(3)
+    var disgusted_text =  ' '+resizedDetections[0].expressions.disgusted.toFixed(3)
+    var fearful_text =  ' '+resizedDetections[0].expressions.fearful.toFixed(3)
 
 
-      document.getElementById('sad').innerHTML=  sad_text.substr(0,6)
-      document.getElementById('neutral').innerHTML=  neutral_text.substr(0,6)
-      document.getElementById('angry').innerHTML=  angry_text.substr(0,6)
-      document.getElementById('surprised').innerHTML=  surprised_text.substr(0,6)
-      document.getElementById('happy').innerHTML=  happy_text.substr(0,6)
-      document.getElementById('disgusted').innerHTML=  disgusted_text.substr(0,6)
-      document.getElementById('fearful').innerHTML=  fearful_text.substr(0,6)
+      document.getElementById('sad').innerHTML=  sad_text//.substr(0,6)
+      document.getElementById('neutral').innerHTML=  neutral_text//.substr(0,6)
+      document.getElementById('angry').innerHTML=  angry_text//.substr(0,6)
+      document.getElementById('surprised').innerHTML=  surprised_text//.substr(0,6)
+      document.getElementById('happy').innerHTML=  happy_text//.substr(0,6)
+      document.getElementById('disgusted').innerHTML=  disgusted_text//.substr(0,6)
+      document.getElementById('fearful').innerHTML=  fearful_text//.substr(0,6)
   }, 100);
 
   predict();
@@ -174,6 +174,7 @@ function predict(){
             $.ajax({
                 url: "http://localhost:8080/figure/" + user_id + '/' + first_emotion + "/" + second_emotion,
                 data: 'get',
+                async:false,
                 contentType: "application/json;charset=UTF-8",
                 success: function () {
                     console.log('분석결과 전송 성공');
@@ -196,6 +197,7 @@ function predict(){
                         console.log('음악 정보 로딩 성공')
                         $(".result").html(' ');
                         $(dataList.content).each(function (index, data) {
+                            flag[index]=0;
                             $(".result")
                                 .append(
                                     $("<li>")
@@ -204,7 +206,8 @@ function predict(){
                                             $("<img>")
                                                 .addClass("like__music")
                                                 .attr({
-                                                    src: "images/like.png"
+                                                    src: "images/unlike.png",
+                                                    onclick: "like_toggle("+index+","+data.id+")"
                                                 }),
                                             $("<div>")
                                                 .addClass("result__music") /*result__music*/
@@ -227,24 +230,15 @@ function predict(){
 
 //좋아요 코드
 
-var flag = new Array(10);
-var likey = document.getElementsByClassName("like");
+var likey = document.getElementsByClassName("like__music");
 
-window.onload = function () {
-    for(var i=0; i<10; i++){
-        likey[i].id = "like"+i;
-        likey[i].src='images/like.png';
-        flag[i]=0;
-    }
-}
 
-function like_toggle(id)  {
-    var flag_num = id.substr(4);
-    if(flag[flag_num] == 0){
-    document.getElementById(id).src='images/like.png';
-        flag[flag_num]=1;
+function like_toggle(index, id)  {
+    if(flag[index] == 0){
+    likey[index].src='images/like.png';
+        flag[index]=1;
         $.ajax({
-          url: "http://localhost:8080/like/"+user_id,
+          url: "http://localhost:8080/like/"+user_id+'/'+id+'/'+first_emotion,
           data: 'get',
           contentType: "application/json;charset=UTF-8",
           dataType: "json",
@@ -257,8 +251,8 @@ function like_toggle(id)  {
       });
     }
     else{
-        document.getElementById(id).src='images/unlike.png';
-        flag[flag_num]=0;
+        likey[index].src='images/unlike.png';
+        flag[index]=0;
         //좋아요 취소
     }
 }

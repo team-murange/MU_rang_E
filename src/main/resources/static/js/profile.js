@@ -1,6 +1,7 @@
 
 const profile_img = document.getElementsByClassName("profile");
 
+var flag = new Array(15);
 var user_id;
 
 
@@ -43,6 +44,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (dataList) {
                 $(dataList.content).each(function (index, data) {
+                    flag[index]=1;
                     $(".sample")
                         .append(
                             $("<li>")
@@ -68,7 +70,7 @@ $(document).ready(function () {
                                                 .attr({
                                                     id: 'like' + index,
                                                     src: "images/like.png",
-                                                    onclick: "click_heart(" + index + ")"
+                                                    onclick: "click_heart(" + index+","+data.id + ")"
                                                 })
                                         ),
                                 )
@@ -82,58 +84,34 @@ $(document).ready(function () {
     });
 });
 
-// var flag = new Array(15);
-// var likey = document.getElementsByClassName("like");
-//
-// window.onload = function () {
-//     for(var i=0; i<15; i++){
-//         likey[i].id = "like"+i;
-//         likey[i].src='images/unlike.png';
-//         if(i<5) likey[i].style.display='block';
-//         flag[i]=1;
-//     }
-// }
-//
-// function like_toggle(id)  {
-//     var flag_num = id.substr(4);
-//     if(flag[flag_num] == 1){
-//         document.getElementById(id).src='images/like.png';
-//         flag[flag_num]=1;
-//         $.ajax({
-//             url: "http://localhost:8080/like/"+user_id,
-//             data: 'get',
-//             contentType: "application/json;charset=UTF-8",
-//             dataType: "json",
-//             success: function (data) {
-//                 console.log('좋아요 전송 성공');
-//             },
-//             error: function () {
-//                 console.log('좋아요 전송 실패');
-//             }
-//         });
-//     }
-//     else{
-//         document.getElementById(id).src='images/unlike.png';
-//         flag[flag_num]=0;
-//         //좋아요취소
-//     }
-// }
+var likey = document.getElementsByClassName("like");
 
-//
-// //좋아요한 음악 불러오기
-// $.ajax({
-//     url : "http://localhost:8800/like/" + user_id,
-//     data : 'get',
-//     contentType:"application/json;charset=UTF-8",
-//     dataType : "json",
-//     success : function(data) {
-//         for (step = 1; step < 15; step++) {
-//             document.getElementById('pl1_music'+step).src = data[step-1].img_url;
-//         }},
-//     error : function() {
-//         console.log('좋아요 음악 불러오기 실패');
-//     },
-// });
+function click_heart(index, id)  {
+    if(flag[index] == 1){
+        likey[index].src='images/unlike.png';
+        flag[index]=0;
+        $.ajax({
+            //좋아요 취소 api 주소 들어가야함
+            url: "http://localhost:8080/like/"+user_id+'/'+id,
+            data: 'get',
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function () {
+                console.log('좋아요 취소 전송 성공');
+            },
+            error: function () {
+                console.log('좋아요 취소 전송 실패');
+            }
+        });
+    }
+    else{
+        //다시 좋아요 누르기 위해서는 감정 정보가 필요해서 작동하지 않도록 주석처리해놓음
+        // likey[index].src='images/like.png';
+        // flag[index]=1;
+    }
+}
+
+
 
 
 // const searchForm = document.querySelector('form');
