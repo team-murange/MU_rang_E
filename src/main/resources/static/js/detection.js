@@ -3,7 +3,7 @@ var user_id = '10'
 var restart = 0;
 var first_emotion = 'none'
 var second_emotion = 'none'
-
+var flag = new Array();
 
 const video = document.getElementById("video");
 
@@ -197,6 +197,7 @@ function predict(){
                         console.log('음악 정보 로딩 성공')
                         $(".result").html(' ');
                         $(dataList.content).each(function (index, data) {
+                            flag[index]=0;
                             $(".result")
                                 .append(
                                     $("<li>")
@@ -205,7 +206,8 @@ function predict(){
                                             $("<img>")
                                                 .addClass("like__music")
                                                 .attr({
-                                                    src: "images/like.png"
+                                                    src: "images/unlike.png",
+                                                    onclick: "like_toggle("+index+","+data.id+")"
                                                 }),
                                             $("<div>")
                                                 .addClass("result__music") /*result__music*/
@@ -228,24 +230,15 @@ function predict(){
 
 //좋아요 코드
 
-var flag = new Array(10);
-var likey = document.getElementsByClassName("like");
+var likey = document.getElementsByClassName("like__music");
 
-window.onload = function () {
-    for(var i=0; i<10; i++){
-        likey[i].id = "like"+i;
-        likey[i].src='images/like.png';
-        flag[i]=0;
-    }
-}
 
-function like_toggle(id)  {
-    var flag_num = id.substr(4);
-    if(flag[flag_num] == 0){
-    document.getElementById(id).src='images/like.png';
-        flag[flag_num]=1;
+function like_toggle(index, id)  {
+    if(flag[index] == 0){
+    likey[index].src='images/like.png';
+        flag[index]=1;
         $.ajax({
-          url: "http://localhost:8080/like/"+user_id,
+          url: "http://localhost:8080/like/"+user_id+'/'+id+'/'+first_emotion,
           data: 'get',
           contentType: "application/json;charset=UTF-8",
           dataType: "json",
@@ -258,8 +251,8 @@ function like_toggle(id)  {
       });
     }
     else{
-        document.getElementById(id).src='images/unlike.png';
-        flag[flag_num]=0;
+        likey[index].src='images/unlike.png';
+        flag[index]=0;
         //좋아요 취소
     }
 }
