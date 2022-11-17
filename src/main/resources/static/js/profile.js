@@ -105,9 +105,9 @@ function click_heart(index, id)  {
         });
     }
     else{
-        likey[index].src='images/like.png';
-        flag[index]=1;
-        //좋아요 취소
+        //다시 좋아요 누르기 위해서는 감정 정보가 필요해서 작동하지 않도록 주석처리해놓음
+        // likey[index].src='images/like.png';
+        // flag[index]=1;
     }
 }
 
