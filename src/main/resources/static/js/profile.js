@@ -92,9 +92,8 @@ function click_heart(index, likeId)  {
         flag[index]=0;
         $.ajax({
             url: "http://localhost:8080/like/"+likeId,
-            data: 'get',
-            contentType: "application/json;charset=UTF-8",
-            dataType: "json",
+            type : 'DELETE',
+            data: "text",
             success: function () {
                 console.log(likeId+'좋아요 취소 전송 성공');
             },
