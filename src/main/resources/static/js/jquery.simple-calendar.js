@@ -1,5 +1,4 @@
-// the semi-colon before function invocation is a safety net against concatenated
-// scripts and/or other plugins which may not be closed properly.
+
 var user_id;
 
 function coloring(){
@@ -21,7 +20,7 @@ function coloring(){
   });
 }
 
-const promise_user = new Promise((resolve, reject) => {
+const promise_calendar = new Promise((resolve, reject) => {
   $.ajax({
     url: "http://localhost:8080/user",
     data: 'get',
@@ -37,7 +36,7 @@ const promise_user = new Promise((resolve, reject) => {
     }
   });
 });
-promise_user.then(()=> {coloring()});
+promise_calendar.then(()=> {coloring()});
 
 
 (function ($, window, document, undefined) {
