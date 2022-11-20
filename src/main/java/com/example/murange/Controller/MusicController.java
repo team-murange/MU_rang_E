@@ -1,7 +1,7 @@
 package com.example.murange.Controller;
 
 import com.example.murange.Domain.Music;
-import com.example.murange.Domain.EmotionType;
+import com.example.murange.Dto.LikeMusicResponseDto;
 import com.example.murange.Dto.MusicResponseDto;
 import com.example.murange.Service.LikeService;
 import com.example.murange.Service.MusicService;
@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins="*")
@@ -78,7 +77,7 @@ public class MusicController {
             @PathVariable(value = "user-id") Long userId,
             @PageableDefault(size = 5) Pageable pageable
     ) {
-        Page<MusicResponseDto> musicDtoList = musicService.getMusicByUserLike(userId, pageable);
-        return new ResponseEntity(musicDtoList, HttpStatus.OK);
+        Page<LikeMusicResponseDto> likeMusicDtoList = musicService.getMusicByUserLike(userId, pageable);
+        return new ResponseEntity(likeMusicDtoList, HttpStatus.OK);
     }
 }

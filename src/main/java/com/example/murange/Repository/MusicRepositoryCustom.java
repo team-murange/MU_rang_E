@@ -3,6 +3,8 @@ package com.example.murange.Repository;
 import com.example.murange.Domain.Figure;
 import com.example.murange.Domain.Music;
 import com.example.murange.Domain.EmotionType;
+import com.example.murange.Dto.LikeMusicResponseDto;
+import com.querydsl.core.Tuple;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,7 +19,7 @@ public interface MusicRepositoryCustom {
     Page<Music> getMusicByTwoEmotion(String mainEmotion, String secondEmotion, Pageable pageable);
 
     // 유저가 좋아요한 음악 조회
-    Page<Music> getMusicByUserLike(Long userId, Pageable pageable);
+    Page<LikeMusicResponseDto> getMusicByUserLike(Long userId, Pageable pageable);
 
     // 음악의 감정 조회
     Figure getFigureByMusic(Long musicId);
