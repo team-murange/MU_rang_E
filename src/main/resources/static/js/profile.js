@@ -70,7 +70,7 @@ $(document).ready(function () {
                                                 .attr({
                                                     id: 'like' + index,
                                                     src: "images/like.png",
-                                                    onclick: "click_heart(" + index+","+data.id + ")"
+                                                    onclick: "click_heart(" + index+","+data.likeId + ")"
                                                 })
                                         ),
                                 )
@@ -86,18 +86,17 @@ $(document).ready(function () {
 
 var likey = document.getElementsByClassName("like");
 
-function click_heart(index, id)  {
+function click_heart(index, likeId)  {
     if(flag[index] == 1){
         likey[index].src='images/unlike.png';
         flag[index]=0;
         $.ajax({
-            //좋아요 취소 api 주소 들어가야함
-            url: "http://localhost:8080/like/"+user_id+'/'+id,
+            url: "http://localhost:8080/like/"+likeId,
             data: 'get',
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
             success: function () {
-                console.log('좋아요 취소 전송 성공');
+                console.log(likeId+'좋아요 취소 전송 성공');
             },
             error: function () {
                 console.log('좋아요 취소 전송 실패');
