@@ -162,6 +162,7 @@ video {
 
 
 #emotion {
+    opacity: 90%;
     margin-left: 6%;
     margin-top: 10%;
     background: rgba(249, 249, 249, 0.9);
@@ -204,6 +205,7 @@ video {
 
 /* 중간 : 음악 분석 */
 #detection {
+    opacity: 90%;
     position: fixed;
     bottom: 15%;
     right: 45%;
@@ -256,7 +258,6 @@ video {
     font-size: 20px;
     font-weight: 550;
     font-family: "나눔스퀘어_ac";
-
 }
 
 
