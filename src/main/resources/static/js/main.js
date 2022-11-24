@@ -3,6 +3,19 @@ let container = $('#pagination');
 var tmp ;
 var ul = new Array();
 $(function () {
+    $.ajax({
+        url: "http://localhost:8080/user",
+        data: 'get',
+        contentType: "application/json;charset=UTF-8",
+        dataType: "text",
+        success: function (data) {
+            document.getElementById('login_link').innerText='my profile',
+            document.getElementById('login_link').href='profile.html'
+        },
+        error: function () {
+            console.log('유저 아이디 없음')
+        }
+    });
     const promise_random = new Promise((resolve, reject) => {
         $.ajax({
             url: "http://localhost:8080/random/title",
@@ -16,6 +29,7 @@ $(function () {
                 resolve();
             }
         });
+
     });
     promise_random.then(()=> {
             for (i = 0; i < 3; i++) {
@@ -47,7 +61,7 @@ $(function () {
                     });
                     var dataHtml = '<ul>';
                     $.each(data, function (index, item) {
-                        dataHtml += '<li class="playlist"> <a href="' + item.soundcloud_url + '"><img class="album" src="' + item.img_url + '"><p class="title">' + item.title + '</p></a>' + '</li>';
+                        dataHtml += '<li class="playlist"> <a href="' + item.soundcloud_url + '" target="_blank"><img class="album" src="' + item.img_url + '"><p class="title">' + item.title + '</p></a>' + '</li>';
                     });
 
                     dataHtml += '</ul>';
