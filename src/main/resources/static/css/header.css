@@ -59,3 +59,8 @@
     background-color: rgba(249, 249, 249, 0.85)
     /*스크롤바 트랙 색상*/
 }
+
+body {
+    font-family: "나눔스퀘어_ac";
+    font-weight: 500;
+}
