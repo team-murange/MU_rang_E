@@ -76,7 +76,7 @@ body {
 
 ul {
     list-style: none;
-    padding-left: 2vw;
+    padding-left: 1.3vw;
 }
 
 h1 {
@@ -137,8 +137,8 @@ canvas {
     width: 100vw;
     height: 130vh;
     position: fixed;
-    left:0;
-    top:-9vh;
+    top:-6vh;
+    right:0vh;
     transform: scaleX(-1);
 }
 
@@ -162,14 +162,15 @@ video {
 
 
 #emotion {
-    margin-left: 5%;
-    margin-top: 6%;
+    margin-left: 6%;
+    margin-top: 10%;
     background: rgba(249, 249, 249, 0.9);
     width: 21vw;
-    height: 53vh;
+    height: 45vh;
     float: left;
     padding: 1%;
     /*z-index: 500;*/
+    font-weight: 550;
     position: relative;
 }
 
@@ -185,7 +186,7 @@ video {
     flex-direction: row;
     text-align: center;
     padding: 1%;
-    margin: 1%;
+    margin: 2%;
 }
 
 .ment__word {
@@ -204,8 +205,8 @@ video {
 /* 중간 : 음악 분석 */
 #detection {
     position: fixed;
-    bottom: 20%;
-    right: 50%;
+    bottom: 15%;
+    right: 45%;
     background-color: var(--color-white);
     padding: 10px;
     z-index: 500;
@@ -216,11 +217,13 @@ video {
 #playlist {
     opacity: 90%;
     background: rgba(249, 249, 249, 0.9);
-    width: 30vw;
-    height: 90vh;
+    width: 32vw;
+    height: 89vh;
     float: right;
-    /*z-index: 500;*/
+    z-index: 500;
+    padding: 0;
     position: relative;
+    margin-top: 1vh;
 }
 
 .like {
@@ -240,7 +243,20 @@ video {
   
 
 #ment__top {
-    margin-top: 8%;
+    margin-top: 10%;
+    font-size: 20px;
+    font-weight: 550;
+    margin-bottom: 0;
+    font-family: "나눔스퀘어_ac";
+
+}
+
+#ment__mid {
+    margin-top: 0vh;
+    font-size: 20px;
+    font-weight: 550;
+    font-family: "나눔스퀘어_ac";
+
 }
 
 
@@ -251,3 +267,36 @@ button {
     cursor: pointer;
 }
 
+#start__button {
+    font-weight: 550;
+    font-size: 25px;
+    font-family: "나눔스퀘어_ac";
+
+}
+
+body {
+    font-family: "나눔스퀘어_ac";
+    font-weight: 500;
+}
+
+.result__music {
+    width: 100%;
+}
+
+.like__pos {
+    display: flex;
+    flex-direction: row;
+}
+
+.like__music {
+    margin-top:7vh;
+    margin-right: 1vw;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.like__music:hover{
+    content: url('../images/hover-like.png');
+}

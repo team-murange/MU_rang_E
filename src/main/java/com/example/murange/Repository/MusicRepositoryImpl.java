@@ -2,8 +2,9 @@ package com.example.murange.Repository;
 
 import com.example.murange.Domain.*;
 import com.example.murange.Domain.EmotionType;
+import com.example.murange.Dto.LikeMusicResponseDto;
 import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -80,9 +81,16 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
 
     // 유저가 좋아요한 음악 조회
     @Override
-    public Page<Music> getMusicByUserLike(Long userId, Pageable pageable) {
-        List<Music> result = queryFactory
-                .select(music)
+    public Page<LikeMusicResponseDto> getMusicByUserLike(Long userId, Pageable pageable) {
+        List<LikeMusicResponseDto> result = queryFactory
+                .select(Projections.constructor(LikeMusicResponseDto.class,
+                        like.id.as("likeId"),
+                        music.id.as("musicId"),
+                        music.title,
+                        music.music_url,
+                        music.img_url,
+                        music.soundcloud_url
+                ))
                 .from(music)
                 .join(music.like, like)
                 .where(like.user.id.eq(userId))

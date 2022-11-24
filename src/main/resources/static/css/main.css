@@ -175,10 +175,30 @@ ul {
 .bottom_nav {
   margin-top: 5vh;
   margin-bottom: 10vh;
+  margin-bottom: 10vh;
 }
 
 #bottom_line {
   width: 90vw;
   height: 0.1px;
   background-color: var(--color-light-grey);
+}
+
+#pagination {
+  margin-left: 30vw;
+}
+
+.paginationjs .paginationjs-pages li {
+  /* float: left; */
+   border: none;
+  /* list-style: none; */
+}
+
+li:last-child {
+  border: none;
+
+}
+
+.paginationjs .paginationjs-pages li:last-child {
+  border: none;
 }
