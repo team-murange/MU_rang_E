@@ -1,9 +1,10 @@
 
-var user_id = '10'
+var user_id = '18'
 var restart = 0;
 var first_emotion = 'none'
 var second_emotion = 'none'
 var flag = new Array();
+const PL = document.getElementById('playlist');
 
 const video = document.getElementById("video");
 
@@ -12,7 +13,33 @@ Promise.all([
   faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
   faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-])//.then(startVideo);
+    $.ajax({
+        url: "http://localhost:8080/user",
+        data: 'get',
+        contentType: "application/json;charset=UTF-8",
+        dataType: "text",
+        success: function (data) {
+            user_id = data;
+            resolve();
+        },
+        error: function () {
+            console.log('유저 아이디 없음')
+        }
+    })
+]).then(
+    $.ajax({
+        url: "http://localhost:8080/user/" + user_id,
+        data: 'get',
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (data) {
+            document.getElementById('id_insert').innerText =data.name+'님의 \n감정을 분석해 볼게요.'
+        },
+        error: function () {
+            console.log("유저 정보 로딩 에러");
+        }
+    }),
+);
 
 function startDetection() {
     if(restart==0){
@@ -20,7 +47,10 @@ function startDetection() {
         document.getElementById('start__button').innerHTML = '다시 분석하기'
         restart =1;
     }
-    else predict();
+    else {
+        PL.classList.remove('animate')
+        predict();
+    }
 }
 
 
@@ -122,7 +152,7 @@ function predict(){
       const neutral_sum = neutral_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
       }, 0);
-      const neutral_avr = neutral_sum / 5;
+      const neutral_avr = neutral_sum /10;
 
       const angry_sum = angry_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
@@ -178,6 +208,7 @@ function predict(){
                 contentType: "application/json;charset=UTF-8",
                 success: function () {
                     console.log('분석결과 전송 성공');
+                    PL.classList.add('animate')
                     resolve();
                 },
                 error: function () {
