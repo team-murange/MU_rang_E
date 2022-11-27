@@ -48,36 +48,36 @@ promise_calendar.then(()=> {
   "use strict";
 
   // Create the defaults once
-  var pluginName = "simpleCalendar"
-    defaults = {
-      months: [
-        "january",
-        "february",
-        "march",
-        "april",
-        "may",
-        "june",
-        "july",
-        "august",
-        "september",
-        "october",
-        "november",
-        "december",
-      ], //string of months starting from january
-      days: ["S", "M", "T", "W", "T", "F", "S"], //string of days starting from sunday
-      displayYear: true, // display year in header
-      fixedStartDay: true, // Week begin always by monday or by day set by number 0 = sunday, 7 = saturday, false = month always begin by first day of the month
-      displayEvent: true, // display existing event
-      disableEventDetails: false, // disable showing event details
-      disableEmptyDetails: false, // disable showing empty date details
-      events: [], // List of event
-      onInit: function (calendar) {}, // Callback after first initialization
-      onMonthChange: function (month, year) {}, // Callback on month change
-      onDateSelect: function (date, events) {}, // Callback on date selection
-      onEventSelect: function () {}, // Callback fired when an event is selected     - see $(this).data('event')
-      onEventCreate: function ($el) {}, // Callback fired when an HTML event is created - see $(this).data('event')
-      onDayCreate: function ($el, d, m, y) {}, // Callback fired when an HTML day is created   - see $(this).data('today'), .data('todayEvents')
-    };
+  var pluginName = "simpleCalendar",
+  defaults = {
+    months: [
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december",
+    ], //string of months starting from january
+    days: ["S", "M", "T", "W", "T", "F", "S"], //string of days starting from sunday
+    displayYear: true, // display year in header
+    fixedStartDay: true, // Week begin always by monday or by day set by number 0 = sunday, 7 = saturday, false = month always begin by first day of the month
+    displayEvent: true, // display existing event
+    disableEventDetails: false, // disable showing event details
+    disableEmptyDetails: false, // disable showing empty date details
+    events: [], // List of event
+    onInit: function (calendar) {}, // Callback after first initialization
+    onMonthChange: function (month, year) {}, // Callback on month change
+    onDateSelect: function (date, events) {}, // Callback on date selection
+    onEventSelect: function () {}, // Callback fired when an event is selected     - see $(this).data('event')
+    onEventCreate: function ($el) {}, // Callback fired when an HTML event is created - see $(this).data('event')
+    onDayCreate: function ($el, d, m, y) {}, // Callback fired when an HTML day is created   - see $(this).data('today'), .data('todayEvents')
+  };
 
   // The actual plugin constructor
   function Plugin(element, options) {
@@ -97,7 +97,7 @@ promise_calendar.then(()=> {
 
       var calendar = $('<div class="calendar"></div>');
       var header = $(
-        "<header>" +
+          "<header>" +
           '<h2 class="month"></h2>' +
           '<a class="simple-calendar-btn btn-prev" href="#"></a>' +
           '<a class="simple-calendar-btn btn-next" href="#"></a>' +
@@ -118,8 +118,8 @@ promise_calendar.then(()=> {
     updateHeader: function (date, header) {
       var monthText = this.settings.months[date.getMonth()];
       monthText += this.settings.displayYear
-        ? ' <div class="year">' + date.getFullYear()
-        : "</div>";
+          ? ' <div class="year">' + date.getFullYear()
+          : "</div>";
       header.find(".month").html(monthText);
     },
 
@@ -135,7 +135,7 @@ promise_calendar.then(()=> {
 
       //setting current year and month
       var y = fromDate.getFullYear(),
-        m = fromDate.getMonth();
+          m = fromDate.getMonth();
 
       //first day of the month
       var firstDay = new Date(y, m, 1);
@@ -147,9 +147,9 @@ promise_calendar.then(()=> {
       if (this.settings.fixedStartDay !== false) {
         // Backward compatibility
         startDayOfWeek =
-          this.settings.fixedStartDay === true
-            ? 1
-            : this.settings.fixedStartDay;
+            this.settings.fixedStartDay === true
+                ? 1
+                : this.settings.fixedStartDay;
 
         // If first day of month is different of startDayOfWeek
         while (firstDay.getDay() !== startDayOfWeek) {
@@ -164,7 +164,7 @@ promise_calendar.then(()=> {
       //Header day in a week ( (x to x + 7) % 7 to start the week by monday if x = 1)
       for (var i = startDayOfWeek; i < startDayOfWeek + 7; i++) {
         thead.append(
-          $("<td>" + this.settings.days[i % 7].substring(0, 3) + "</td>")
+            $("<td>" + this.settings.days[i % 7].substring(0, 3) + "</td>")
         );
       }
 
@@ -178,7 +178,7 @@ promise_calendar.then(()=> {
           if(theDay<10) theDay = '0'+theDay;
           if(theMonth<10) theMonth = '0'+theMonth;
           var td = $(
-            '<td><div class="day" id='+day.getFullYear() + theMonth+ theDay+ ' data-date="' +
+              '<td><div class="day" id='+day.getFullYear() + theMonth+ theDay+ ' data-date="' +
               day.toISOString() +
               '">' +
               day.getDate() +
@@ -202,13 +202,13 @@ promise_calendar.then(()=> {
 
           if (todayEvents.length && plugin.settings.displayEvent) {
             $day.addClass(
-              plugin.settings.disableEventDetails
-                ? "has-event disabled"
-                : "has-event"
+                plugin.settings.disableEventDetails
+                    ? "has-event disabled"
+                    : "has-event"
             );
           } else {
             $day.addClass(
-              plugin.settings.disableEmptyDetails ? "disabled" : ""
+                plugin.settings.disableEmptyDetails ? "disabled" : ""
             );
           }
 
@@ -228,22 +228,22 @@ promise_calendar.then(()=> {
       body.append(thead);
       body.append(tbody);
       var eventContainer = $(
-        '<div class="event-container"><div class="close"></div><div class="event-wrapper"></div></div>'
+          '<div class="event-container"><div class="close"></div><div class="event-wrapper"></div></div>'
       );
-        calendar.append(body);
-        calendar.append(eventContainer);
+      calendar.append(body);
+      calendar.append(eventContainer);
     },
     changeMonth: function (value) {
 
       this.currentDate.setMonth(this.currentDate.getMonth() + value, 1);
       this.buildCalendar(this.currentDate, $(this.element).find(".calendar"));
       this.updateHeader(
-        this.currentDate,
-        $(this.element).find(".calendar header")
+          this.currentDate,
+          $(this.element).find(".calendar header")
       );
       this.settings.onMonthChange(
-        this.currentDate.getMonth(),
-        this.currentDate.getFullYear()
+          this.currentDate.getMonth(),
+          this.currentDate.getFullYear()
       );
       var tm = this.currentDate.getMonth()+1;
       if(tm<10) tm = '0'+tm;
@@ -292,7 +292,7 @@ promise_calendar.then(()=> {
         var startDate = new Date(event.startDate);
         var endDate = new Date(event.endDate);
         var $event = $(
-          "" +
+            "" +
             '<div class="event">' +
             ' <div class="event-hour">' +
             startDate.getHours() +
@@ -343,15 +343,15 @@ promise_calendar.then(()=> {
       elem.find(".calendar").append(filler);
 
       filler.animate(
-        {
-          width: "300%",
-          height: "300%",
-        },
-        500,
-        function () {
-          elem.find(".event-container").show();
-          filler.hide();
-        }
+          {
+            width: "300%",
+            height: "300%",
+          },
+          500,
+          function () {
+            elem.find(".event-container").show();
+            filler.hide();
+          }
       );
     },
     //Small effect to empty a container
@@ -369,23 +369,23 @@ promise_calendar.then(()=> {
       elem.find(".event-container").hide().find(".event").remove();
 
       filler.animate(
-        {
-          width: "0%",
-          height: "0%",
-        },
-        500,
-        function () {
-          filler.remove();
-        }
+          {
+            width: "0%",
+            height: "0%",
+          },
+          500,
+          function () {
+            filler.remove();
+          }
       );
     },
     getDateEvents: function (d) {
       var plugin = this;
       return plugin.settings.events.filter(function (event) {
         return plugin.isDayBetween(
-          new Date(d),
-          new Date(event.startDate),
-          new Date(event.endDate)
+            new Date(d),
+            new Date(event.startDate),
+            new Date(event.endDate)
         );
       });
     },
@@ -399,18 +399,18 @@ promise_calendar.then(()=> {
     formatDateEvent: function (dateStart, dateEnd) {
       var formatted = "";
       formatted +=
-        this.settings.days[dateStart.getDay()] +
-        " - " +
-        dateStart.getDate() +
-        " " +
-        this.settings.months[dateStart.getMonth()].substring(0, 3);
+          this.settings.days[dateStart.getDay()] +
+          " - " +
+          dateStart.getDate() +
+          " " +
+          this.settings.months[dateStart.getMonth()].substring(0, 3);
 
       if (dateEnd.getDate() !== dateStart.getDate()) {
         formatted +=
-          " to " +
-          dateEnd.getDate() +
-          " " +
-          this.settings.months[dateEnd.getMonth()].substring(0, 3);
+            " to " +
+            dateEnd.getDate() +
+            " " +
+            this.settings.months[dateEnd.getMonth()].substring(0, 3);
       }
       return formatted;
     },
@@ -426,3 +426,4 @@ promise_calendar.then(()=> {
     });
   };
 })(jQuery, window, document);
+
