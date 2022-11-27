@@ -1,7 +1,7 @@
 
 var user_id;
 
-function coloring(){
+function coloring(month){
   //감정기록 가져와서 날짜 색칠할 코드
   $.ajax({
     url : "http://localhost:8080/calendar/"+user_id,
@@ -11,10 +11,11 @@ function coloring(){
     success : function(data) {
       var i;
       for(i=0; i<data.length; i++){
-        document.getElementById(data[i].date.replace('-', '').replace('-', '')).style.background = '#'+data[i].colorCode;
+        if(data[i].date.substring(5,7)==month)
+          document.getElementById(data[i].date.replace('-', '').replace('-', '')).style.background = '#'+data[i].colorCode;
       }
     },
-    error : function(data) {
+    error : function() {
       console.log('색칠 에러');
     }
   });
@@ -36,14 +37,18 @@ const promise_calendar = new Promise((resolve, reject) => {
     }
   });
 });
-promise_calendar.then(()=> {coloring()});
+promise_calendar.then(()=> {
+  var tm = new Date().getMonth()+1;
+  if(tm<10) tm = '0'+tm;
+  coloring(tm)
+});
 
 
 (function ($, window, document, undefined) {
   "use strict";
 
   // Create the defaults once
-  var pluginName = "simpleCalendar",
+  var pluginName = "simpleCalendar"
     defaults = {
       months: [
         "january",
@@ -179,7 +184,7 @@ promise_calendar.then(()=> {coloring()});
               day.getDate() +
               "</div></td>"
           );
-          
+
           var $day = td.find(".day");
 
           //if today is this day
@@ -217,9 +222,9 @@ promise_calendar.then(()=> {coloring()});
           day.setDate(day.getDate() + 1);
         }
         tbody.append(tr);
-        
+
       }
-      
+
       body.append(thead);
       body.append(tbody);
       var eventContainer = $(
@@ -229,7 +234,7 @@ promise_calendar.then(()=> {coloring()});
         calendar.append(eventContainer);
     },
     changeMonth: function (value) {
-      coloring()
+
       this.currentDate.setMonth(this.currentDate.getMonth() + value, 1);
       this.buildCalendar(this.currentDate, $(this.element).find(".calendar"));
       this.updateHeader(
@@ -240,6 +245,9 @@ promise_calendar.then(()=> {coloring()});
         this.currentDate.getMonth(),
         this.currentDate.getFullYear()
       );
+      var tm = this.currentDate.getMonth()+1;
+      if(tm<10) tm = '0'+tm;
+      coloring(tm);
     },
     //Init global events listeners
     bindEvents: function () {
