@@ -86,6 +86,7 @@ $(document).ready(function () {
 
 var likey = document.getElementsByClassName("like");
 
+
 function click_heart(index, likeId)  {
     if(flag[index] == 1){
         likey[index].src='images/unlike.png';
