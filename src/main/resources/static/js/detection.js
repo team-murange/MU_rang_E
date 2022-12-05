@@ -50,7 +50,6 @@ function startDetection() {
         restart =1;
     }
     else {
-        PL.classList.remove('animate')
         predict();
     }
 }
@@ -210,7 +209,6 @@ function predict(){
                 contentType: "application/json;charset=UTF-8",
                 success: function () {
                     console.log('분석결과 전송 성공');
-                    PL.classList.add('animate')
                     resolve();
                 },
                 error: function () {
