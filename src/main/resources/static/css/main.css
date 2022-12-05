@@ -89,7 +89,11 @@ sample {
   display: flex;
   flex-direction: row;
 }
-
+#search {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 /* 1. 상단 : 감정 분석 페이지 이동 */
 #banner {
   margin-bottom: 10vh;
@@ -208,6 +212,7 @@ li:last-child {
   border: none;
 }
 
+/*로딩*/
 @keyframes ldio-212kf5gutzg {
   0% {
     opacity: 1;

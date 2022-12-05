@@ -30,7 +30,7 @@
     margin-left: 53vw;
 }
 
-#login_btn {
+#login_btn, #logout_btn {
     border: 1px solid white;
     border-radius: 5%;
     background-color: var(--color-dark-grey);
@@ -38,7 +38,7 @@
     height: 5vh;
 }
 
-#login_link {
+#login_link, #logout_link {
     color: white;
     font-size: var(--font-small);
 }

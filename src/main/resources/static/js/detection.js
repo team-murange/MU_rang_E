@@ -1,5 +1,5 @@
 
-var user_id = '18'
+var user_id;
 var restart = 0;
 var first_emotion = 'none'
 var second_emotion = 'none'
@@ -18,27 +18,29 @@ Promise.all([
         data: 'get',
         contentType: "application/json;charset=UTF-8",
         dataType: "text",
+        async : 'false',
         success: function (data) {
             user_id = data;
-            resolve();
+            $.ajax({
+                url: "http://localhost:8080/user/" + user_id,
+                data: 'get',
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                async: 'false',
+                success: function (data) {
+                    document.getElementById('id_insert').innerText =data.name+'님의 \n감정을 분석해 볼게요.'
+                },
+                error: function () {
+                    console.log("유저 정보 로딩 에러");
+                }
+            })
         },
         error: function () {
             console.log('유저 아이디 없음')
         }
     })
 ]).then(
-    $.ajax({
-        url: "http://localhost:8080/user/" + user_id,
-        data: 'get',
-        contentType: "application/json;charset=UTF-8",
-        dataType: "json",
-        success: function (data) {
-            document.getElementById('id_insert').innerText =data.name+'님의 \n감정을 분석해 볼게요.'
-        },
-        error: function () {
-            console.log("유저 정보 로딩 에러");
-        }
-    }),
+
 );
 
 function startDetection() {
@@ -48,7 +50,6 @@ function startDetection() {
         restart =1;
     }
     else {
-        PL.classList.remove('animate')
         predict();
     }
 }
@@ -208,7 +209,6 @@ function predict(){
                 contentType: "application/json;charset=UTF-8",
                 success: function () {
                     console.log('분석결과 전송 성공');
-                    PL.classList.add('animate')
                     resolve();
                 },
                 error: function () {
