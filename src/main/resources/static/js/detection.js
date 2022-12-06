@@ -148,37 +148,37 @@ function predict(){
       const sad_sum = sad_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
       }, 0);
-      const sad_avr = sad_sum / 5;
+      const sad_avr = sad_sum*11 / 23;
 
       const neutral_sum = neutral_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
       }, 0);
-      const neutral_avr = neutral_sum /10;
+      const neutral_avr = neutral_sum*15 /19;
 
       const angry_sum = angry_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
       }, 0);
-      const angry_avr = angry_sum / 5;
+      const angry_avr = angry_sum / 4;
 
       const surprised_sum = surprised_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
       }, 0);
-      const surprised_avr = surprised_sum / 5;
+      const surprised_avr = surprised_sum*4 / 5;
 
       const happy_sum = happy_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
       }, 0);
-      const happy_avr = happy_sum / 5;
+      const happy_avr = happy_sum*33 / 35;
 
       const disgusted_sum = disgusted_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
       }, 0);
-      const disgusted_avr = disgusted_sum / 5;
+      const disgusted_avr = disgusted_sum;
 
       const fearful_sum = fearful_ary.reduce(function add(sum, currValue) {
         return sum + currValue;
       }, 0);
-      const fearful_avr = fearful_sum / 5;
+      const fearful_avr = fearful_sum / 2;
 
 
 
