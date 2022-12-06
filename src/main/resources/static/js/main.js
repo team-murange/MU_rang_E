@@ -1,8 +1,73 @@
 
 let container = $('#pagination');
 var tmp ;
-var ul = new Array();
+//var ul = new Array();
 
+function getRandom(){
+    document.getElementsByClassName('topic')[0].innerText = '...';
+    console.log('get random')
+    const promise_random = new Promise((resolve, reject) => {
+        $.ajax({
+            url: "http://localhost:8080/random/title",
+            data: 'get',
+            contentType: "application/json;charset=UTF-8",
+            dataType: "text",
+            success: function (data) {
+                var random_title = data.charAt(0).toUpperCase() + data.slice(1);
+                document.getElementsByClassName('topic')[0].innerText = random_title;
+                random = data;
+                resolve();
+            }
+        });
+
+    });
+    // 로딩창 끄는 함수
+    function closeLoading() {
+        $('#mask, #loadingImg').hide();
+        $('#mask, #loadingImg').empty();
+    }
+    promise_random.then(()=> {
+        ul=new Array();
+        for (i = 0; i < 3; i++) {
+            $.ajax({
+                url: "http://localhost:8080/random/" + random + '?page=' + i,
+                data: 'get',
+                async:false,
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (dataList) {
+                    tmp = dataList.content;
+                    $(tmp).each(function (index, data) {
+                        ul.push(data);
+                    });
+
+                },
+                error: function () {
+                }
+            });
+        }
+
+        container.pagination({
+            dataSource: ul,
+            pageSize: 5,
+            showPrevious: false,
+            showNext: false,
+            callback: function (data, pagination) {
+                var dataHtml = '<ul>';
+                $.each(data, function (index, item) {
+                    dataHtml += '<li class="playlist"> <a href="' + item.soundcloud_url + '" target="_blank"><img class="album" src="' + item.img_url + '"><p class="title">' + item.title + '</p></a>' + '</li>';
+                });
+
+                dataHtml += '</ul>';
+
+                $("#data-container").html(dataHtml);
+                closeLoading()
+                $(".playlist__emotion").css('display','block');
+            }
+        })
+    });
+
+}
 $(document).ready(function openLoading() {
     //화면 높이와 너비를 구합니다.
     let maskHeight = $(document).height();
@@ -30,7 +95,7 @@ $(document).ready(function openLoading() {
     $('#loadingImg').show();
 });
 
-$(function () {
+
     $.ajax({
         url: "http://localhost:8080/user",
         data: 'get',
@@ -44,64 +109,7 @@ $(function () {
             console.log('유저 아이디 없음')
         }
     });
-    const promise_random = new Promise((resolve, reject) => {
-        $.ajax({
-            url: "http://localhost:8080/random/title",
-            data: 'get',
-            contentType: "application/json;charset=UTF-8",
-            dataType: "text",
-            success: function (data) {
-                var random_title = data.charAt(0).toUpperCase() + data.slice(1);
-                document.getElementsByClassName('topic')[0].innerText = random_title;
-                random = data;
-                resolve();
-            }
-        });
-
-    });
-    // 로딩창 끄는 함수
-    function closeLoading() {
-        $('#mask, #loadingImg').hide();
-        $('#mask, #loadingImg').empty();
-    }
-    promise_random.then(()=> {
-            for (i = 0; i < 3; i++) {
-                $.ajax({
-                    url: "http://localhost:8080/random/" + random + '?page=' + i,
-                    data: 'get',
-                    async:false,
-                    contentType: "application/json;charset=UTF-8",
-                    dataType: "json",
-                    success: function (dataList) {
-                        tmp = dataList.content;
-                        $(tmp).each(function (index, data) {
-                            ul.push(data);
-                        });
-
-                    },
-                    error: function () {
-                    }
-                });
-            }
-
-            container.pagination({
-                dataSource: ul,
-                pageSize: 5,
-                showPrevious: false,
-                showNext: false,
-                callback: function (data, pagination) {
-                    var dataHtml = '<ul>';
-                    $.each(data, function (index, item) {
-                        dataHtml += '<li class="playlist"> <a href="' + item.soundcloud_url + '" target="_blank"><img class="album" src="' + item.img_url + '"><p class="title">' + item.title + '</p></a>' + '</li>';
-                    });
-
-                    dataHtml += '</ul>';
-
-                    $("#data-container").html(dataHtml);
-                    closeLoading()
-                    $(".playlist__emotion").css('display','block');
-                }
-            })
-    });
+$(function (){
+    getRandom();
 
 })

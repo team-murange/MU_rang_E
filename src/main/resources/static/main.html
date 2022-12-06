@@ -58,7 +58,10 @@
 
     <!-- 2. 첫번째 음악 목록 : 감정별 랜덤 -->
     <section class="playlist__emotion">
-        <div class="topic"></div>
+        <div style="display:flex;">
+            <div class="topic"></div>
+            <button onclick="getRandom()">reload</button>
+        </div>
         <div class="line"></div>
         <div id="data-container"></div>
         <div id="pagination"></div>
