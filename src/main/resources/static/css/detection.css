@@ -170,7 +170,7 @@ video {
     height: 45vh;
     float: left;
     padding: 1%;
-    z-index: 500;
+    /*z-index: 500;*/
     font-weight: 550;
     position: relative;
 }
@@ -206,14 +206,12 @@ video {
 /* 중간 : 음악 분석 */
 #detection {
     opacity: 90%;
-    position: relative;
+    position: fixed;
     bottom: 15%;
-    right: 17%;
+    right: 45%;
     background-color: var(--color-white);
     padding: 10px;
     z-index: 500;
-    float: left;
-    margin-top: 40%;
 }
 
 
@@ -228,15 +226,6 @@ video {
     padding: 0;
     position: relative;
     margin-top: 1vh;
-    transform: translate(90%);
-    transition-property: transform;
-    transition-duration: 1s;
-}
-
-#playlist.animate{
-    transform: translate(0%);
-    /*transition-property: transform;*/
-    /*transition-duration: 1s;*/
 }
 
 .like {
