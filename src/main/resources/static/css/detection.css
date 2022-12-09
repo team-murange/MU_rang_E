@@ -1,8 +1,5 @@
 /* Global settiong */
 
-element.style {
-    overflow: hidden;
-}
 :root {
     /* Color */
     --color-white: #ffffff;
