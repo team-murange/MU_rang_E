@@ -24,7 +24,7 @@
 
 
 
-#### 사이트 이동 : https://www.murange.site/
+#### 사이트 이동 : https://www.murange.site
 
 #### 프로젝트 소개 : [PPT 링크](src/main/resources/static/images/murange.pdf)
 
