@@ -4,13 +4,15 @@ import com.example.murange.Config.oauth.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity // SpringSecurityFilterChain 에 등록
@@ -29,27 +31,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests()
-                    .antMatchers("/user/**").authenticated()
-    //                .antMatchers("/manager/**").access("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
-    //                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+        http
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
+                .authorizeRequests()
+                    .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll() // 추가
+                    .antMatchers("/detection").authenticated()
+                    .antMatchers("/profile").authenticated()
                     .anyRequest().permitAll()
                 .and()
-                    .formLogin()
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .loginPage("/loginForm")
-                    .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/profile")
-                    .failureUrl("/fail")
-                    .permitAll()
-                .and()
                     .oauth2Login()
-                    .loginPage("/loginForm")
-                    .defaultSuccessUrl("/profile")
+                    .loginPage("/oauth2/authorization/google")
                     .userInfoEndpoint()
                     .userService(principalOauth2UserService);
+    }
 
+    // CORS 허용 적용
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
 

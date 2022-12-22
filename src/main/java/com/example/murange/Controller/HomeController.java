@@ -4,16 +4,13 @@ import com.example.murange.Domain.User;
 import com.example.murange.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -72,16 +69,4 @@ public class HomeController {
         userRepository.save(user);
         return "redirect:/loginForm";
     }
-
-//    @GetMapping(value ="/main")
-//    ModelAndView mainModel(Authentication authentication) {
-//        User user = Optional.ofNullable(userRepository.findByUsername(authentication.getName()))
-//                .map(u -> User.builder().username(u.getUsername()).build())
-//                .orElseThrow(IllegalArgumentException::new);
-//
-//        ModelAndView modelAndView = new ModelAndView("/main");
-//        modelAndView.addObject("user", user);
-//
-//        return modelAndView;
-//    }
 }

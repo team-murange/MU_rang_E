@@ -171,7 +171,7 @@ video {
     height: 45vh;
     float: left;
     padding: 1%;
-    z-index: 500;
+    /*z-index: 500;*/
     font-weight: 550;
     position: relative;
 }
@@ -213,8 +213,6 @@ video {
     background-color: var(--color-white);
     padding: 10px;
     z-index: 500;
-    float: left;
-    margin-top: 40%;
 }
 
 

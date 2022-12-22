@@ -29,12 +29,6 @@ public class UserController {
         return principalDetails.getUser().getId();
     }
 
-//    @PostMapping("/join")
-//    public void createUser(UserJoinRequest userJoinRequest, HttpServletResponse response) throws IOException {
-//        userService.createUser(userJoinRequest);
-//        response.sendRedirect("/login");
-//    }
-
     @ApiOperation(value = "회원 가입")
     @PostMapping("/user")
     public ResponseEntity saveUser(@RequestBody @Validated UserJoinRequest userJoinRequest) {
@@ -51,13 +45,5 @@ public class UserController {
         User user = userService.findUser(userId);
         UserResponseDto userResponseDto = new UserResponseDto(user);
         return new ResponseEntity(userResponseDto, HttpStatus.OK);
-    }
-
-    // 회원 삭제
-    @DeleteMapping("/user/{user-id}")
-    public ResponseEntity deleteUser(
-            @PathVariable(value = "user-id") String userId
-    ) {
-        return new ResponseEntity(HttpStatus.OK);
     }
 }
