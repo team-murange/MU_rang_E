@@ -11,5 +11,4 @@ import java.util.List;
 public interface LikeRepository extends JpaRepository<Like, Long>{
 
     List<Like> findAllByUser(User user);
-
 }

@@ -69,16 +69,4 @@ public class HomeController {
         userRepository.save(user);
         return "redirect:/loginForm";
     }
-
-//    @GetMapping(value ="/main")
-//    ModelAndView mainModel(Authentication authentication) {
-//        User user = Optional.ofNullable(userRepository.findByUsername(authentication.getName()))
-//                .map(u -> User.builder().username(u.getUsername()).build())
-//                .orElseThrow(IllegalArgumentException::new);
-//
-//        ModelAndView modelAndView = new ModelAndView("/main");
-//        modelAndView.addObject("user", user);
-//
-//        return modelAndView;
-//    }
 }
