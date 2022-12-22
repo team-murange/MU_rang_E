@@ -12,6 +12,7 @@
 5. [DB 설계](#5-db-설계)
 6. [UI 기획](#6-ui-기획)
 7. [License](#7-license)
+8. [개발 일지 및 이슈](#8개발-일지-및-이슈)
 
 ## 1. 뮤랑이(MUrangE) 소개
 
@@ -61,4 +62,6 @@
 - Javascript Calendar API : https://github.com/brospars/simple-calendar
 - SoundCloud Crawling : https://github.com/2022-project/crawling
 
-[⬆맨 위로 가기](#murange)
+## 8. 개발 일지 및 이슈
+
+[⬆맨 위로 가기](#목차)
