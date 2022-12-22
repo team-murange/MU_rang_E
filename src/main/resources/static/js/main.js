@@ -1,4 +1,4 @@
-var url_path = "http://34.64.207.136"; // "http://localhost:8080";
+var url_path = "https://www.murange.site";
 
 let container = $("#pagination");
 var tmp;
@@ -68,7 +68,7 @@ $(function () {
   promise_random.then(() => {
     for (i = 0; i < 3; i++) {
       $.ajax({
-        url: "http://34.64.207.136/random/" + random + "?page=" + i,
+        url: url_path + "/random/" + random + "?page=" + i,
         data: "get",
         async: false,
         contentType: "application/json;charset=UTF-8",

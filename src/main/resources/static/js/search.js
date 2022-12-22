@@ -1,4 +1,4 @@
-var url_path = "http://34.64.207.136"; // "http://localhost:8080";
+var url_path = "https://www.murange.site";
 
 const receivedData = location.href.split("?search=")[1];
 var keyword = decodeURI(receivedData);

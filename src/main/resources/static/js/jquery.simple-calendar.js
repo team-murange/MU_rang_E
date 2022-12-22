@@ -1,4 +1,4 @@
-var url_path = "http://34.64.207.136"; // "http://localhost:8080";
+var url_path = "https://www.murange.site";
 
 var user_id;
 

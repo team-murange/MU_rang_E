@@ -1,6 +1,6 @@
-var url_path = "http://34.64.207.136"; // "http://localhost:8080";
+var url_path = "https://www.murange.site";
 
-var user_id = "18";
+var user_id;
 var restart = 0;
 var first_emotion = "none";
 var second_emotion = "none";
