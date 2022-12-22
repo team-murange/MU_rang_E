@@ -5,16 +5,16 @@
 
 #### 목차 
 
-1. [뮤랑이 소개](#1-뮤랑이murange-소개)
-2. [데모 시연](#2-데모-시연)
-3. [웹 구조도](#3-웹-구조도)
-4. [API 설계](#4-api-설계)
-5. [DB 설계](#5-db-설계)
-6. [UI 기획](#6-ui-기획)
-7. [License](#7-license)
-8. [개발 일지 및 이슈](#8개발-일지-및-이슈)
+1. [뮤랑이 소개](#뮤랑이murange-소개)
+2. [프로젝트 시연](#-프로젝트-시연)
+3. [웹 구조도](#-웹-구조도)
+4. [API 설계](#-api-설계)
+5. [DB 설계](#-db-설계)
+6. [UI 기획](#-ui-기획)
+7. [License](#-license)
+8. [개발 일지 및 이슈](#-개발-일지-및-이슈)
 
-## 1. 뮤랑이(MUrangE) 소개
+## 😀뮤랑이(MUrangE)🎵 소개
 
 <aside>
   
@@ -31,37 +31,38 @@
 #### 메인 기능
 
 1. **표정 분석 후 음악 추천** :  사용자의 표정을 5초간 **분석 후, 해당 감정에 맞는 음악을 추천**해줍니다.
+
 2. **감정 색상 달력** : 분석 후, 사용자의 감정이 **달력에 색상으로 저장**됩니다. (가장 높은 수치의 감정 2가지를 기준으로 색상이 정해집니다)
 
-## 2. 데모 시연
+## 💻 프로젝트 시연
 
-## 3. 웹 구조도
+## 🏠 웹 구조도
 
 ![image](https://user-images.githubusercontent.com/77563814/198512288-ecb70706-b587-4c3f-802b-e5c4657dd03e.png)
 
 - **FE** : Javascript, Ajax, JQeury, HTML, CSS
 - **BE** : Java Spring, MySQL, Spring Data JPA, Querydsl
 
-## 4. API 설계
+## 📁 API 설계
 
 - **API 문서 (Postman)** : 
 
 ![image](https://user-images.githubusercontent.com/77563814/193088956-a0fe2d42-0d9a-4a52-9389-8b8ac3dbcd8e.png)
 
-## 5. DB 설계
+## 📂 DB 설계
 
 ![newdb](https://user-images.githubusercontent.com/77563814/193088992-321b2c0a-b1bf-4e6e-a0a3-9723bee078ef.png)
 
-## 6. UI 기획
+## 🖼 UI 기획
 
 ![image](https://user-images.githubusercontent.com/77563814/193090214-6f6e2ff0-022e-4045-8e94-60dd72965cdd.png)
 
-## 7. License
+## 📑 License
 
 - Face Detection API : https://github.com/WebDevSimplified/Face-Detection-JavaScript
 - Javascript Calendar API : https://github.com/brospars/simple-calendar
 - SoundCloud Crawling : https://github.com/2022-project/crawling
 
-## 8. 개발 일지 및 이슈
+## 📝 개발 일지 및 이슈
 
 [⬆맨 위로 가기](#목차)
