@@ -1,7 +1,7 @@
 
+<img src="https://user-images.githubusercontent.com/77563814/202142308-614a5630-8757-44f6-bf08-cd388874750d.png" href="src/main/resources/static/images/murange.pdf"/>
 
-# MUrangE   <img src="https://user-images.githubusercontent.com/77563814/209101841-f736b358-8f22-4988-b24d-5ddd057a6edf.png" width="30" height="30"/>
-
+<h1 align="center"> MUrangE <img src="https://user-images.githubusercontent.com/77563814/209101841-f736b358-8f22-4988-b24d-5ddd057a6edf.png" width="27" height="27"/> </h1>
 
 #### 목차 
 
@@ -21,18 +21,16 @@
   
 </aside>
 
-[PPT 링크](src/main/resources/static/images/murange.pdf)
+
 
 #### 사이트 이동 : https://www.murange.site/
 
-#### 프로젝트 소개 PPT (이미지를 클릭하면 이동해요)
-<img src="https://user-images.githubusercontent.com/77563814/202142308-614a5630-8757-44f6-bf08-cd388874750d.png" href="https://github.com/sooyoungh/algorithm-study"/>
+#### 프로젝트 소개 : [PPT 링크](src/main/resources/static/images/murange.pdf)
 
 #### 메인 기능
 
-    1️⃣ 음악 추천 :  사용자의 표정을 5초간 분석 후, 해당 감정에 맞는 음악을 추천해줍니다.
-
-    2️⃣ 감정 달력 : 분석 후, 사용자의 감정이 유저 달력에 색상으로 저장됩니다. (가장 높은 수치의 감정 2가지를 기준으로 색상이 정해집니다)
+1. **표정 분석 후 음악 추천** :  사용자의 표정을 5초간 **분석 후, 해당 감정에 맞는 음악을 추천**해줍니다.
+2. **감정 색상 달력** : 분석 후, 사용자의 감정이 **달력에 색상으로 저장**됩니다. (가장 높은 수치의 감정 2가지를 기준으로 색상이 정해집니다)
 
 ## 2. 데모 시연
 
@@ -61,6 +59,6 @@
 
 - Face Detection API : https://github.com/WebDevSimplified/Face-Detection-JavaScript
 - Javascript Calendar API : https://github.com/brospars/simple-calendar
-- SoundCloud Crawling : 
+- SoundCloud Crawling : https://github.com/2022-project/crawling
 
 [⬆맨 위로 가기](#murange)
