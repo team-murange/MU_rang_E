@@ -5,7 +5,7 @@
 
 #### 목차 
 
-1. [뮤랑이 소개](#-뮤랑이murange--소개)
+1. [뮤랑이 소개](#뮤랑이murange-소개)
 2. [프로젝트 시연](#-프로젝트-시연)
 3. [웹 구조도](#-웹-구조도)
 4. [API 설계](#-api-설계)
@@ -13,12 +13,13 @@
 6. [UI 기획](#-ui-기획)
 7. [License](#-license)
 8. [개발 일지 및 이슈](#-개발-일지-및-이슈)
+9. [사용자 피드백](#-사용자-피드백)
 
-## 😀 뮤랑이(MUrangE) 🎵 소개
+## 뮤랑이(MUrangE) 소개
 
-    뮤랑이는 표정 인식 기반 음악 추천 웹사이트 (MUsic & Emotion)입니다.
+    뮤랑이는 표정 인식 기반 음악 추천 웹사이트 (MUsic🎵 & Emotion😀)입니다.
 
-#### 프로젝트 소개 : [PPT 링크](src/main/resources/static/images/murange.pdf)
+#### 프로젝트 소개 : [PPT 링크 이동하기](src/main/resources/static/images/murange.pdf) | [PDF 다운로드하기](https://github.com/2022-project/MU_rang_E/files/10293762/murange.pdf)
 
 #### 메인 기능
 
@@ -62,5 +63,10 @@
 - SoundCloud Crawling : https://github.com/2022-project/crawling
 
 ## 📝 개발 일지 및 이슈
+
+
+
+## 📬 사용자 피드백
+[전체 사용자 피드백.xlsx](https://github.com/2022-project/MU_rang_E/files/10293756/default.xlsx)
 
 [⬆맨 위로 가기](#목차)
