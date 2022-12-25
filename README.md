@@ -18,6 +18,7 @@
 ## 뮤랑이(MUrangE) 소개
 
     뮤랑이는 표정 인식 기반 음악 추천 웹사이트 (MUsic🎵 & Emotion😀)입니다.
+    학교 졸업 프로젝트, 수상🎉
 
 #### 프로젝트 소개 : [PPT 링크 이동하기](src/main/resources/static/images/murange.pdf) | [PDF 다운로드하기](https://github.com/2022-project/MU_rang_E/files/10293762/murange.pdf)
 
@@ -70,6 +71,10 @@
     - [Camera API HTTP 작동 불가](https://sooyoungh.github.io/murange-issue-1)
 
 ## 📬 사용자 피드백
+
+> 학교 졸업 전시회에서 시연 후 수집한 사용자 피드백
+
+
 [전체 사용자 피드백.xlsx](https://github.com/2022-project/MU_rang_E/files/10293756/default.xlsx)
 
 [⬆맨 위로 가기](#목차)
