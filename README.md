@@ -63,8 +63,11 @@
 - SoundCloud Crawling : https://github.com/2022-project/crawling
 
 ## 📝 개발 일지 및 이슈
-
-
+- **개발 일지**
+  1. [뮤랑이를 소개합니다 🎵😀](http://localhost:4000/murange-1)
+  8. [HTTPS로 배포하기 with AWS](https://sooyoungh.github.io/murange-8)
+- **이슈 및 해결**
+    - [Camera API HTTP 작동 불가](https://sooyoungh.github.io/murange-issue-1)
 
 ## 📬 사용자 피드백
 [전체 사용자 피드백.xlsx](https://github.com/2022-project/MU_rang_E/files/10293756/default.xlsx)
