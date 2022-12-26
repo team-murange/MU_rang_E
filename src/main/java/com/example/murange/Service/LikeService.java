@@ -4,16 +4,12 @@ package com.example.murange.Service;
 import com.example.murange.Domain.Like;
 import com.example.murange.Domain.Music;
 import com.example.murange.Domain.User;
-import com.example.murange.Dto.LikeDto;
 import com.example.murange.Repository.LikeRepository;
 import com.example.murange.Repository.MusicRepository;
 import com.example.murange.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional

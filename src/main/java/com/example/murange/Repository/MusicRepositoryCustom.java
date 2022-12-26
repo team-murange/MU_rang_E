@@ -1,7 +1,6 @@
 package com.example.murange.Repository;
 
 import com.example.murange.Domain.Emotion;
-import com.example.murange.Domain.EmotionCategory;
 import com.example.murange.Domain.Music;
 import com.example.murange.Dto.LikeMusicResponseDto;
 import org.springframework.data.domain.Page;

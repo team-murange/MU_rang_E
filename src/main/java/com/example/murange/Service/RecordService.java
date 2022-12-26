@@ -23,7 +23,6 @@ public class RecordService {
     private final ColorService colorService;
 
     // 유저의 이번달 감정 기록 다 가져오기
-    // R 유저 조회
     @Transactional(readOnly = true)
     public List<RecordResponseDto> getRecordByUserId(Long userId) {
         return recordRepository.getRecordByUserId(userId);

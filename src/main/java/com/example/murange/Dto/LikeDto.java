@@ -3,9 +3,7 @@ package com.example.murange.Dto;
 
 import com.example.murange.Domain.Like;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor
 @Data

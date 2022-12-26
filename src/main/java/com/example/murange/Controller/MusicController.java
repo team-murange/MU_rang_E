@@ -22,7 +22,6 @@ import java.util.List;
 public class MusicController {
 
     private final MusicService musicService;
-    private final LikeService likeService;
 
     @ApiOperation(value = "음악 검색", notes = "메인 page - 음악 검색")
     @GetMapping("/search")

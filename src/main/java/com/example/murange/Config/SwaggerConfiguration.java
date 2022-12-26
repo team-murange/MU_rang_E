@@ -18,9 +18,6 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                //.apis(RequestHandlerSelectors.basePackage("teamMurange.Murange"))
-                // 스웨거가 RestController를 전부 스캔을 한다.
-                // basePackage => 어디를 범위로 스캔을 할 것인지 작성
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
@@ -33,9 +30,6 @@ public class SwaggerConfiguration {
                 .title("MUrangE API")
                 .description("음악 추천 웹사이트 뮤랑이 API 명세서")
                 .version("0.0.1")
-                // .termsOfServiceUrl("https://antstudy.tistory.com/")
-                // .license("LICENSE")
-                // .licenseUrl("")
                 .build();
     }
 
