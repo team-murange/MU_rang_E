@@ -46,21 +46,22 @@ public class Emotion {
         field.set(this, value + 0.01F );
     }
 
-    public void validateEmotionFigure() {
+    public void validateEmotionFigure() throws IllegalAccessException {
         float total = sad + happy + angry + neutral + disgusted + fearful + surprised;
         if (total >= 1) {
             resetFigure();
         }
     }
 
-    public void resetFigure() {
-        sad %= 10;
-        happy %= 10;
-        angry %= 10;
-        neutral %= 10;
-        disgusted %= 10;
-        fearful %= 10;
-        surprised %= 10;
+    public void resetFigure() throws IllegalAccessException {
+        Field[] fields = Emotion.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getName().equals("id") || field.getName().equals("music")) {
+                continue;
+            }
+            Float newValue = (Float) field.get(this) / 10;
+            field.set(this, newValue);
+        }
     }
 
     @Builder
