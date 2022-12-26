@@ -47,11 +47,11 @@
 
 - **API 문서 (Postman)** : 
 
-![image](https://user-images.githubusercontent.com/77563814/193088956-a0fe2d42-0d9a-4a52-9389-8b8ac3dbcd8e.png)
+![murangeAPI](https://user-images.githubusercontent.com/77563814/209539074-38786cc8-1076-4655-a136-d46cc1d9fc1c.png)
 
 ## 📂 DB 설계
 
-![newdb](https://user-images.githubusercontent.com/77563814/193088992-321b2c0a-b1bf-4e6e-a0a3-9723bee078ef.png)
+![murangeDB](https://user-images.githubusercontent.com/77563814/209538865-e16752b1-8785-42f7-b929-e816f777dc8a.png)
 
 ## 🖼 UI 기획
 
