@@ -1,10 +1,12 @@
 package com.example.murange.Repository;
 
 import com.example.murange.Domain.*;
-import com.example.murange.Domain.EmotionCategory;
 import com.example.murange.Dto.LikeMusicResponseDto;
+import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Path;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,36 +25,19 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
         this.queryFactory = queryFactory;
     }
 
-    public OrderSpecifier<?> itemSort(EmotionCategory emotionCategory) {
-        switch (emotionCategory) {
-            case disgusted:
-                return QEmotion.emotion.disgusted.desc();
-            case happy:
-                return QEmotion.emotion.happy.desc();
-            case sad:
-                return QEmotion.emotion.sad.desc();
-            case surprised:
-                return QEmotion.emotion.surprised.desc();
-            case fearful:
-                return QEmotion.emotion.fearful.desc();
-            case neutral:
-                return QEmotion.emotion.neutral.desc();
-            case angry:
-                return QEmotion.emotion.angry.desc();
-            default:
-                throw new IllegalArgumentException("존재하지 않는 감정명입니다.");
-        }
-
+    public OrderSpecifier<?> getOrderSpecifierByEmotion(String fieldStr) {
+        Path<Object> fieldPath = Expressions.path(Emotion.class, fieldStr);
+        return new OrderSpecifier(Order.DESC, fieldPath) ;
     }
 
     @Override
-    public Page<Music> getMusicByEmotionType(EmotionCategory emotion, Pageable pageable) {
+    public Page<Music> getMusicByEmotionType(String fieldStr, Pageable pageable) {
 
         List<Music> result =  queryFactory
                 .select(music)
                 .from(music)
                 .leftJoin(QEmotion.emotion).on(music.emotion.id.eq(QEmotion.emotion.id))
-                .orderBy(itemSort(emotion))
+                .orderBy(getOrderSpecifierByEmotion(fieldStr))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -60,17 +45,15 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
         return new PageImpl<>(result, pageable, result.size());
     }
 
+
     @Override
     public Page<Music> getMusicByTwoEmotion(String mainEmotion, String subEmotion, Pageable pageable) {
-
-        EmotionCategory main = EmotionCategory.valueOf(mainEmotion);
-        EmotionCategory sub = EmotionCategory.valueOf(subEmotion);
 
         List<Music> result =  queryFactory
                 .select(music)
                 .from(music)
                 .leftJoin(QEmotion.emotion).on(music.emotion.id.eq(QEmotion.emotion.id))
-                .orderBy(itemSort(main), itemSort(sub))
+                .orderBy(getOrderSpecifierByEmotion(mainEmotion), getOrderSpecifierByEmotion(subEmotion))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
