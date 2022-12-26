@@ -26,9 +26,8 @@ public class MusicService {
     }
 
     // 감정별 music 조회
-    public Page<MusicResponseDto> getMusicByEmotion (String emotion, Pageable pageable) {
-        EmotionCategory emotionCategory = EmotionCategory.valueOf(emotion);
-        Page<Music> musicList = musicRepository.getMusicByEmotionType(emotionCategory, pageable);
+    public Page<MusicResponseDto> getMusicByEmotion (String emotion, Pageable pageable) throws NoSuchFieldException {
+        Page<Music> musicList = musicRepository.getMusicByEmotionType(emotion, pageable);
         return musicList.map(music -> {
             MusicResponseDto dto = new MusicResponseDto();
             return dto.toMusicResponseDto(music);
@@ -36,7 +35,7 @@ public class MusicService {
     }
 
     // 감정 분석 페이지 - 표정 분석 후 음악 조회
-    public Page<MusicResponseDto> getMusicByDetection (String mainEmotion, String subEmotion, Pageable pageable) {
+    public Page<MusicResponseDto> getMusicByDetection (String mainEmotion, String subEmotion, Pageable pageable) throws NoSuchFieldException {
         Page<Music> musicList = musicRepository.getMusicByTwoEmotion(mainEmotion, subEmotion, pageable);
         return musicList.map(music -> {
             MusicResponseDto dto = new MusicResponseDto();

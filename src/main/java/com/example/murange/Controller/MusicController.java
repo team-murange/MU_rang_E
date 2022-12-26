@@ -47,7 +47,7 @@ public class MusicController {
             @PathVariable(value = "emotion") String emotion,
             @PageableDefault(size = 5) Pageable pageable
 
-    ) {
+    ) throws NoSuchFieldException {
         if (emotion.equals("none")) emotion = "neutral";
 
         Page<MusicResponseDto> musicDtoList = musicService.getMusicByEmotion(emotion, pageable);
@@ -62,7 +62,7 @@ public class MusicController {
             @PathVariable(value = "sub-emotion") String subEmotion,
             @PageableDefault(size = 10) Pageable pageable
 
-    ) {
+    ) throws NoSuchFieldException {
         if (mainEmotion.equals("none")) mainEmotion = "neutral";
         if (subEmotion.equals("none")) subEmotion = "neutral";
 

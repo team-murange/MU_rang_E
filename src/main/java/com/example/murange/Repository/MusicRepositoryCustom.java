@@ -10,10 +10,10 @@ import org.springframework.data.domain.Pageable;
 public interface MusicRepositoryCustom {
 
     // 메인페이지 감정별 음악 조회
-    Page<Music> getMusicByEmotionType(EmotionCategory emotion, Pageable pageable);
+    Page<Music> getMusicByEmotionType(String emotion, Pageable pageable) throws NoSuchFieldException;
 
     // 주,부감정 결과로 음악 조회
-    Page<Music> getMusicByTwoEmotion(String mainEmotion, String secondEmotion, Pageable pageable);
+    Page<Music> getMusicByTwoEmotion(String mainEmotion, String secondEmotion, Pageable pageable) throws NoSuchFieldException;
 
     // 유저가 좋아요한 음악 조회
     Page<LikeMusicResponseDto> getMusicByUserLike(Long userId, Pageable pageable);
