@@ -1,7 +1,7 @@
 package com.example.murange.Repository;
 
 import com.example.murange.Domain.*;
-import com.example.murange.Domain.EmotionType;
+import com.example.murange.Domain.EmotionCategory;
 import com.example.murange.Dto.LikeMusicResponseDto;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-import static com.example.murange.Domain.QFigure.*;
 import static com.example.murange.Domain.QLike.*;
 import static com.example.murange.Domain.QMusic.music;
 
@@ -24,22 +23,22 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
         this.queryFactory = queryFactory;
     }
 
-    public OrderSpecifier<?> itemSort(EmotionType emotion) {
-        switch (emotion) {
-            case disgust:
-                return figure.disgusted.desc();
+    public OrderSpecifier<?> itemSort(EmotionCategory emotionCategory) {
+        switch (emotionCategory) {
+            case disgusted:
+                return QEmotion.emotion.disgusted.desc();
             case happy:
-                return figure.happy.desc();
+                return QEmotion.emotion.happy.desc();
             case sad:
-                return figure.sad.desc();
+                return QEmotion.emotion.sad.desc();
             case surprised:
-                return figure.surprised.desc();
+                return QEmotion.emotion.surprised.desc();
             case fearful:
-                return figure.fearful.desc();
+                return QEmotion.emotion.fearful.desc();
             case neutral:
-                return figure.neutral.desc();
+                return QEmotion.emotion.neutral.desc();
             case angry:
-                return figure.angry.desc();
+                return QEmotion.emotion.angry.desc();
             default:
                 throw new IllegalArgumentException("존재하지 않는 감정명입니다.");
         }
@@ -47,12 +46,12 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
     }
 
     @Override
-    public Page<Music> getMusicByEmotionType(EmotionType emotion, Pageable pageable) {
+    public Page<Music> getMusicByEmotionType(EmotionCategory emotion, Pageable pageable) {
 
         List<Music> result =  queryFactory
                 .select(music)
                 .from(music)
-                .leftJoin(figure).on(music.figure.id.eq(figure.id))
+                .leftJoin(QEmotion.emotion).on(music.emotion.id.eq(QEmotion.emotion.id))
                 .orderBy(itemSort(emotion))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -64,13 +63,13 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
     @Override
     public Page<Music> getMusicByTwoEmotion(String mainEmotion, String subEmotion, Pageable pageable) {
 
-        EmotionType main = EmotionType.valueOf(mainEmotion);
-        EmotionType sub = EmotionType.valueOf(subEmotion);
+        EmotionCategory main = EmotionCategory.valueOf(mainEmotion);
+        EmotionCategory sub = EmotionCategory.valueOf(subEmotion);
 
         List<Music> result =  queryFactory
                 .select(music)
                 .from(music)
-                .leftJoin(figure).on(music.figure.id.eq(figure.id))
+                .leftJoin(QEmotion.emotion).on(music.emotion.id.eq(QEmotion.emotion.id))
                 .orderBy(itemSort(main), itemSort(sub))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -101,12 +100,12 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom{
     }
 
     @Override
-    public Figure getFigureByMusic(Long musicId) {
+    public Emotion getFigureByMusic(Long musicId) {
         return queryFactory
-                .select(figure)
-                .from(figure)
-                .join(music.figure, figure)
-                .where(figure.music.id.eq(musicId))
+                .select(QEmotion.emotion)
+                .from(QEmotion.emotion)
+                .join(music.emotion, QEmotion.emotion)
+                .where(QEmotion.emotion.music.id.eq(musicId))
                 .fetchOne();
     }
 }

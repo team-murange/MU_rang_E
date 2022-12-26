@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Getter
-@Table(name = "figure")
-public class Figure {
+@Table(name = "emotion")
+public class Emotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="figure_id")
+    @Column(name="emotion_id")
     private Long id;
 
     private float sad;
@@ -30,11 +30,11 @@ public class Figure {
 
     private float surprised;
 
-    @OneToOne(mappedBy = "figure")
+    @OneToOne(mappedBy = "emotion")
     private Music music;
 
-    public void updateFigure(EmotionType emotionType) {
-        switch (emotionType) {
+    public void updateFigure(EmotionCategory emotionCategory) {
+        switch (emotionCategory) {
             case sad:
                 calcFigure(sad);
             case angry:
@@ -43,7 +43,7 @@ public class Figure {
                 calcFigure(happy);
             case neutral:
                 calcFigure(neutral);
-            case disgust:
+            case disgusted:
                 calcFigure(disgusted);
             case surprised:
                 calcFigure(surprised);
@@ -70,7 +70,7 @@ public class Figure {
     }
 
     @Builder
-    public Figure(float sad, float happy, float angry, float neutral, float disgusted, float fearful, float surprised) {
+    public Emotion(float sad, float happy, float angry, float neutral, float disgusted, float fearful, float surprised) {
         this.sad = sad;
         this.angry = angry;
         this.happy = happy;

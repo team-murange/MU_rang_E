@@ -1,8 +1,8 @@
 package com.example.murange.Service;
 
-import com.example.murange.Domain.Figure;
+import com.example.murange.Domain.Emotion;
+import com.example.murange.Domain.EmotionCategory;
 import com.example.murange.Domain.Music;
-import com.example.murange.Domain.EmotionType;
 import com.example.murange.Dto.LikeMusicResponseDto;
 import com.example.murange.Dto.MusicResponseDto;
 import com.example.murange.Repository.MusicRepository;
@@ -21,14 +21,14 @@ public class MusicService {
 
     // 랜덤 감정명
     public String getMusicByEmotionTitle () {
-        String emotionType = EmotionType.randomEmotionType().toString();
+        String emotionType = EmotionCategory.randomEmotionType().toString();
         return emotionType;
     }
 
     // 감정별 music 조회
     public Page<MusicResponseDto> getMusicByEmotion (String emotion, Pageable pageable) {
-        EmotionType emotionType = EmotionType.valueOf(emotion);
-        Page<Music> musicList = musicRepository.getMusicByEmotionType(emotionType, pageable);
+        EmotionCategory emotionCategory = EmotionCategory.valueOf(emotion);
+        Page<Music> musicList = musicRepository.getMusicByEmotionType(emotionCategory, pageable);
         return musicList.map(music -> {
             MusicResponseDto dto = new MusicResponseDto();
             return dto.toMusicResponseDto(music);
@@ -52,8 +52,8 @@ public class MusicService {
 
     // 감정 수치 업데이트 - 좋아요 시 수치 업데이트
     public void updateFigureOfMusic(Long musicId, String likeEmotion) {
-        EmotionType emotionType = EmotionType.valueOf(likeEmotion);
-        Figure figure = musicRepository.getFigureByMusic(musicId);
-        figure.updateFigure(emotionType);
+        EmotionCategory emotionCategory = EmotionCategory.valueOf(likeEmotion);
+        Emotion emotion = musicRepository.getFigureByMusic(musicId);
+        emotion.updateFigure(emotionCategory);
     }
 }

@@ -1,6 +1,6 @@
 package com.example.murange.Controller;
 
-import com.example.murange.Domain.EmotionType;
+import com.example.murange.Domain.EmotionCategory;
 import com.example.murange.Dto.EmotionColorDto;
 import com.example.murange.Dto.RecordResponseDto;
 import com.example.murange.Service.ColorService;
@@ -33,8 +33,8 @@ public class RecordController {
         if (mainEmotion.equals("none")) mainEmotion = "neutral";
         if (subEmotion.equals("none")) subEmotion = "neutral";
 
-        EmotionType main = EmotionType.valueOf(mainEmotion);
-        EmotionType sub = EmotionType.valueOf(subEmotion);
+        EmotionCategory main = EmotionCategory.valueOf(mainEmotion);
+        EmotionCategory sub = EmotionCategory.valueOf(subEmotion);
 
         EmotionColorDto emotionColorDto = EmotionColorDto.builder().mainEmotion(main).subEmotion(sub).build();
         recordService.saveEmotion(userId, emotionColorDto);
