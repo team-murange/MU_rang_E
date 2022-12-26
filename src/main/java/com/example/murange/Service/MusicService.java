@@ -51,9 +51,8 @@ public class MusicService {
     }
 
     // 감정 수치 업데이트 - 좋아요 시 수치 업데이트
-    public void updateFigureOfMusic(Long musicId, String likeEmotion) {
-        EmotionCategory emotionCategory = EmotionCategory.valueOf(likeEmotion);
+    public void updateFigureOfMusic(Long musicId, String likeEmotion) throws IllegalAccessException, NoSuchFieldException {
         Emotion emotion = musicRepository.getFigureByMusic(musicId);
-        emotion.updateFigure(emotionCategory);
+        emotion.updateEmotionFigure(likeEmotion);
     }
 }

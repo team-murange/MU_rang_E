@@ -25,7 +25,7 @@ public class LikeController {
             @PathVariable(value = "user-id") Long userId,
             @PathVariable(value = "music-id") Long musicId,
             @PathVariable(value = "emotion") String emotion
-            ) {
+            ) throws IllegalAccessException, NoSuchFieldException {
         likeService.createLike(userId, musicId);
         musicService.updateFigureOfMusic(musicId, emotion);
 

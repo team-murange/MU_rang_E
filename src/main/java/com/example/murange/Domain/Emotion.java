@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.lang.reflect.Field;
 
 @Entity
 @NoArgsConstructor
@@ -33,30 +34,23 @@ public class Emotion {
     @OneToOne(mappedBy = "emotion")
     private Music music;
 
-    public void updateFigure(EmotionCategory emotionCategory) {
-        switch (emotionCategory) {
-            case sad:
-                calcFigure(sad);
-            case angry:
-                calcFigure(angry);
-            case happy:
-                calcFigure(happy);
-            case neutral:
-                calcFigure(neutral);
-            case disgusted:
-                calcFigure(disgusted);
-            case surprised:
-                calcFigure(surprised);
-            case fearful:
-                calcFigure(fearful);
-        };
+    public Field findField(String fieldStr) throws NoSuchFieldException {
+        Class<?> clazz = Emotion.class;
+        return clazz.getDeclaredField(fieldStr);
     }
 
-    public float calcFigure(float emotionFigure) {
+    public void updateEmotionFigure(String fieldStr) throws NoSuchFieldException, IllegalAccessException {
+        validateEmotionFigure();
+        Field field = findField(fieldStr);
+        Float value = (Float) field.get(this);
+        field.set(this, value + 0.01F );
+    }
+
+    public void validateEmotionFigure() {
         float total = sad + happy + angry + neutral + disgusted + fearful + surprised;
-        if (total >= 1) resetFigure();
-        emotionFigure += 0.01;
-        return emotionFigure;
+        if (total >= 1) {
+            resetFigure();
+        }
     }
 
     public void resetFigure() {
