@@ -67,6 +67,7 @@
 - **개발 일지**
   1. [뮤랑이를 소개합니다 🎵😀](https://sooyoungh.github.io/murange-1)
   2. [메인 기능1 : 표정 분석 후 음악 추천](https://sooyoungh.github.io/murange-3)
+  3. [메인 기능2 : 오늘의 감정 색상을 달력에 저장하기 with Enum](https://sooyoungh.github.io/murange-4)
   8. [HTTPS로 배포하기 with AWS](https://sooyoungh.github.io/murange-8)
 - **이슈 및 해결**
     - [Camera API HTTP 작동 불가](https://sooyoungh.github.io/murange-issue-1)
