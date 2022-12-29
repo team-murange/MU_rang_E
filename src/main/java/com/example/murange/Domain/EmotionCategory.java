@@ -4,12 +4,12 @@ import java.util.Random;
 
 public enum EmotionCategory {
 
-    happy(229,229, 30),
-    surprised(210, 173, 142),
-    neutral(88, 140, 199),
-    sad(132, 111, 191),
-    fearful(132, 111, 191),
-    angry(210, 41, 37),
+    happy(247,247, 13),
+    neutral(239, 231, 218),
+    surprised (245, 173, 43),
+    sad(0, 176, 240),
+    fearful(180, 96, 206),
+    angry(227, 76, 29),
     disgusted(109, 218, 74),
     none(209, 212, 212);
 
@@ -30,9 +30,9 @@ public enum EmotionCategory {
         return emotionCategory[PRNG.nextInt(emotionCategory.length)];
     }
 
-    private static int calcColorCode(int main, int sub)  {
-        int calc =  ((main + sub) / 2);
-        return Math.min(calc, 255);
+    public static int calcColorCode(int main, int sub)  {
+        int result = (int) (main * 0.65F + sub * 0.35F);
+        return Math.min(result, 255);
     }
 
     // 주감정, 부감정 입력받고 리턴
@@ -41,10 +41,10 @@ public enum EmotionCategory {
         int calcGreen = calcColorCode(mainEmotion.green, subEmotion.green);
         int calcBlue = calcColorCode(mainEmotion.blue, subEmotion.blue);
 
-        String redHex = Integer.toHexString(calcRed);
-        String greenHex = Integer.toHexString(calcGreen);
-        String blueHex = Integer.toHexString(calcBlue);
+        String redResult = String.format("%02x", calcRed);
+        String greenResult = String.format("%02x", calcGreen);
+        String blueResult = String.format("%02x", calcBlue);
 
-        return redHex + greenHex + blueHex;
+        return redResult + greenResult + blueResult;
     }
 }
