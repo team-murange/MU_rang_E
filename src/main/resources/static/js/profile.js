@@ -15,10 +15,7 @@ $(document).ready(function () {
       success: function (data) {
         user_id = data;
         resolve();
-      },
-      error: function () {
-        console.log("유저 아이디 없음");
-      },
+      }
     });
   });
   promise_user.then(() => {
@@ -31,10 +28,7 @@ $(document).ready(function () {
         $("#picture").attr("src", data.img_url);
         $("#username").html(data.name);
         $("#email").html(data.email);
-      },
-      error: function () {
-        console.log("유저 정보 로딩 에러");
-      },
+      }
     });
 
     $.ajax({
@@ -72,10 +66,7 @@ $(document).ready(function () {
               )
           );
         });
-      },
-      error: function () {
-        console.log("유저의 음악 정보 로딩 에러");
-      },
+      }
     });
   });
 });
@@ -90,12 +81,6 @@ function click_heart(index, likeId) {
       url: url_path + "/like/" + likeId,
       type: "DELETE",
       data: "text",
-      success: function () {
-        console.log(likeId + "좋아요 취소 전송 성공");
-      },
-      error: function () {
-        console.log("좋아요 취소 전송 실패");
-      },
     });
   } else {
     //다시 좋아요 누르기 위해서는 감정 정보가 필요해서 작동하지 않도록 주석처리해놓음

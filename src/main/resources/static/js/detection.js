@@ -22,10 +22,7 @@ Promise.all([
     success: function (data) {
       user_id = data;
       resolve();
-    },
-    error: function () {
-      console.log("유저 아이디 없음");
-    },
+    }
   }),
 ]).then(
   $.ajax({
@@ -36,10 +33,7 @@ Promise.all([
     success: function (data) {
       document.getElementById("id_insert").innerText =
         data.name + "님의 \n감정을 분석해 볼게요.";
-    },
-    error: function () {
-      console.log("유저 정보 로딩 에러");
-    },
+    }
   })
 );
 
@@ -61,9 +55,6 @@ function startVideo() {
     .then(function (stream) {
       video.srcObject = stream;
     })
-    .catch(function (err) {
-      console.log(err);
-    });
 }
 
 //api setting
@@ -241,13 +232,9 @@ function predict() {
             async: false,
             contentType: "application/json;charset=UTF-8",
             success: function () {
-              console.log("분석결과 전송 성공");
               PL.classList.add("animate");
               resolve();
-            },
-            error: function () {
-              console.log("분석 결과 전송 error");
-            },
+            }
           });
         });
         promise_result.then(() => {
@@ -259,7 +246,6 @@ function predict() {
               contentType: "application/json;charset=UTF-8",
               dataType: "json",
               success: function (dataList) {
-                console.log("음악 정보 로딩 성공");
                 $(".result").html(" ");
                 $(dataList.content).each(function (index, data) {
                   flag[index] = 0;
@@ -280,10 +266,7 @@ function predict() {
                       )
                   );
                 });
-              },
-              error: function () {
-                console.log("음악 정보 로딩 에러");
-              },
+              }
             });
           });
         });
@@ -306,11 +289,8 @@ function like_toggle(index, id) {
       contentType: "application/json;charset=UTF-8",
       dataType: "json",
       success: function (data) {
-        console.log("좋아요 전송 성공");
-      },
-      error: function () {
-        console.log("좋아요 전송 실패");
-      },
+
+      }
     });
   } else {
     likey[index].src = "images/unlike.png";

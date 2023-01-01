@@ -41,10 +41,7 @@ $(function () {
     success: function (data) {
       (document.getElementById("login_link").innerText = "my profile"),
         (document.getElementById("login_link").href = "profile.html");
-    },
-    error: function () {
-      console.log("유저 아이디 없음");
-    },
+    }
   });
   const promise_random = new Promise((resolve, reject) => {
     $.ajax({

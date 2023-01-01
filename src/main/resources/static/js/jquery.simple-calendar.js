@@ -17,10 +17,7 @@ function coloring(month) {
             data[i].date.replace("-", "").replace("-", "")
           ).style.background = "#" + data[i].colorCode;
       }
-    },
-    error: function () {
-      console.log("색칠 에러");
-    },
+    }
   });
 }
 
@@ -31,13 +28,9 @@ const promise_calendar = new Promise((resolve, reject) => {
     contentType: "application/json;charset=UTF-8",
     dataType: "text",
     success: function (data) {
-      console.log(data);
       user_id = data;
       resolve();
-    },
-    error: function () {
-      console.log("유저 아이디 없음");
-    },
+    }
   });
 });
 promise_calendar.then(() => {
