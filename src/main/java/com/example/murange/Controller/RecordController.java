@@ -28,14 +28,7 @@ public class RecordController {
             @PathVariable(value = "sub-emotion") String subEmotion
     ) {
 
-        if (mainEmotion.equals("none")) mainEmotion = "neutral";
-        if (subEmotion.equals("none")) subEmotion = "neutral";
-
-        EmotionCategory main = EmotionCategory.valueOf(mainEmotion);
-        EmotionCategory sub = EmotionCategory.valueOf(subEmotion);
-
-        EmotionColorDto emotionColorDto = EmotionColorDto.builder().mainEmotion(main).subEmotion(sub).build();
-        recordService.saveEmotion(userId, emotionColorDto);
+        recordService.saveEmotion(userId, mainEmotion, subEmotion);
         return new ResponseEntity(HttpStatus.OK);
     }
 

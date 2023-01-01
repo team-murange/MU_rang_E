@@ -1,5 +1,6 @@
 package com.example.murange.Service;
 
+import com.example.murange.Domain.EmotionCategory;
 import com.example.murange.Domain.Record;
 import com.example.murange.Domain.User;
 import com.example.murange.Dto.EmotionColorDto;
@@ -29,16 +30,18 @@ public class RecordService {
     }
 
     // 표정 분석 후 해당 컬러코드 저장
-    public void saveEmotion (Long userId, EmotionColorDto emotionColorDto) {
+    public void saveEmotion (Long userId, String mainEmotion, String subEmotion) {
 
         LocalDate today = LocalDate.now();
+        EmotionCategory mainEmotionCategory = EmotionCategory.valueOf(mainEmotion);
+        EmotionCategory subEmotionCategory = EmotionCategory.valueOf(subEmotion);
 
         User user = userRepository.getReferenceById(userId);
-        String colorCode = colorService.getColorCodeByTwoEmotion(emotionColorDto.getMainEmotion(), emotionColorDto.getSubEmotion());
+        String colorCode = colorService.getColorCodeByTwoEmotion(mainEmotionCategory, subEmotionCategory);
         Record record = Record.builder()
                 .user(user)
-                .mainEmotion(emotionColorDto.getMainEmotion())
-                .subEmotion(emotionColorDto.getSubEmotion())
+                .mainEmotion(mainEmotionCategory)
+                .subEmotion(subEmotionCategory)
                 .colorCode(colorCode)
                 .date(today)
                 .build();
