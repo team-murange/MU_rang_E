@@ -1,7 +1,6 @@
 package com.example.murange.Dto;
 
-import com.example.murange.Domain.UserRole;
-import com.sun.istack.NotNull;
+import com.example.murange.Domain.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,5 +14,5 @@ public class UserJoinRequest {
 
     private String passWord;
 
-    private UserRole userRole;
+    private Role role;
 }

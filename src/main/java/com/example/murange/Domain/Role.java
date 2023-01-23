@@ -3,9 +3,9 @@ package com.example.murange.Domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
-public enum UserRole {
+@AllArgsConstructor
+public enum Role {
     USER("ROLE_USER"),
     ADMIN("ROLE_ADMIN");
 
