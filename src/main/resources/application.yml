@@ -11,6 +11,10 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER # Swagger

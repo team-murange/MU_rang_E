@@ -1,6 +1,5 @@
-package com.example.murange.Config;
+package com.example.murange.Config.oauth;
 
-import com.example.murange.Config.oauth.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -19,8 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
-    private final PrincipalOauth2UserService principalOauth2UserService;
+    private final CustomOauth2UserService customOauth2UserService;
 
     // 인증에서 제외
     @Override
@@ -40,10 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/profile").authenticated()
                     .anyRequest().permitAll()
                 .and()
+                    .logout()
+                    .logoutSuccessUrl("/")
+                .and()
                     .oauth2Login()
                     .loginPage("/oauth2/authorization/google")
                     .userInfoEndpoint()
-                    .userService(principalOauth2UserService);
+                    .userService(customOauth2UserService);
     }
 
     // CORS 허용 적용
@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.addAllowedOrigin("*");
+        configuration.addAllowedOriginPattern("*"); // 변경!
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         configuration.setAllowCredentials(true);
