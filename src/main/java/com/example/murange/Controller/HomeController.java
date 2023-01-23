@@ -1,72 +1,46 @@
 package com.example.murange.Controller;
 
-import com.example.murange.Domain.User;
-import com.example.murange.Repository.UserRepository;
+import com.example.murange.Config.oauth.SessionUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final HttpSession httpSession;
 
-    @Bean
-    public ViewResolver getViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setSuffix(".html");
-        return resolver;
+    @GetMapping("/user")
+    public @ResponseBody Long user(){
+        SessionUser loginUser = (SessionUser) httpSession.getAttribute("loginUser");
+        return loginUser.getId();
     }
 
-    // 페이지
-    @GetMapping(value = {"/", "/main" })
-    String main() {
+    @GetMapping(value = {"", "main" })
+    public String main(Model model){
+        SessionUser loginUser = (SessionUser) httpSession.getAttribute("loginUser");
+
+        if(loginUser != null){
+            model.addAttribute("user", loginUser);
+        }
         return "main";
     }
 
-    @GetMapping(value = {"/loginForm" })
-    String login() {
-        return "loginForm";
-    }
-
-    @GetMapping("/fail")
-    String fail() {
-        return "fail";
-    }
-
-    @GetMapping("/profile")
-    String profile() {
+    @GetMapping("profile")
+    public String profile(Model model){
+        SessionUser loginUser = (SessionUser) httpSession.getAttribute("loginUser");
+        model.addAttribute("user", loginUser);
         return "profile";
     }
 
-    @GetMapping("/detection")
-    String detection() {
+    @GetMapping("detection")
+    public String detection(Model model){
+        SessionUser loginUser = (SessionUser) httpSession.getAttribute("loginUser");
+        model.addAttribute("user",loginUser);
         return "detection";
-    }
-
-    @GetMapping("/joinForm")
-    public String joinForm() {
-        return "joinForm";
-    }
-
-    @PostMapping("/join")
-    public String join(HttpServletRequest httpServletRequest) {
-        String username = httpServletRequest.getParameter("username");
-        String password = httpServletRequest.getParameter("password");
-        String email = httpServletRequest.getParameter("email");
-        String encPwd = bCryptPasswordEncoder.encode(password);
-
-        User user = User.builder().role("ROLE_USER").username(username).password(encPwd).email(email).build();
-
-        userRepository.save(user);
-        return "redirect:/loginForm";
     }
 }

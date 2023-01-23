@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 
     <meta charset="UTF-8">
@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/header.css">
+
 </head>
 
 <body>
@@ -31,27 +32,22 @@
             <div id="logo_title">murange</div>
         </button>
 
-<!--        <div id="search">-->
-<!--            <form action="search.html" method="get">-->
-<!--                <input type="search" name="search" placeholder="검색어 입력">-->
-<!--                <input type="submit" value="검색" >-->
-<!--            </form>-->
-<!--        </div>-->
-
         <div id="feed" >
-            <button id = "login_btn">
-                <a id = "login_link" href="/oauth2/authorization/google" style="text-decoration:none">
-                    Sign in</a>
-            </button>
+            <a id = "login_link" sec:authorize="isAnonymous()" th:href="@{/oauth2/authorization/google}" style="text-decoration:none">
+                Sign in
+            </a>
+            <a id = "my_link" sec:authorize="isAuthenticated()" th:href="@{/profile}" style="text-decoration:none">
+                My profile
+            </a>
         </div>
+
     </div>
 </header>
 
 <div class="content">
     <!-- 1. 상단 : 감정 분석 페이지 이동 -->
     <section class="banner">
-<!--        <a onclick="location.href='/detection'" target="_blank">-->
-        <a href='detection' >
+        <a th:href="@{/detection}" >
             <img class="picture" src="images/banner.png" alt="banner">
         </a>
     </section>
@@ -60,7 +56,6 @@
     <section class="playlist__emotion">
         <div style="display:flex;">
             <div class="topic"></div>
-            <button onclick="getRandom()">reload</button>
         </div>
         <div class="line"></div>
         <div id="data-container"></div>

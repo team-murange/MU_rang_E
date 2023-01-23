@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="js/profile.js" async defer></script>
-    <script defer src="js/jquery.simple-calendar.js"></script>
+    <script th:inline="javascript" src="js/profile.js" async defer></script>
+    <script th:inline="javascript" defer src="js/jquery.simple-calendar.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@800&display=swap" rel="stylesheet">
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
@@ -36,7 +37,7 @@
 
         <div id="feed" >
             <button id = "logout_btn">
-                <a id = "logout_link" href="/logout" style="text-decoration:none">
+                <a id = "logout_link" th:href="@{/logout}" style="text-decoration:none">
                     Log out</a>
             </button>
         </div>
@@ -50,7 +51,7 @@
             <div id="container" class="calendar-container"></div>
             <script src="https://code.jquery.com/jquery-2.2.4.min.js"
                 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-            <script>
+            <script th:inline="javascript">
                 var $calendar;
                 $(document).ready(function () {
                     let container = $("#container").simpleCalendar({
@@ -62,21 +63,20 @@
             </script>
             <!-- 2. 유저 프로필 -->
             <div class="profile">
-                <img id="picture" style="width: 15vw; height: 15vw;" src="images/profile.jpg"
-                     alt="profile">
-                <div id="username"></div>
-                <div id="email"></div>
-            </div>
+                <img id="picture" th:src="${user.picture}" alt="img" th:if="${user.picture != null}" />
 
+                <div id="username" th:text="${user.name}"></div>
+                <div id="email" th:text="${user.email}" ></div>
+            </div>
         </div>
 
-        <!-- 3. 유저의 음악 목록 -->
         <section class="playlist__emotion">
             <div class="topic" id="fav">My Fav</div>
             <div class="line"></div>
             <ul class="sample">
             </ul>
         </section>
+        <!-- 3. 유저의 음악 목록 -->
     </div>
 
 </body>
