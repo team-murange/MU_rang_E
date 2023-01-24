@@ -45,9 +45,9 @@ https://user-images.githubusercontent.com/77563814/209975379-de27c09f-df02-4de2-
 
 ## 📁 API 설계
 
-- **API 문서 (Postman)** : 
+- **API 문서 (Postman)** : https://documenter.getpostman.com/view/17088295/2s8ZDbX1Qk
 
-![murangeAPI](https://user-images.githubusercontent.com/77563814/209539074-38786cc8-1076-4655-a136-d46cc1d9fc1c.png)
+![image](https://user-images.githubusercontent.com/77563814/214326515-5afd91b6-ecc5-487e-bd9c-c7037e6105d3.png)
 
 ## 📂 DB 설계
 
