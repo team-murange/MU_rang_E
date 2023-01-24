@@ -1,13 +1,13 @@
 package com.example.murange.Controller;
 
-import com.example.murange.Domain.EmotionCategory;
-import com.example.murange.Dto.EmotionColorDto;
+import com.example.murange.Dto.RecordRequestDto;
 import com.example.murange.Dto.RecordResponseDto;
 import com.example.murange.Service.RecordService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,13 +20,14 @@ public class RecordController {
     private final RecordService recordService;
 
     @ApiOperation(value = "표정 분석 후 주/부감정 저장", notes = "표정 분석 page - 표정 분석 후 주/부감정 (컬러코드로) 저장")
-    @GetMapping("/figure/{user-id}/{main-emotion}/{sub-emotion}")
+    @PostMapping("/figure")
     @ResponseBody
     public ResponseEntity saveEmotion(
-            @PathVariable(value = "user-id") Long userId,
-            @PathVariable(value = "main-emotion") String mainEmotion,
-            @PathVariable(value = "sub-emotion") String subEmotion
+            @RequestBody @Validated RecordRequestDto recordRequestDto
     ) {
+        Long userId = recordRequestDto.getUserId();
+        String mainEmotion = recordRequestDto.getMainEmotion();
+        String subEmotion = recordRequestDto.getSubEmotion();
 
         recordService.saveEmotion(userId, mainEmotion, subEmotion);
         return new ResponseEntity(HttpStatus.OK);

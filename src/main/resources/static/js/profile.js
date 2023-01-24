@@ -15,7 +15,7 @@ $(document).ready(function () {
       success: function (data) {
         user_id = data;
         resolve();
-      }
+      },
     });
   });
   promise_user.then(() => {
@@ -28,9 +28,8 @@ $(document).ready(function () {
         $("#picture").attr("src", data.img_url);
         $("#username").html(data.name);
         $("#email").html(data.email);
-      }
+      },
     });
-
     $.ajax({
       url: url_path + "/like/" + user_id,
       data: "get",
@@ -66,7 +65,7 @@ $(document).ready(function () {
               )
           );
         });
-      }
+      },
     });
   });
 });
@@ -88,10 +87,3 @@ function click_heart(index, likeId) {
     // flag[index]=1;
   }
 }
-
-// const searchForm = document.querySelector('form');
-//
-// searchForm.addEventListener('submit', event => {
-//     const searchInput = event.target['search'];
-//     location.href = `search.html?${searchInput.value}`
-// });

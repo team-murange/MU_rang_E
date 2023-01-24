@@ -3,7 +3,6 @@ package com.example.murange.Controller;
 import com.example.murange.Domain.Music;
 import com.example.murange.Dto.LikeMusicResponseDto;
 import com.example.murange.Dto.MusicResponseDto;
-import com.example.murange.Service.LikeService;
 import com.example.murange.Service.MusicService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -23,15 +22,7 @@ public class MusicController {
 
     private final MusicService musicService;
 
-    @ApiOperation(value = "음악 검색", notes = "메인 page - 음악 검색")
-    @GetMapping("/search")
-    @ResponseBody
-    public ResponseEntity searchMusicSinger() {
-
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @ApiOperation(value = "랜덤 감정명", notes = "메인 page - 감정별 음악 조회시 감정명")
+    @ApiOperation(value = "랜덤 감정명 조회", notes = "메인 page - 감정별 음악 조회시 감정명")
     @GetMapping("/random/title")
     @ResponseBody
     public ResponseEntity<String> getRandomMusicTitle() {

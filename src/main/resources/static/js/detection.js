@@ -22,20 +22,9 @@ Promise.all([
     success: function (data) {
       user_id = data;
       resolve();
-    }
+    },
   }),
-]).then(
-  $.ajax({
-    url: url_path + "/user/" + user_id,
-    data: "get",
-    contentType: "application/json;charset=UTF-8",
-    dataType: "json",
-    success: function (data) {
-      document.getElementById("id_insert").innerText =
-        data.name + "님의 \n감정을 분석해 볼게요.";
-    }
-  })
-);
+]);
 
 function startDetection() {
   if (restart == 0) {
@@ -50,11 +39,9 @@ function startDetection() {
 
 function startVideo() {
   video.addEventListener("play", loading);
-  navigator.mediaDevices
-    .getUserMedia({ video: true })
-    .then(function (stream) {
-      video.srcObject = stream;
-    })
+  navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+    video.srcObject = stream;
+  });
 }
 
 //api setting
@@ -219,22 +206,24 @@ function predict() {
 
         //표정분석결과 전달
         const promise_result = new Promise((resolve, reject) => {
+          var data_result = {
+            userId: user_id,
+            mainEmotion: first_emotion,
+            subEmotion: second_emotion,
+          };
+
+          var json_result = JSON.stringify(data_result);
+
           $.ajax({
-            url:
-              url_path +
-              "/figure/" +
-              user_id +
-              "/" +
-              first_emotion +
-              "/" +
-              second_emotion,
-            data: "get",
+            url: url_path + "/figure", //  + user_id + "/" + first_emotion + "/" + second_emotion,
+            type: "post",
+            data: json_result,
             async: false,
-            contentType: "application/json;charset=UTF-8",
+            contentType: "application/json; charset=UTF-8",
             success: function () {
               PL.classList.add("animate");
               resolve();
-            }
+            },
           });
         });
         promise_result.then(() => {
@@ -266,7 +255,7 @@ function predict() {
                       )
                   );
                 });
-              }
+              },
             });
           });
         });
@@ -280,17 +269,24 @@ function predict() {
 var likey = document.getElementsByClassName("like__music");
 
 function like_toggle(index, id) {
+  var data_like = {
+    musicId: id,
+    userId: user_id,
+    emotion: first_emotion,
+  };
+  var json_like = JSON.stringify(data_like);
+
   if (flag[index] == 0) {
     likey[index].src = "images/like.png";
     flag[index] = 1;
-    $.ajax({
-      url: url_path + "/like/" + user_id + "/" + id + "/" + first_emotion,
-      data: "get",
-      contentType: "application/json;charset=UTF-8",
-      dataType: "json",
-      success: function (data) {
 
-      }
+    $.ajax({
+      url: url_path + "/like", // + user_id + "/" + id + "/" + first_emotion,
+      type: "post",
+      data: json_like,
+      contentType: "application/json; charset=UTF-8",
+      dataType: "json",
+      success: function (data) {},
     });
   } else {
     likey[index].src = "images/unlike.png";

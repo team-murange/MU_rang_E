@@ -33,16 +33,16 @@ $(document).ready(function openLoading() {
 });
 
 $(function () {
-  $.ajax({
-    url: url_path + "/user",
-    data: "get",
-    contentType: "application/json;charset=UTF-8",
-    dataType: "text",
-    success: function (data) {
-      (document.getElementById("login_link").innerText = "my profile"),
-        (document.getElementById("login_link").href = "profile.html");
-    }
-  });
+//  $.ajax({
+//    url: url_path + "/user",
+//    data: "get",
+//    contentType: "application/json;charset=UTF-8",
+//    dataType: "text",
+//    success: function (data) {
+//      (document.getElementById("login_link").innerText = "my profile"),
+//        (document.getElementById("login_link").href = "profile.html");
+//    }
+//  });
   const promise_random = new Promise((resolve, reject) => {
     $.ajax({
       url: url_path + "/random/title",
