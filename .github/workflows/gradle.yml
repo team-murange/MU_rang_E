@@ -24,16 +24,12 @@ jobs:
       - name: Grant execute permisson for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: build
+        run: ./gradlew build
+      - name: Docker build
+        run: |
+          docker build -t spring-cicd .
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: user/app:latest
