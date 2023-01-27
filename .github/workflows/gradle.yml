@@ -30,8 +30,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push Docker
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: user/app:latest
+      - name: Docker build
+        run: |
+          docker build -t spring-cicd .
+          docker tag spring-cicd sooyoungh8/spring-cicd:${GITHUB_SHA::7}
+          docker push sooyoungh8/spring-cicd:${GITHUB_SHA::7}
