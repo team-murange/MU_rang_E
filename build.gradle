@@ -12,6 +12,10 @@ plugins {
 	id 'java'
 }
 
+jar {
+	enabled(false)
+}
+
 group = 'com.example'
 version = 'SNAPSHOT'
 sourceCompatibility = '11'
