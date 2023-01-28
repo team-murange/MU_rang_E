@@ -42,6 +42,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT }}
+          envs: GITHUB_SHA
           script: |
             docker pull sooyoungh8/spring-cicd:${GITHUB_SHA::7}
             docker tag sooyoungh8/spring-cicd:${GITHUB_SHA::7} spring-cicd
